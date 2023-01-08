@@ -1,0 +1,18 @@
+<div class="auth">
+  <div>integration for authorization</div>
+  <div class="vertical-line-gray-thin"></div>
+  <app-sign-in
+    *ngIf="!isSignUp"
+    (submitSignIn)="requestSignIn($event)"
+    (redirectEvent)="setFlagSignUp()"
+  ></app-sign-in>
+  <app-sign-up
+    *ngIf="isSignUp"
+    (submitSignUp)="requestSignUp($event)"
+    (redirectEvent)="setFlagSignUp()"
+  ></app-sign-up>
+</div>
+
+<div>
+  <ng-container #modal></ng-container>
+</div>

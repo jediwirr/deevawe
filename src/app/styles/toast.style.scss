@@ -1,0 +1,12 @@
+.toast {
+  position: absolute;
+  right: -15.625rem;
+  bottom: 3.125rem;
+  min-width: 15.625rem;
+  min-height: 3.125rem;
+  transition: right 2s ease-in-out;
+  background: #fff;
+  &.show {
+    right: 0rem;
+  }
+}

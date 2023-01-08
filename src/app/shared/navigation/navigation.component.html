@@ -1,0 +1,18 @@
+<header>
+    <h2> {{nameActivePage}} </h2>
+    <nav>
+        <ul>
+            <a 
+              class="navigation-link"
+              *ngFor="let item of listNavigation"
+              [routerLink]="[item.routingName]"
+              [routerLinkActive]="['active-link']"
+              [routerLinkActiveOptions]="{exact:
+                true}"
+              > <li>
+                {{item.name}}
+              </li> 
+            </a>
+        </ul>
+      </nav>
+</header>

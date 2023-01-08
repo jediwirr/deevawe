@@ -1,0 +1,17 @@
+<form class="sign" [formGroup]="sigInForm" (submit)="submitForm()">
+  <label for="email">Почта:</label>
+  <input class="auth__input" formControlName="email" type="text" />
+  <label for="password">Пароль:</label>
+  <input class="auth__input" formControlName="password" type="password" />
+  <button
+    class="sign__submit space-top"
+    type="submit"
+    [disabled]="!sigInForm.valid"
+  >
+    signIn
+  </button>
+  <a class="space-bottom" (click)="redirectToSignUp()">Создать аккаунт</a>
+  <a (click)="changePassword()">Забыли пароль</a>
+</form>
+
+<ng-container #modal></ng-container>
