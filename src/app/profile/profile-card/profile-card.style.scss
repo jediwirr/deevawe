@@ -1,48 +1,48 @@
-@use "../../../mixins.scss" as Mixins;
+@use '../../../mixins.scss' as Mixins;
 
 .card {
-    &.flex-space-between {
-        @include Mixins.flex-space-between;
-    }
+  &.flex-space-between {
+    @include Mixins.flex-space-between;
+  }
 
-    &.padding-space {
-        padding: 16px;
-    }
+  &.padding-space {
+    padding: 16px;
+  }
 
-    &__about-profile {
-        display: flex;
-        img {
-            min-width: 144px;
-            min-height: 144px;
-            border: 2px solid #000000;
-            border-radius: 15px;
-            margin-right: 13px;
-        }
+  &__about-profile {
+    display: flex;
+    img {
+      min-width: 144px;
+      min-height: 144px;
+      border: 2px solid #000000;
+      border-radius: 15px;
+      margin-right: 13px;
     }
+  }
 
-    &__action-profile {
-        @include Mixins.flex-direction-column;
-        &--top {
-            button {
-                border: none;
-                background: rgba(227, 227, 227, 0.5);
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                border-radius: 15px;
-                margin-right: 15px;
-                &:last-child {
-                    margin-right: 0;
-                }
-            }
+  &__action-profile {
+    @include Mixins.flex-direction-column;
+    &--top {
+      button {
+        border: none;
+        background: rgba(227, 227, 227, 0.5);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+        margin-right: 15px;
+        &:last-child {
+          margin-right: 0;
         }
-        &--bottom {
-            margin-top: auto;
-            align-self: flex-end;
-            button {
-                background: #FFFFFF;
-                border: 1px solid rgba(0, 0, 0, 0.5);
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                border-radius: 50px;
-            }
-        }
+      }
     }
+    &--bottom {
+      margin-top: auto;
+      align-self: flex-end;
+      button {
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 50px;
+      }
+    }
+  }
 }

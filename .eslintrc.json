@@ -26,6 +26,8 @@
         "import/no-unresolved": "off",
         "@typescript-eslint/explicit-module-boundary-types": "error",
         "class-methods-use-this": "off",
+        "max-len": ["error", {"code": 120}],
+        "semi":"error",
         "@angular-eslint/directive-selector": [
           "error",
           {

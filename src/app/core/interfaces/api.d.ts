@@ -29,6 +29,10 @@ interface ErrorApiResponse {
   code?: number;
 }
 
+interface SuccessReturn {
+  success?: boolean;
+}
+
 export {
   SendVerifyCodeResponse,
   VerifyUserResponse,
@@ -37,4 +41,5 @@ export {
   ChangePasswordResponse,
   SignOutResponse,
   ErrorApiResponse,
+  SuccessReturn,
 };

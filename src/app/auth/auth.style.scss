@@ -32,7 +32,7 @@
     min-width: 225px;
     min-height: 25px;
     font-weight: 700;
-    font-size: .75rem;
+    font-size: 0.75rem;
     cursor: pointer;
     &.space-top {
       margin-top: 59px;
@@ -41,7 +41,7 @@
 
   label {
     font-weight: 700;
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 
   input {
@@ -53,7 +53,7 @@
   a {
     text-align: center;
     font-weight: 500;
-    font-size: .5625rem;
+    font-size: 0.5625rem;
     text-decoration: underline;
     color: Variables.$light-blue;
     cursor: pointer;

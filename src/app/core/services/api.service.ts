@@ -1,12 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { ENV } from '@app/env';
 import type { UserData } from '../interfaces/localStorage.d';
 import { LocalStorageService } from './localStorage.service';
 
-@Injectable({
-  providedIn: 'root',
-})
 export class Api {
   constructor(
     private http: HttpClient,
