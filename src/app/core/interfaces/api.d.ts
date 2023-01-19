@@ -30,7 +30,8 @@ interface ErrorApiResponse {
 }
 
 interface SuccessReturn {
-  success?: boolean;
+  success: boolean;
+  message?: string;
 }
 
 export {

@@ -15,4 +15,5 @@ interface Connection {
   show: boolean;
 }
 
-export { User };
+
+export { User, Connection };

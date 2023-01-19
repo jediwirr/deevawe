@@ -5,8 +5,16 @@ import { TimeZones } from './time-zones';
 type DeleteEvent = Omit<SubscribeBodyEvent, 'subscribe'>;
 type OmitParamsAddEvent = Omit<ParamsAddEvent, 'time_zone'>;
 
-interface Occasion extends OmitParamsAddEvent {}
+interface Occasion extends OmitParamsAddEvent {
+    subscribe?: boolean;
+}
+
 interface Occasion extends ErrorApiResponse {}
+
+interface Occasions {
+    count: number;
+    events: OmitParamsAddEvent[]
+}
 
 interface ParamsAddEvent {
   user_id: number;
@@ -33,4 +41,4 @@ interface SearchParams {
     user_id: number;
 }
 
-export { DeleteEvent, ParamsAddEvent, Occasion, SearchParams };
+export { DeleteEvent, ParamsAddEvent, Occasion, SearchParams, Occasions };

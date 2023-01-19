@@ -12,7 +12,12 @@ export class UsersApiService extends Api {
       'get',
       null
     );
-    return result;
+    return result
   }
 
+  public async searchUser(type: number, value: number): Promise<User> {
+    const url = `users/1?type=${type}&value=${value}`;
+    const result = await this.request<null, User>(url, 'post');
+    return result;
+  }
 }
