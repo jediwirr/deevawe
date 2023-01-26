@@ -1,7 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { ENV } from '@app/env';
 import type { UserData } from '../interfaces/localStorage.d';
 import { LocalStorageService } from './localStorage.service';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 export class Api {
   constructor(
@@ -21,20 +26,29 @@ export class Api {
   }
 
   private async getHttpHeader(): Promise<HttpHeaders> {
-    const headers = new HttpHeaders({
+    let headers = new HttpHeaders({
       Client: ENV.client,
+      Accept: '*/*'
     });
-    const getToken =
-      await this.localStorageService.getItemLocalStorage<UserData>('dataUser');
 
-    if (getToken?.authToken) {
-      headers.set('Authorization', `Bearer ${getToken?.authToken}`);
+    const token = await this.getToken();
+      
+    if (token) {
+     headers = headers.set('Authorization', `${token?.authToken}`);
     }
 
     return headers;
   }
 
-  public request<T, R>(url: string, method: string, body?: T): Promise<R> {
+  private async getToken(): Promise<UserData | null> {
+    try {
+     return await this.localStorageService.getItemLocalStorage<UserData>('dataUser'); 
+    } catch (error) {
+      return null;
+    }
+  }
+
+  public sendRequest<T, R>(url: string, method: string, body: T | null = null): Promise<R> {
     return new Promise((resolve) => {
       this.getOptions(body).then((options) => {
         this.http

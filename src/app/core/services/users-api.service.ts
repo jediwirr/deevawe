@@ -6,18 +6,19 @@ import { User } from '../interfaces/users';
   providedIn: 'root',
 })
 export class UsersApiService extends Api {
-  public async getUser(userId: string): Promise<User> {
-    const result = await this.request<null, User>(
-      `user/${userId}`,
+  public async getUser(userId: number): Promise<User> {
+    const url = `user?user_id=${userId}`;
+    const result = await this.sendRequest<null, User>(
+       url,
       'get',
       null
     );
-    return result
+    return result;
   }
 
   public async searchUser(type: number, value: number): Promise<User> {
     const url = `users/1?type=${type}&value=${value}`;
-    const result = await this.request<null, User>(url, 'post');
+    const result = await this.sendRequest<null, User>(url, 'post');
     return result;
   }
 }

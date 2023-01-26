@@ -13,7 +13,7 @@ import { Api } from './api.service';
 })
 export class AuthApiService extends Api {
   public async signIn(userData: AuthUserData): Promise<SingInUserResponse> {
-    const result = await this.request<AuthUserData, SingInUserResponse>(
+    const result = await this.sendRequest<AuthUserData, SingInUserResponse>(
       'signin',
       'post',
       userData
@@ -22,7 +22,7 @@ export class AuthApiService extends Api {
   }
 
   public async signUp(userData: AuthUserData): Promise<SignUpUserResponse> {
-    const result = await this.request<AuthUserData, SignUpUserResponse>(
+    const result = await this.sendRequest<AuthUserData, SignUpUserResponse>(
       'signup',
       'put',
       userData
@@ -31,7 +31,7 @@ export class AuthApiService extends Api {
   }
 
   public async signOut(userId: number): Promise<SignOutResponse> {
-    const result = await this.request<{ user_id: number }, SignOutResponse>(
+    const result = await this.sendRequest<{ user_id: number }, SignOutResponse>(
       'signout',
       'delete',
       { user_id: userId }
@@ -42,7 +42,7 @@ export class AuthApiService extends Api {
   public async changePassword(
     userData: UserDataVerify
   ): Promise<ChangePasswordResponse> {
-    const result = await this.request<UserDataVerify, ChangePasswordResponse>(
+    const result = await this.sendRequest<UserDataVerify, ChangePasswordResponse>(
       'change_password',
       'post',
       userData

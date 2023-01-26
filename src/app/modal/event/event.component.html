@@ -1,0 +1,34 @@
+<div class="modal">
+    <form>
+        <div>
+            <label for="title">Название</label>
+            <input />
+            <p> До 30 символов </p>
+        </div>
+        <div>
+            <label> Описание </label>
+            <textarea></textarea>
+        </div>
+        <div>
+            <label>Место</label>
+            <p (click)="showOrHideMap()">Мое местоположение</p>
+            <app-map *ngIf="isShowMap" ></app-map>
+        </div>
+        <div>
+            <label>Начало:</label>
+            <app-date-picker></app-date-picker>
+        </div>
+        <div>
+            <label>Конец:</label>
+            <app-date-picker></app-date-picker>
+        </div>
+        <div>
+            <input type="checkbox" />
+            <label>Добавить время окончания события</label>
+        </div>
+        <div>
+            <label>Тип:</label>
+            <app-select [listType]="listTypeEvent"  [isShowImage]="true"></app-select>
+        </div>
+    </form>
+</div>

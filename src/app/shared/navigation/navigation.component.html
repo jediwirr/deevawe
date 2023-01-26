@@ -1,5 +1,6 @@
 <header>
   <h2>{{ nameActivePage }}</h2>
+  <button (click)="openFormEvent()">Создать событие</button>
   <nav>
     <ul>
       <a
@@ -16,3 +17,5 @@
     </ul>
   </nav>
 </header>
+
+<ng-container #modalFormEvent></ng-container>

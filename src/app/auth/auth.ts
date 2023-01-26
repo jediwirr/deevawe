@@ -34,10 +34,10 @@ export class AuthPageComponent {
   }
 
   public async requestSignUp(userData: AuthUserData): Promise<void> {
-    // const result = await this.authApiService.signUp(userData);
-    // if (result.code) {
-    //   return;
-    // }
+    const result = await this.authApiService.signUp(userData);
+    if (result.code) {
+      return;
+    }
     this.modalService.injectComponent<ModalVerifyCodeComponent>(
       this.modal,
       ModalVerifyCodeComponent,

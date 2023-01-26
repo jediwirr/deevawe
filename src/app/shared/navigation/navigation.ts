@@ -1,6 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { EventFormComponent } from "../../modal/event/event";
+import { ModalService } from "../../core/services/modal.service";
 
 @Component({
   selector: 'app-navigation',
@@ -8,6 +10,9 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./navigation.style.scss'],
 })
 export class NavigationComponent implements OnDestroy {
+
+  @ViewChild('modalFormEvent', {read: ViewContainerRef}) modalFormEvent!: ViewContainerRef;
+
   public readonly listNavigation = [
     { name: 'Главная', routingName: '/home' },
     { name: 'Профиль', routingName: '/profile' },
@@ -21,7 +26,10 @@ export class NavigationComponent implements OnDestroy {
 
   public nameActivePage!: string;
 
-  constructor(protected router: Router) {
+  constructor(
+    protected router: Router,
+    private modalService: ModalService
+    ) {
     this.subscription = new Observable((subscriber) => {
       subscriber.next(this.router.url);
     });
@@ -37,6 +45,12 @@ export class NavigationComponent implements OnDestroy {
         return undefined;
       }
       return undefined;
+    });
+  }
+
+  public openFormEvent(): void {
+    this.modalService.injectComponent(this.modalFormEvent, EventFormComponent);
+    this.modalService.closedModal.subscribe(() => {
     });
   }
 
