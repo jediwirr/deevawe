@@ -12,7 +12,7 @@
         <div>
             <label>Место</label>
             <p (click)="showOrHideMap()">Мое местоположение</p>
-            <app-map *ngIf="isShowMap" ></app-map>
+            <app-map *ngIf="isShowMap" (closeMap)="showOrHideMap()" ></app-map>
         </div>
         <div>
             <label>Начало:</label>
