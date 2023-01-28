@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnDestroy, EventEmitter, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import * as L from 'leaflet';
 import { BehaviorSubject } from 'rxjs';
 
@@ -16,7 +22,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   private isTrustGeo = new BehaviorSubject(false);
 
-  @Output() closeMap = new EventEmitter();
+  @Output() closeMap = new EventEmitter<number[] | undefined>(undefined);
 
   constructor() {
     navigator.geolocation.getCurrentPosition(
@@ -46,9 +52,9 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   public ngAfterViewInit(): void {
     this.isTrustGeo.subscribe((result) => {
-        if (result) {
-            this.initMap(this.position.value);
-        }
+      if (result) {
+        this.initMap(this.position.value);
+      }
     });
   }
 
@@ -75,19 +81,21 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   private eventListenerClickMap(): void {
     this.map.on('click', ({ latlng }) => {
-        const { lat, lng } = latlng;
-        if (this.marker) {
-          this.map.removeLayer(this.marker);
+      const { lat, lng } = latlng;
+      if (this.marker) {
+        this.map.removeLayer(this.marker);
       }
-        this.addMarker([lat, lng], 'text');
-      });
+      this.addMarker([lat, lng], 'text');
+    });
   }
 
   private addMarker(coordinates: number[], message: string): void {
-      this.marker = L.marker(coordinates as L.LatLngExpression);
-      this.marker.addTo(this.map)
-      .bindPopup(message)
-      .openPopup();
+    this.marker = L.marker(coordinates as L.LatLngExpression);
+    this.marker.addTo(this.map).bindPopup(message).openPopup();
+  }
+
+  public submitPosition(): void {
+    this.closeMap.emit(this.position.value);
   }
 
   private success({ coords }: { coords: GeolocationCoordinates }): void {
