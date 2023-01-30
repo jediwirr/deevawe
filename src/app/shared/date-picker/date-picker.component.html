@@ -1,7 +1,17 @@
 <div>
+  <div>
     <div>
-        <input  />
-        <img src="../../../../assets/icons/calendar.svg" />
+      <input (click)="showOrHideCalendar()" [value]="date" />
+      <img src="../../../../assets/icons/calendar.svg" />
     </div>
-    <div *ngIf="isShowCalendar"></div>
+    <div>
+      <app-clock></app-clock>
+    </div>
+  </div>
+  <div *ngIf="isShowCalendar">
+    <app-calendar
+      (emitSelectedDate)="setDate($event)"
+      [currentStartDate]="momentDate"
+    ></app-calendar>
+  </div>
 </div>

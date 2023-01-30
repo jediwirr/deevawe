@@ -1,0 +1,16 @@
+<div class="clock">
+  <input />
+  <div class="clock__time">
+    <div>
+      <div *ngFor="let hour of hours">
+        {{ hour }}
+      </div>
+    </div>
+    <span> : </span>
+    <div>
+      <div *ngFor="let minute of minutes">
+        {{ minute }}
+      </div>
+    </div>
+  </div>
+</div>

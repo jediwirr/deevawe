@@ -29,6 +29,7 @@
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "leaflet": "^1.7.1",
+    "moment": "^2.29.4",
     "npm": "^9.2.0",
     "rxjs": "~7.5.0",
     "stylelint-selector-bem-pattern": "^2.1.1",
