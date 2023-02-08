@@ -8,13 +8,12 @@ import { Api } from './api.service';
 })
 export class ConnectionsService extends Api {
   public async approveOrHideConnection(
-    connectionParams: ConnectionApproveParams,
+    connectionParams: ConnectionApproveParams
   ): Promise<SuccessReturn> {
-    const result = await this.sendRequest<ConnectionApproveParams, SuccessReturn>(
-      'approve_connection',
-      'post',
-      connectionParams
-    );
+    const result = await this.sendRequest<
+      ConnectionApproveParams,
+      SuccessReturn
+    >('approve_connection', 'post', connectionParams);
     return result;
   }
 }

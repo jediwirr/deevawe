@@ -14,7 +14,7 @@ export class ProfilePageComponent implements OnInit {
 
   public userId!: number;
 
-  public events: Occasions = {count: 0, events: []};
+  public events: Occasions = { count: 0, events: [] };
 
   constructor(
     private userServiceApi: UsersApiService,
@@ -22,7 +22,7 @@ export class ProfilePageComponent implements OnInit {
     private localStorage: LocalStorageService,
     protected routed: ActivatedRoute
   ) {
-    this.routed.queryParams.subscribe((data: { id?: string}) => {
+    this.routed.queryParams.subscribe((data: { id?: string }) => {
       if (data.id) {
         this.getUserInfo(parseInt(data.id, 10));
         return;
@@ -36,11 +36,21 @@ export class ProfilePageComponent implements OnInit {
   }
 
   private async getEventsByUser(): Promise<void> {
-   this.events = await this.eventService.searchEvents({user_id: this.userId, type: 2, limit: 1, radius: 2000, sort: 'id', value: this.userId, lon:0, lat: 0, minutes: 0})
+    this.events = await this.eventService.searchEvents({
+      user_id: this.userId,
+      type: 2,
+      limit: 1,
+      radius: 2000,
+      sort: 'id',
+      value: this.userId,
+      lon: 0,
+      lat: 0,
+      minutes: 0,
+    });
   }
 
   private async getUserInfo(id?: number): Promise<void> {
-    this.userId = id || await this.localStorage.getUserId();
+    this.userId = id || (await this.localStorage.getUserId());
     this.user = await this.userServiceApi.getUser(this.userId);
   }
 }

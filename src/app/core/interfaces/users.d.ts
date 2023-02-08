@@ -13,7 +13,6 @@ interface Connection {
   show: boolean;
 }
 
-type UpdateUser = Omit<User, 'connections'>
-
+type UpdateUser = Omit<User, 'connections'>;
 
 export { User, Connection, UpdateUser };

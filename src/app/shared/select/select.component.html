@@ -1,8 +1,8 @@
 <select>
-    <ng-container *ngFor="let item of listType">
-        <option (click)="setActiveType(item.type)">
-            {{item.name}}
-       </option>
-    </ng-container>
-    <img *ngIf="isShowImage"  src='../../../assets/icons/{{activeType}}.svg' />
+  <ng-container *ngFor="let item of listType">
+    <option (click)="setActiveType(item.type)">
+      {{ item.name }}
+    </option>
+  </ng-container>
+  <img *ngIf="isShowImage" src="../../../assets/icons/{{ activeType }}.svg" />
 </select>

@@ -2,11 +2,11 @@
   <div class="card__about-profile">
     <img src="" alt="avatar" />
     <div class="card__about-me">
-      <h2> {{user.name}} </h2>
+      <h2>{{ user.name }}</h2>
       <div>
         <span>Обо мне:</span>
         <p *ngFor="let item of user.features">
-          {{item}}
+          {{ item }}
         </p>
       </div>
       <span>Рейтинг:</span>

@@ -20,7 +20,7 @@ import { CardEventComponent } from './card-events/card-event';
     MapComponent,
     CalendarComponent,
     ClockComponent,
-    CardEventComponent
+    CardEventComponent,
   ],
   exports: [
     ToastComponent,
@@ -30,7 +30,8 @@ import { CardEventComponent } from './card-events/card-event';
     MapComponent,
     CalendarComponent,
     ClockComponent,
-    CardEventComponent
+    CardEventComponent,
+    CommonModule,
   ],
 })
 export class SharedModule {}

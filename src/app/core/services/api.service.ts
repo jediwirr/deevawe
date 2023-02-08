@@ -5,9 +5,8 @@ import type { UserData } from '../interfaces/localStorage.d';
 import { LocalStorageService } from './localStorage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class Api {
   constructor(
     private http: HttpClient,
@@ -28,13 +27,13 @@ export class Api {
   private async getHttpHeader(): Promise<HttpHeaders> {
     let headers = new HttpHeaders({
       Client: ENV.client,
-      Accept: '*/*'
+      Accept: '*/*',
     });
 
     const token = await this.getToken();
-      
+
     if (token) {
-     headers = headers.set('Authorization', `${token?.authToken}`);
+      headers = headers.set('Authorization', `${token?.authToken}`);
     }
 
     return headers;
@@ -42,13 +41,19 @@ export class Api {
 
   private async getToken(): Promise<UserData | null> {
     try {
-     return await this.localStorageService.getItemLocalStorage<UserData>('dataUser'); 
+      return await this.localStorageService.getItemLocalStorage<UserData>(
+        'dataUser'
+      );
     } catch (error) {
       return null;
     }
   }
 
-  public sendRequest<T, R>(url: string, method: string, body: T | null = null): Promise<R> {
+  public sendRequest<T, R>(
+    url: string,
+    method: string,
+    body: T | null = null
+  ): Promise<R> {
     return new Promise((resolve) => {
       this.getOptions(body).then((options) => {
         this.http

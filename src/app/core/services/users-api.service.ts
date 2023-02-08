@@ -8,11 +8,7 @@ import { UpdateUser, User } from '../interfaces/users';
 export class UsersApiService extends Api {
   public async getUser(userId: number): Promise<User> {
     const url = `user?user_id=${userId}`;
-    const result = await this.sendRequest<null, User>(
-       url,
-      'get',
-      null
-    );
+    const result = await this.sendRequest<null, User>(url, 'get', null);
     return result;
   }
 
@@ -23,7 +19,11 @@ export class UsersApiService extends Api {
   }
 
   public async updateUser(updateUserField: UpdateUser): Promise<User> {
-    const result = await this.sendRequest<UpdateUser, User>('user', 'put', updateUserField);
+    const result = await this.sendRequest<UpdateUser, User>(
+      'user',
+      'put',
+      updateUserField
+    );
     return result;
   }
 }

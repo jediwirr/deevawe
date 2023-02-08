@@ -42,11 +42,10 @@ export class AuthApiService extends Api {
   public async changePassword(
     userData: UserDataVerify
   ): Promise<ChangePasswordResponse> {
-    const result = await this.sendRequest<UserDataVerify, ChangePasswordResponse>(
-      'change_password',
-      'post',
-      userData
-    );
+    const result = await this.sendRequest<
+      UserDataVerify,
+      ChangePasswordResponse
+    >('change_password', 'post', userData);
     return result;
   }
 }

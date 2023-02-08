@@ -9,7 +9,11 @@ import { ModalVerifyCodeComponent } from './verify/modal-verify-code';
 
 @NgModule({
   imports: [ReactiveFormsModule, DirectiveModule, CommonModule, SharedModule],
-  declarations: [ChangePasswordComponent, ModalVerifyCodeComponent, EventFormComponent],
+  declarations: [
+    ChangePasswordComponent,
+    ModalVerifyCodeComponent,
+    EventFormComponent,
+  ],
   exports: [ChangePasswordComponent, ModalVerifyCodeComponent],
 })
 export class ModalModule {}

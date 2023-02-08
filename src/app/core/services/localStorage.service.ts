@@ -4,7 +4,6 @@ import type { UserData } from '../interfaces/localStorage.d';
 @Injectable({
   providedIn: 'root',
 })
-
 export class LocalStorageService {
   public setDataToStorage<T>(key: string, data: T): void {
     localStorage.setItem(key, JSON.stringify(data));
@@ -21,10 +20,10 @@ export class LocalStorageService {
 
   public async getUserId(): Promise<number> {
     try {
-    const result = await this.getItemLocalStorage<UserData>('dataUser');
-    return result!.id;
+      const result = await this.getItemLocalStorage<UserData>('dataUser');
+      return result!.id;
     } catch (error) {
-      throw new Error("Not found userId in storage dataUser");
+      throw new Error('Not found userId in storage dataUser');
     }
   }
 }
