@@ -8,6 +8,7 @@ import { SelectComponent } from './select/select';
 import { MapComponent } from './map/map';
 import { CalendarComponent } from './calendar/calendar';
 import { ClockComponent } from './clock/clock';
+import { CardEventComponent } from './card-events/card-event';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
@@ -19,6 +20,7 @@ import { ClockComponent } from './clock/clock';
     MapComponent,
     CalendarComponent,
     ClockComponent,
+    CardEventComponent
   ],
   exports: [
     ToastComponent,
@@ -28,6 +30,7 @@ import { ClockComponent } from './clock/clock';
     MapComponent,
     CalendarComponent,
     ClockComponent,
+    CardEventComponent
   ],
 })
 export class SharedModule {}

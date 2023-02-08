@@ -1,2 +1,5 @@
 <app-navigation></app-navigation> 
-<app-profile-card></app-profile-card>
+<app-profile-card *ngIf="user" [user]="user"></app-profile-card>
+<ng-container *ngFor="let event of events.events">
+    <app-card-event [event]="event"></app-card-event>
+</ng-container>

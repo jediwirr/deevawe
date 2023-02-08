@@ -26,8 +26,7 @@ export class EventsService extends Api {
   public async searchEvents(searchParams: SearchParams): Promise<Occasions> {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       const {type, lat, limit, lon, minutes, radius, sort, user_id, value} = searchParams;
-      const url = `events?type=${type}&minutes=${minutes}
-      &value=${value}&lat=${lat}&lon=${lon}&radius=${radius}&sort=${sort}&limit=${limit}&user_id=${user_id}`;
+      const url = `events?type=${type}&minutes=${minutes}&value=${value}&lat=${lat}&lon=${lon}&radius=${radius}&sort=${sort}&limit=${limit}&user_id=${user_id}`;
       const result = this.sendRequest<null, Occasions>(url, 'get');
       return result;
   }
