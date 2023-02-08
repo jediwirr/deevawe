@@ -4,6 +4,7 @@ import { ModalComponent } from '../modal-base';
 
 @Component({
   templateUrl: './event.component.html',
+  styleUrls: ['./event.style.scss'],
 })
 export class EventFormComponent extends ModalComponent {
   public readonly listTypeEvent = [
@@ -45,5 +46,9 @@ export class EventFormComponent extends ModalComponent {
       lat: coordinates[0],
       lon: coordinates[1],
     });
+  }
+
+  public destroyModal(): void {
+    this.closeModal.emit();
   }
 }

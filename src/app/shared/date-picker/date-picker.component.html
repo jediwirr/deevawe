@@ -1,11 +1,11 @@
-<div>
+<div app-out-side-click (outSideClick)="isShowCalendar = false">
   <div>
     <div>
       <input (click)="showOrHideCalendar()" [value]="date" />
       <img src="../../../../assets/icons/calendar.svg" />
     </div>
     <div>
-      <app-clock></app-clock>
+      <app-clock [time]="defaultTime"></app-clock>
     </div>
   </div>
   <div *ngIf="isShowCalendar">

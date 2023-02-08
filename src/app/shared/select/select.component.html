@@ -1,8 +1,27 @@
-<select>
-  <ng-container *ngFor="let item of listType">
-    <option (click)="setActiveType(item.type)">
-      {{ item.name }}
-    </option>
-  </ng-container>
-  <img *ngIf="isShowImage" src="../../../assets/icons/{{ activeType }}.svg" />
-</select>
+<!-- <select>
+    <ng-container *ngFor="let item of listType">
+        <option (click)="setActiveType(item.type)">
+            {{item.name}}
+       </option>
+    </ng-container>
+    <img *ngIf="isShowImage"  src='../../../assets/icons/{{activeType}}.svg' />
+</select> -->
+<!-- app-out-side-click (outSideClick)="close()"  -->
+<div>
+  <button type="button" (click)="open()">
+    <input formControlName="searchControl" type="text" />
+  </button>
+  <ng-container *ngIf="!isDropDown; else dropDown"></ng-container>
+</div>
+
+<ng-template #dropDown>
+  <div>
+    <cdk-virtual-scroll-viewport itemSize="15" class="list">
+      <div *cdkVirtualFor="let item of list">
+        <p (click)="selected(item.name)">
+          {{ item.name }}
+        </p>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</ng-template>

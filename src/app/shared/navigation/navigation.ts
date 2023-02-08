@@ -1,11 +1,5 @@
-import {
-  Component,
-  OnDestroy,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { EventFormComponent } from '../../modal/event/event';
 import { ModalService } from '../../core/services/modal.service';
 
@@ -14,7 +8,7 @@ import { ModalService } from '../../core/services/modal.service';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.style.scss'],
 })
-export class NavigationComponent implements OnDestroy {
+export class NavigationComponent {
   @ViewChild('modalFormEvent', { read: ViewContainerRef })
   modalFormEvent!: ViewContainerRef;
 
@@ -25,18 +19,27 @@ export class NavigationComponent implements OnDestroy {
     { name: 'Люди', routingName: '/people' },
   ];
 
-  private subscriptionUrl!: Subscription;
-
   public nameActivePage!: string;
 
   constructor(protected router: Router, private modalService: ModalService) {}
 
-  public openFormEvent(): void {
-    this.modalService.injectComponent(this.modalFormEvent, EventFormComponent);
-    this.modalService.closedModal.subscribe(() => {});
+  private setTitleActiveUrl(url: string) {
+    this.listNavigation.forEach((item) => {
+      if (item.routingName === url) {
+        this.nameActivePage = item.name;
+        return undefined;
+      }
+      return undefined;
+    });
   }
 
-  public ngOnDestroy(): void {
-    this.subscriptionUrl.unsubscribe();
+  public openFormEvent(): void {
+    if (this.modalFormEvent.length) {
+      return;
+    }
+    this.modalService.injectComponent(this.modalFormEvent, EventFormComponent);
+    this.modalService.closedModal.subscribe(() => {
+      this.modalService.destroyModal();
+    });
   }
 }

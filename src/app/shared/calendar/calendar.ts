@@ -6,7 +6,6 @@ import {
   EventEmitter,
   OnDestroy,
   Input,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import * as moment from 'moment';
 
@@ -14,7 +13,6 @@ import * as moment from 'moment';
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.style.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarComponent implements OnInit, OnDestroy {
   @Input() currentStartDate!: moment.Moment;

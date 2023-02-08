@@ -1,51 +1,59 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
+import { Component, Input, OnInit, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-clock',
   templateUrl: './clock.component.html',
   styleUrls: ['./clock.style.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClockComponent implements OnInit {
-  public timeStart!: string;
+  @Input() time!: number[];
 
-  public timeEnd!: string;
+  @ViewChildren('refTime') valueTime!: HTMLInputElement;
 
   public hours: string[] = [];
 
   public minutes: string[] = [];
 
-  public ngOnInit(): void {
-    const timeStart = moment().startOf('day');
-    this.timeEnd = moment().endOf('day').format('HH');
-    const timeMinuteStart = moment().startOf('hour');
-    const timeMinuteEnd = moment().endOf('hour');
-    console.log(timeMinuteEnd.format('mm'));
+  public isShowPickTime = false;
 
-    let i = 0;
-    while (i <= parseInt(this.timeEnd, 10)) {
-      if (i === 0) {
-        this.hours.push(timeStart.format('HH'));
-      } else {
-        timeStart.add(1, 'hour');
-        this.hours.push(timeStart.format('HH'));
-      }
-      i += 1;
-    }
-    this.createMinuteTime(timeMinuteStart, timeMinuteEnd);
+  public ngOnInit(): void {
+    this.createHoursTime();
+    this.createMinutesTime();
   }
 
-  private createMinuteTime(start: moment.Moment, end: moment.Moment) {
-    let i = 0;
-    while (i <= parseInt(end.format('mm'), 10)) {
-      if (i === 0) {
-        this.minutes.push(start.format('mm'));
-      } else {
-        start.add(1, 'minute');
-        this.minutes.push(start.format('mm'));
+  public setTime(index: number, indexTime: number): void {
+    this.time[index] = indexTime;
+  }
+
+  public setShowPickTime(): void {
+    this.isShowPickTime = !this.isShowPickTime;
+  }
+
+  private createHoursTime() {
+    let index = 0;
+    while (index < 24) {
+      if (index <= 9) {
+        this.hours.push(`0${index}`);
+        index += 1;
+        // eslint-disable-next-line no-continue
+        continue;
       }
-      i += 1;
+      this.hours.push(`${index}`);
+      index += 1;
+    }
+  }
+
+  private createMinutesTime() {
+    let index = 0;
+    while (index <= 3) {
+      if (index === 0) {
+        this.minutes.push('00');
+        index += 1;
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+      this.minutes.push((15 * index).toString());
+      index += 1;
     }
   }
 }
