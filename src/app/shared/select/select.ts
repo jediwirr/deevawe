@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime } from 'rxjs';
 
 @Component({
@@ -12,17 +12,22 @@ export class SelectComponent implements OnInit {
 
   @Input() public isShowImage = false;
 
+  @Output() public emitOptionSelect = new EventEmitter();
+
   public isDropDown = false;
 
   public list: { type: string; name: string }[] = [];
 
-  public searchControl = new FormControl('Drink', { nonNullable: true });
+  public searchControl = new FormControl<string>('', { nonNullable: true });
+
+  public activeTypeImage = 'drink';
 
   public ngOnInit(): void {
     this.list = this.listType;
+    this.searchControl.patchValue(this.listType[0].name);
     this.searchControl.valueChanges
       .pipe(debounceTime(250))
-      .subscribe((value) => {
+      .subscribe((value: string) => {
         this.search(value);
       });
   }
@@ -39,7 +44,10 @@ export class SelectComponent implements OnInit {
     this.list = this.listType.filter((item) => item.name.includes(value));
   }
 
-  public selected(value: string): void {
-    this.searchControl.setValue(value);
+  public selected(value: string, type: string): void {
+    this.searchControl.patchValue(value);
+    this.activeTypeImage = type;
+    this.emitOptionSelect.emit(value);
   }
+
 }

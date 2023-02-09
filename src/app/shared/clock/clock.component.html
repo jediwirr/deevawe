@@ -3,7 +3,7 @@
     type="text"
     (click)="setShowPickTime()"
     #refTime
-    value="{{ hours | timer : minutes : time }}"
+    [value]="hours | timer : minutes : time"
   />
   <div *ngIf="isShowPickTime" class="clock__time">
     <div>

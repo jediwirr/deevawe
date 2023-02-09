@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -6,6 +6,8 @@ import * as moment from 'moment';
   templateUrl: './date-picker.component.html',
 })
 export class DatePickerComponent implements OnInit {
+  @Output() eventDate = new EventEmitter();
+
   public isShowCalendar = false;
 
   public date!: string;
@@ -13,6 +15,8 @@ export class DatePickerComponent implements OnInit {
   public defaultTime = [18, 0];
 
   public momentDate = moment();
+
+  private time: string[] = [];
 
   public ngOnInit(): void {
     this.date = this.momentDate.format('L');
@@ -22,11 +26,20 @@ export class DatePickerComponent implements OnInit {
     this.isShowCalendar = !this.isShowCalendar;
   }
 
-  public setDate(date: string): void {
+  public setTime(time: string[]): void {
+    // this.time = time;
+  }
+
+  private createIsoDate(date: moment.Moment, time?: string[]): void {
+    const currentDate = moment(date);
+  }
+
+  public setDate(date: moment.Moment): void {
     if (!date) {
       this.isShowCalendar = false;
       return;
     }
-    this.date = date;
+    this.date = date.format('L');
+    this.createIsoDate(date);
   }
 }

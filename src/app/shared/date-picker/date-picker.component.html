@@ -5,7 +5,7 @@
       <img src="../../../../assets/icons/calendar.svg" />
     </div>
     <div>
-      <app-clock [time]="defaultTime"></app-clock>
+      <app-clock (emitTime)="setTime($event)" [time]="defaultTime"></app-clock>
     </div>
   </div>
   <div *ngIf="isShowCalendar">

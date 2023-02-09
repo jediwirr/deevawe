@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../../core/services/localStorage.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ModalComponent } from '../modal-base';
@@ -33,6 +34,10 @@ export class EventFormComponent extends ModalComponent {
     endDate: new FormControl<string>('', { nonNullable: true }),
   });
 
+  constructor(private localStorageService: LocalStorageService) {
+    super();
+  }
+
   public showOrHideMap(): void {
     this.isShowMap = !this.isShowMap;
   }
@@ -46,6 +51,28 @@ export class EventFormComponent extends ModalComponent {
       lat: coordinates[0],
       lon: coordinates[1],
     });
+  }
+
+  public setOptionSelect(selectValue: string | undefined): void {
+    // this.eventForm.controls.
+  }
+
+  public setDate(): void {}
+
+  public async submitEvent(): Promise<void> {
+    if (!this.eventForm.valid) {
+      return;
+    }
+    const { title, description, geolocation } = this.eventForm.controls;
+    this.closeModal.emit({
+      user_id: await this.localStorageService.getUserId(),
+      title,
+      description,
+      type: 1,
+      status: 2,
+      longitude: geolocation.value.lon,
+      latitude: geolocation.value.lat,
+    })
   }
 
   public destroyModal(): void {

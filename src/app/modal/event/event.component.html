@@ -35,6 +35,7 @@
         <app-select
           [listType]="listTypeEvent"
           [isShowImage]="true"
+          (emitOptionSelect)="setOptionSelect($event)"
         ></app-select>
       </div>
       <button type="submit">Создать событие</button>

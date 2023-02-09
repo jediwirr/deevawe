@@ -1,14 +1,16 @@
-import { Component, Input, OnInit, ViewChildren } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-clock',
   templateUrl: './clock.component.html',
   styleUrls: ['./clock.style.scss'],
 })
-export class ClockComponent implements OnInit {
+export class ClockComponent implements OnInit, AfterViewInit {
   @Input() time!: number[];
 
-  @ViewChildren('refTime') valueTime!: HTMLInputElement;
+  @ViewChild('refTime') valueTime!: HTMLInputElement;
+
+  @Output() emitTime = new EventEmitter();
 
   public hours: string[] = [];
 
@@ -21,8 +23,15 @@ export class ClockComponent implements OnInit {
     this.createMinutesTime();
   }
 
+  public ngAfterViewInit(): void {
+    // @ts-ignore
+    this.emitTime.emit([this.valueTime.nativeElement.value.substring(0, 2), this.valueTime.nativeElement.value.substring(3, 5)]);
+  }
+
   public setTime(index: number, indexTime: number): void {
     this.time[index] = indexTime;
+    // @ts-ignore
+    this.emitTime.emit([this.valueTime.nativeElement.value.substring(0, 2), this.valueTime.nativeElement.value.substring(3, 5)]);
   }
 
   public setShowPickTime(): void {

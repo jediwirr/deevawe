@@ -12,6 +12,7 @@ import { ClockComponent } from './clock/clock';
 import { PipeModule } from '../core/pipes/pipes.module';
 import { DirectiveModule } from '../core/directives/directive.module';
 import { CardEventComponent } from './card-events/card-event';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { CardEventComponent } from './card-events/card-event';
     PipeModule,
     DirectiveModule,
     ScrollingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ToastComponent,

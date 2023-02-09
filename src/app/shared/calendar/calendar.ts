@@ -17,7 +17,7 @@ import * as moment from 'moment';
 export class CalendarComponent implements OnInit, OnDestroy {
   @Input() currentStartDate!: moment.Moment;
 
-  @Output() emitSelectedDate = new EventEmitter<string>();
+  @Output() emitSelectedDate = new EventEmitter<moment.Moment>();
 
   public date!: BehaviorSubject<moment.Moment>;
 
@@ -119,6 +119,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   public selectDay(day: { value: number }): void {
     this.selectedDate = this.dateFromNum(day.value, this.date.value);
-    this.emitSelectedDate.emit(moment(this.selectedDate).format('L'));
+    this.emitSelectedDate.emit(moment(this.selectedDate));
   }
 }
