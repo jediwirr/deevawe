@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { AuthApiService } from '../core/services/auth-api.service';
 import { AuthUserData } from '../core/interfaces/auth-user';
@@ -19,7 +20,8 @@ export class AuthPageComponent {
   constructor(
     private authApiService: AuthApiService,
     private modalService: ModalService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    protected router: Router
   ) {}
 
   public async requestSignIn(userData: AuthUserData): Promise<void> {
@@ -31,13 +33,14 @@ export class AuthPageComponent {
       id: result.user,
       authToken: result.token,
     });
+    this.router.navigateByUrl('profile');
   }
 
   public async requestSignUp(userData: AuthUserData): Promise<void> {
-    // const result = await this.authApiService.signUp(userData);
-    // if (result.code) {
-    //   return;
-    // }
+    const result = await this.authApiService.signUp(userData);
+    if (result.code) {
+      return;
+    }
     this.modalService.injectComponent<ModalVerifyCodeComponent>(
       this.modal,
       ModalVerifyCodeComponent,

@@ -8,7 +8,7 @@ import { Api } from './api.service';
 })
 export class VerifyApiService extends Api {
   public async sendCode(email: string): Promise<SendVerifyCodeResponse> {
-    const result = await this.request<
+    const result = await this.sendRequest<
       { email: string },
       SendVerifyCodeResponse
     >('send_verify_code', 'post', { email });
@@ -16,7 +16,7 @@ export class VerifyApiService extends Api {
   }
 
   public async sendUser(userData: UserDataVerify): Promise<VerifyUserResponse> {
-    const result = await this.request<UserDataVerify, VerifyUserResponse>(
+    const result = await this.sendRequest<UserDataVerify, VerifyUserResponse>(
       'verify_user',
       'post',
       userData

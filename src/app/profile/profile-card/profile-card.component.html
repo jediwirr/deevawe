@@ -2,22 +2,19 @@
   <div class="card__about-profile">
     <img src="" alt="avatar" />
     <div class="card__about-me">
-      <h2></h2>
+      <h2>{{ user.name }}</h2>
       <div>
         <span>Обо мне:</span>
-        <p></p>
+        <p *ngFor="let item of user.features">
+          {{ item }}
+        </p>
       </div>
       <span>Рейтинг:</span>
     </div>
   </div>
   <div class="card__action-profile">
     <div class="card__action-profile--top">
-      <button>Запросы на подписку</button>
-      <button>Редактировать профиль</button>
-      <button>Выйти</button>
-    </div>
-    <div class="card__action-profile--bottom">
-      <button>Создать событие</button>
+      <button>Реадактировать профиль</button>
     </div>
   </div>
 </div>

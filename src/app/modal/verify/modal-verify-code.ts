@@ -24,7 +24,10 @@ export class ModalVerifyCodeComponent extends ModalComponent implements OnInit {
     email: string;
   } = { email: '' };
 
-  public field = new FormControl('', [Validators.required]);
+  public field = new FormControl<string>('', {
+    nonNullable: true,
+    validators: [Validators.required],
+  });
 
   public showToast = false;
 

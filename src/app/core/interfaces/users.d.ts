@@ -1,6 +1,4 @@
-import { ErrorApiResponse } from './api';
-
-interface User extends ErrorApiResponse {
+interface User {
   id: number;
   name: string;
   features: string[];
@@ -15,5 +13,6 @@ interface Connection {
   show: boolean;
 }
 
+type UpdateUser = Omit<User, 'connections'>;
 
-export { User, Connection };
+export { User, Connection, UpdateUser };

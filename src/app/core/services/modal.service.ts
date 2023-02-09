@@ -10,6 +10,7 @@ import {
   ComponentRef,
   EventEmitter,
   Injectable,
+  NgZone,
   Output,
   Type,
   ViewContainerRef,
@@ -23,6 +24,8 @@ export class ModalService {
   protected componentRef!: ComponentRef<any>;
 
   @Output() closedModal = new EventEmitter();
+
+  constructor(private zone: NgZone) {}
 
   public openModal(
     entryComponent: ViewContainerRef,
@@ -42,12 +45,16 @@ export class ModalService {
     modalComponent: Type<C>,
     inputData?: Object
   ): void {
-    this.componentRef = entryComponent.createComponent(modalComponent);
-    if (inputData) {
-      this.componentRef.instance.inputData = inputData;
-    }
-    this.componentRef.instance.closeModal.subscribe((res: any) => {
-      this.closedModal.emit(res);
+    this.zone.run(() => {
+      setTimeout(() => {
+        this.componentRef = entryComponent.createComponent(modalComponent);
+        if (inputData) {
+          this.componentRef.instance.inputData = inputData;
+        }
+        this.componentRef.instance.closeModal.subscribe((res: any) => {
+          this.closedModal.emit(res);
+        });
+      }, 0);
     });
   }
 

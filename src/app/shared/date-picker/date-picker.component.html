@@ -1,0 +1,17 @@
+<div app-out-side-click (outSideClick)="isShowCalendar = false">
+  <div>
+    <div>
+      <input (click)="showOrHideCalendar()" [value]="date" />
+      <img src="../../../../assets/icons/calendar.svg" />
+    </div>
+    <div>
+      <app-clock (emitTime)="setTime($event)" [time]="defaultTime"></app-clock>
+    </div>
+  </div>
+  <div *ngIf="isShowCalendar">
+    <app-calendar
+      (emitSelectedDate)="setDate($event)"
+      [currentStartDate]="momentDate"
+    ></app-calendar>
+  </div>
+</div>

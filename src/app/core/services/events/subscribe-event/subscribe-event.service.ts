@@ -13,7 +13,7 @@ export class SubscribeEventService extends Api {
   public async subscribe(
     subscribeEventData: SubscribeBodyEvent
   ): Promise<SuccessReturn> {
-    const result = await this.request<SubscribeBodyEvent, SuccessReturn>(
+    const result = await this.sendRequest<SubscribeBodyEvent, SuccessReturn>(
       'subscribe_event',
       'post',
       subscribeEventData
@@ -24,7 +24,7 @@ export class SubscribeEventService extends Api {
   public async confirm(
     confirmSubscribeEvent: SubscribeConfirmEvent
   ): Promise<SuccessReturn> {
-    const result = await this.request<SubscribeConfirmEvent, SuccessReturn>(
+    const result = await this.sendRequest<SubscribeConfirmEvent, SuccessReturn>(
       'confirm_subscribe',
       'post',
       confirmSubscribeEvent

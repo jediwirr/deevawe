@@ -22,19 +22,26 @@ export class SignInComponent {
 
   @Output() redirectEvent = new EventEmitter();
 
-  constructor(private modalService: ModalService) {}
-
   public sigInForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(8),
-    ]),
+    email: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
+    }),
+    password: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(8)],
+    }),
   });
+
+  constructor(private modalService: ModalService) {}
 
   public submitForm(): void {
     if (this.sigInForm.valid) {
-      this.submitSignIn.emit(this.sigInForm.value);
+      const { email, password } = this.sigInForm.controls;
+      this.submitSignIn.emit({
+        email: email.value,
+        password: password.value,
+      });
     }
   }
 
