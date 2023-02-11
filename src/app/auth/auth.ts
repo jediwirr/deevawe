@@ -29,6 +29,7 @@ export class AuthPageComponent {
     if (result.code) {
       return;
     }
+    this.localStorageService.setToken(result.token);
     this.localStorageService.setDataToStorage<UserData>('dataUser', {
       id: result.user,
       authToken: result.token,

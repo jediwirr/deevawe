@@ -40,6 +40,10 @@ export class EventsService extends Api {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const { type, lat, limit, lon, minutes, radius, sort, user_id, value } =
       searchParams;
+      // types: 
+      //  1 - Поиск по времени
+      // 2 - По юзеру
+      // 3 - По подписке
     const url = `events?type=${type}&minutes=${minutes}&value=${value}&lat=${lat}&lon=${lon}&radius=${radius}&sort=${sort}&limit=${limit}&user_id=${user_id}`;
     const result = this.sendRequest<null, Occasions>(url, 'get');
     return result;

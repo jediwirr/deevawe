@@ -1,3 +1,5 @@
+import { EventsService } from './../../core/services/events/events.service';
+import { TimeZones } from './../../core/interfaces/time-zones.d';
 import { LocalStorageService } from './../../core/services/localStorage.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -19,14 +21,14 @@ export class EventFormComponent extends ModalComponent {
 
   public eventForm = new FormGroup({
     title: new FormControl<string>('', { nonNullable: true }),
-    description: new FormControl<string>('', {}),
+    description: new FormControl<string>('', {nonNullable: true}),
     geolocation: new FormControl<{
-      lat: number | null;
-      lon: number | null;
+      lat: number;
+      lon: number;
     }>(
       {
-        lat: null,
-        lon: null,
+        lat: 0,
+        lon: 0,
       },
       { nonNullable: true }
     ),
@@ -34,7 +36,7 @@ export class EventFormComponent extends ModalComponent {
     endDate: new FormControl<string>('', { nonNullable: true }),
   });
 
-  constructor(private localStorageService: LocalStorageService) {
+  constructor(private localStorageService: LocalStorageService, private eventsService: EventsService) {
     super();
   }
 
@@ -60,19 +62,25 @@ export class EventFormComponent extends ModalComponent {
   public setDate(): void {}
 
   public async submitEvent(): Promise<void> {
-    if (!this.eventForm.valid) {
-      return;
-    }
+    // if (!this.eventForm.valid) {
+    //   return;
+    // }
+    debugger;
+    
     const { title, description, geolocation } = this.eventForm.controls;
-    this.closeModal.emit({
+    await this.eventsService.addOrUpdateEvent({
       user_id: await this.localStorageService.getUserId(),
-      title,
-      description,
+      title: title.value,
+      description: description.value,
       type: 1,
       status: 2,
       longitude: geolocation.value.lon,
       latitude: geolocation.value.lat,
-    })
+      time_start: 1664542280,
+      time_end: 0,
+      time_zone: "Europe/Astrakhan"
+    }, 'put')
+    this.closeModal.emit()
   }
 
   public destroyModal(): void {

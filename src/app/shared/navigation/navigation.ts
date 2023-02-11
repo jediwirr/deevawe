@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../../core/services/localStorage.service';
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventFormComponent } from '../../modal/event/event';
@@ -12,25 +13,26 @@ export class NavigationComponent {
   @ViewChild('modalFormEvent', { read: ViewContainerRef })
   modalFormEvent!: ViewContainerRef;
 
-  public readonly listNavigation = [
-    { name: 'Главная', routingName: '/home' },
-    { name: 'Профиль', routingName: '/profile' },
-    { name: 'Подписки', routingName: '/subscribes' },
-    { name: 'Люди', routingName: '/people' },
+  public listNavigation = [
+    { name: 'Главная', routingName: '/home', visible: true },
+    { name: 'Подписки', routingName: '/subscribes', visible: true },
+    { name: 'Люди', routingName: '/people', visible: true },
+    { name: 'Профиль', routingName: '/profile', visible: true },
+    { name: 'Выйти', visible: true },
   ];
 
   public nameActivePage!: string;
 
-  constructor(protected router: Router, private modalService: ModalService) {}
+  public isHideItemNavigation = false;
 
-  private setTitleActiveUrl(url: string) {
-    this.listNavigation.forEach((item) => {
-      if (item.routingName === url) {
-        this.nameActivePage = item.name;
-        return undefined;
-      }
-      return undefined;
-    });
+  constructor(
+    protected router: Router,
+    private modalService: ModalService,
+    protected localStorageService: LocalStorageService
+  ) {
+    if (!this.localStorageService.getItemLocalStorage('dataUser')) {
+      this.setVisibleParams();
+    }
   }
 
   public openFormEvent(): void {
@@ -41,5 +43,16 @@ export class NavigationComponent {
     this.modalService.closedModal.subscribe(() => {
       this.modalService.destroyModal();
     });
+  }
+
+  public setVisibleParams(): void {
+    this.listNavigation.forEach((item, index) => {
+      if (item.routingName !== '/home') {
+        this.listNavigation[index]['visible'] = false;
+      }
+      if (item.name === 'Выйти') {
+        this.listNavigation[index]['name'] = 'Войти'
+      }
+    })
   }
 }

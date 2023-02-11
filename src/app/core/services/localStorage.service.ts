@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import type { UserData } from '../interfaces/localStorage.d';
 
@@ -5,8 +6,15 @@ import type { UserData } from '../interfaces/localStorage.d';
   providedIn: 'root',
 })
 export class LocalStorageService {
+
+  public token = '';
+
   public setDataToStorage<T>(key: string, data: T): void {
     localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  public setToken(token: string):void {
+    this.token = token;
   }
 
   public async getItemLocalStorage<T>(key: string): Promise<T | null> {

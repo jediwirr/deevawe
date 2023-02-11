@@ -1,12 +1,11 @@
+import { Observable, map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ENV } from '@app/env';
 import type { UserData } from '../interfaces/localStorage.d';
 import { LocalStorageService } from './localStorage.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class Api {
   constructor(
     private http: HttpClient,
@@ -53,14 +52,16 @@ export class Api {
     url: string,
     method: string,
     body: T | null = null
-  ): Promise<R> {
-    return new Promise((resolve) => {
+  ): Observable<R> {
+    return new Observable((subscriber) => {
       this.getOptions(body).then((options) => {
         this.http
-          .request<R>(method, ENV.baseUrl + url, options)
-          .subscribe((result) => {
-            resolve(result);
-          });
+          .request<R>(method, ENV.baseUrl + url, options).pipe(
+            map((result) => {
+              subscriber.next(result);
+              subscriber.complete();
+            })
+          )
       });
     });
   }

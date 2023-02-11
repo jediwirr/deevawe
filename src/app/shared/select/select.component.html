@@ -3,7 +3,7 @@
   <button type="button" (click)="open()">
     <input [formControl]="searchControl" />
   </button>
-  <img src="../../../assets/icons/{{activeTypeImage}}.svg" />
+  <img *ngIf="isShowImage" src="../../../assets/icons/{{activeTypeImage}}.svg" />
   <ng-container *ngIf="!isDropDown; else dropDown"></ng-container>
 </div>
 

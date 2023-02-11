@@ -1,5 +1,10 @@
 <app-navigation></app-navigation>
 <app-profile-card *ngIf="user" [user]="user"></app-profile-card>
+<div>
+  <h3>Мои события</h3>
+  <label> Сортировать по: </label>
+  <app-select [listType]="methodsSort"></app-select>
+</div>
 <ng-container *ngFor="let event of events.events">
   <app-card-event [event]="event"></app-card-event>
 </ng-container>

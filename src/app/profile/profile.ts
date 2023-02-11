@@ -16,6 +16,13 @@ export class ProfilePageComponent implements OnInit {
 
   public events: Occasions = { count: 0, events: [] };
 
+  public readonly methodsSort = [
+    {
+      type: 'date',
+      name: 'Дате публикации'
+    }
+  ]
+
   constructor(
     private userServiceApi: UsersApiService,
     private eventService: EventsService,

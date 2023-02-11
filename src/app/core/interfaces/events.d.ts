@@ -26,7 +26,7 @@ interface ParamsAddEvent {
   latitude: number;
   time_start: number;
   time_end: number;
-  time_zone: TimeZones;
+  time_zone: string;
 }
 
 interface SearchParams {
