@@ -4,6 +4,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { VerifyApiService } from '../../core/services/verify.service';
 import { VerifyUserResponse } from '../../core/interfaces/api';
 import { ModalComponent } from '../modal-base';
+import { map } from 'rxjs';
 
 const enterAnimation = transition(':enter', [
   style({
@@ -61,16 +62,21 @@ export class ModalVerifyCodeComponent extends ModalComponent implements OnInit {
     //  }, 50000);
   }
 
-  public async submitField(): Promise<void> {
+  public submitField(): void {
     if (this.field.valid) {
       if (this.inputData.email) {
-        const result = await this.verifyService.sendUser({
-          code: this.field.value,
-          email: this.inputData.email,
-          type: 'activation',
-        });
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        this.isValidResponse(result) && this.closeModal.emit(true);
+        this.verifyService
+          .sendUser({
+            code: this.field.value,
+            email: this.inputData.email,
+            type: 'activation',
+          })
+          .pipe(
+            map((result) => {
+              // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+              this.isValidResponse(result) && this.closeModal.emit(true);
+            })
+          );
       }
     }
   }

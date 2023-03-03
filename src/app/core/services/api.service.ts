@@ -1,4 +1,4 @@
-import { Observable, map } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ENV } from '@app/env';
@@ -19,7 +19,6 @@ export class Api {
     if (body) {
       options['body'] = JSON.stringify(body);
     }
-
     return options;
   }
 
@@ -54,14 +53,13 @@ export class Api {
     body: T | null = null
   ): Observable<R> {
     return new Observable((subscriber) => {
-      this.getOptions(body).then((options) => {
+      from(this.getOptions(body)).subscribe((options) => {
         this.http
-          .request<R>(method, ENV.baseUrl + url, options).pipe(
-            map((result) => {
-              subscriber.next(result);
-              subscriber.complete();
-            })
-          )
+          .request<R>(method, ENV.baseUrl + url, options)
+          .subscribe((result) => {
+            subscriber.next(result);
+            subscriber.complete();
+          });
       });
     });
   }

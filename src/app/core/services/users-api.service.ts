@@ -1,3 +1,4 @@
+import { Observable, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Api } from './api.service';
 import { UpdateUser, User } from '../interfaces/users';
@@ -6,24 +7,23 @@ import { UpdateUser, User } from '../interfaces/users';
   providedIn: 'root',
 })
 export class UsersApiService extends Api {
-  public async getUser(userId: number): Promise<User> {
+  public getUser(userId: number): Observable<User> {
     const url = `user?user_id=${userId}`;
-    const result = await this.sendRequest<null, User>(url, 'get', null);
-    return result;
+    return this.sendRequest<null, User>(url, 'get', null).pipe(
+      map((value) => value)
+    );
   }
 
-  public async searchUser(type: number, value: number): Promise<User> {
+  public searchUser(type: number, value: number): Observable<User> {
     const url = `users/1?type=${type}&value=${value}`;
-    const result = await this.sendRequest<null, User>(url, 'post');
-    return result;
+    return this.sendRequest<null, User>(url, 'post').pipe(map((user) => user));
   }
 
-  public async updateUser(updateUserField: UpdateUser): Promise<User> {
-    const result = await this.sendRequest<UpdateUser, User>(
+  public updateUser(updateUserField: UpdateUser): Observable<User> {
+    return this.sendRequest<UpdateUser, User>(
       'user',
       'put',
       updateUserField
-    );
-    return result;
+    ).pipe((user) => user);
   }
 }

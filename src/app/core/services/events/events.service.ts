@@ -1,3 +1,4 @@
+import { map, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SuccessReturn } from '../../interfaces/api';
 import {
@@ -13,39 +14,38 @@ import { Api } from '../api.service';
   providedIn: 'root',
 })
 export class EventsService extends Api {
-  public async deleteEvent(
+  public deleteEvent(
     paramsDeleteEvent: DeleteEvent
-  ): Promise<SuccessReturn> {
-    const result = this.sendRequest<DeleteEvent, SuccessReturn>(
+  ): Observable<SuccessReturn> {
+    return this.sendRequest<DeleteEvent, SuccessReturn>(
       'event',
       'delete',
       paramsDeleteEvent
-    );
-    return result;
+    ).pipe(map((response) => response));
   }
 
-  public async addOrUpdateEvent(
+  public addOrUpdateEvent(
     paramsAddEvent: ParamsAddEvent,
     method: 'put' | 'path'
-  ): Promise<Occasion> {
-    const result = await this.sendRequest<ParamsAddEvent, Occasion>(
+  ): Observable<Occasion> {
+    return this.sendRequest<ParamsAddEvent, Occasion>(
       'event',
       method,
       paramsAddEvent
-    );
-    return result;
+    ).pipe(map((occasion) => occasion));
   }
 
-  public async searchEvents(searchParams: SearchParams): Promise<Occasions> {
+  public searchEvents(searchParams: SearchParams): Observable<Occasions> {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const { type, lat, limit, lon, minutes, radius, sort, user_id, value } =
       searchParams;
-      // types: 
-      //  1 - Поиск по времени
-      // 2 - По юзеру
-      // 3 - По подписке
+    // types:
+    //  1 - Поиск по времени
+    // 2 - По юзеру
+    // 3 - По подписке
     const url = `events?type=${type}&minutes=${minutes}&value=${value}&lat=${lat}&lon=${lon}&radius=${radius}&sort=${sort}&limit=${limit}&user_id=${user_id}`;
-    const result = this.sendRequest<null, Occasions>(url, 'get');
-    return result;
+    return this.sendRequest<null, Occasions>(url, 'get').pipe(
+      map((occasion) => occasion)
+    );
   }
 }

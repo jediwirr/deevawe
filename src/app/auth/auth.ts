@@ -24,35 +24,40 @@ export class AuthPageComponent {
     protected router: Router
   ) {}
 
-  public async requestSignIn(userData: AuthUserData): Promise<void> {
-    const result = await this.authApiService.signIn(userData);
-    if (result.code) {
-      return;
-    }
-    this.localStorageService.setToken(result.token);
-    this.localStorageService.setDataToStorage<UserData>('dataUser', {
-      id: result.user,
-      authToken: result.token,
-    });
-    this.router.navigateByUrl('profile');
+  public requestSignIn(userData: AuthUserData): void {
+    this.authApiService
+      .signIn(userData)
+      .subscribe((result) => {
+        if (result.code) {
+          return;
+        }
+        this.localStorageService.setToken(result.token);
+        this.localStorageService.setDataToStorage<UserData>('dataUser', {
+          id: result.user,
+          authToken: result.token,
+        });
+        this.router.navigateByUrl('profile');
+      })
+      .unsubscribe();
   }
 
-  public async requestSignUp(userData: AuthUserData): Promise<void> {
-    const result = await this.authApiService.signUp(userData);
-    if (result.code) {
-      return;
-    }
-    this.modalService.injectComponent<ModalVerifyCodeComponent>(
-      this.modal,
-      ModalVerifyCodeComponent,
-      {
-        email: userData.email,
+  public requestSignUp(userData: AuthUserData): void {
+    this.authApiService.signUp(userData).subscribe((result) => {
+      if (result.code) {
+        return;
       }
-    );
-    this.modalService.closedModal.subscribe((res) => {
-      if (res) {
-        this.modalService.destroyModal();
-      }
+      this.modalService.injectComponent<ModalVerifyCodeComponent>(
+        this.modal,
+        ModalVerifyCodeComponent,
+        {
+          email: userData.email,
+        }
+      );
+      this.modalService.closedModal.subscribe((res) => {
+        if (res) {
+          this.modalService.destroyModal();
+        }
+      });
     });
   }
 

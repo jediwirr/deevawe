@@ -1,3 +1,4 @@
+import { map, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SendVerifyCodeResponse, VerifyUserResponse } from '../interfaces/api';
 import { UserDataVerify } from '../interfaces/auth-user';
@@ -7,20 +8,19 @@ import { Api } from './api.service';
   providedIn: 'root',
 })
 export class VerifyApiService extends Api {
-  public async sendCode(email: string): Promise<SendVerifyCodeResponse> {
-    const result = await this.sendRequest<
-      { email: string },
-      SendVerifyCodeResponse
-    >('send_verify_code', 'post', { email });
-    return result;
+  public sendCode(email: string): Observable<SendVerifyCodeResponse> {
+    return this.sendRequest<{ email: string }, SendVerifyCodeResponse>(
+      'send_verify_code',
+      'post',
+      { email }
+    ).pipe((code) => code);
   }
 
-  public async sendUser(userData: UserDataVerify): Promise<VerifyUserResponse> {
-    const result = await this.sendRequest<UserDataVerify, VerifyUserResponse>(
+  public sendUser(userData: UserDataVerify): Observable<VerifyUserResponse> {
+    return this.sendRequest<UserDataVerify, VerifyUserResponse>(
       'verify_user',
       'post',
       userData
-    );
-    return result;
+    ).pipe(map((value) => value));
   }
 }
