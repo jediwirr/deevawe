@@ -44,16 +44,11 @@ export class ProfilePageComponent implements OnInit {
 
   private getEventsByUser(): void {
     this.eventService
-      .searchEvents({
+      .searchById({
         user_id: this.userId,
-        type: 2,
         limit: 1,
-        radius: 2000,
         sort: 'id',
-        value: this.userId,
-        lon: 0,
-        lat: 0,
-        minutes: 0,
+        val: this.userId,
       })
       .subscribe((events) => {
         this.events = events;
