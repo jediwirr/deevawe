@@ -1,6 +1,6 @@
-import { LocalStorageService } from './../../core/services/localStorage.service';
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../../core/services/localStorage.service';
 import { EventFormComponent } from '../../modal/event/event';
 import { ModalService } from '../../core/services/modal.service';
 
@@ -48,11 +48,11 @@ export class NavigationComponent {
   public setVisibleParams(): void {
     this.listNavigation.forEach((item, index) => {
       if (item.routingName !== '/home') {
-        this.listNavigation[index]['visible'] = false;
+        this.listNavigation[index].visible = false;
       }
       if (item.name === 'Выйти') {
-        this.listNavigation[index]['name'] = 'Войти'
+        this.listNavigation[index].name = 'Войти';
       }
-    })
+    });
   }
 }

@@ -1,3 +1,4 @@
+import { Observable, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
   ChangePasswordResponse,
@@ -12,40 +13,37 @@ import { Api } from './api.service';
   providedIn: 'root',
 })
 export class AuthApiService extends Api {
-  public async signIn(userData: AuthUserData): Promise<SingInUserResponse> {
-    const result = await this.sendRequest<AuthUserData, SingInUserResponse>(
+  public signIn(userData: AuthUserData): Observable<SingInUserResponse> {
+    return this.sendRequest<AuthUserData, SingInUserResponse>(
       'signin',
       'post',
       userData
-    );
-    return result;
+    ).pipe(map((user) => user));
   }
 
-  public async signUp(userData: AuthUserData): Promise<SignUpUserResponse> {
-    const result = await this.sendRequest<AuthUserData, SignUpUserResponse>(
+  public signUp(userData: AuthUserData): Observable<SignUpUserResponse> {
+    return this.sendRequest<AuthUserData, SignUpUserResponse>(
       'signup',
       'put',
       userData
-    );
-    return result;
+    ).pipe(map((user) => user));
   }
 
-  public async signOut(userId: number): Promise<SignOutResponse> {
-    const result = await this.sendRequest<{ user_id: number }, SignOutResponse>(
+  public signOut(userId: number): Observable<SignOutResponse> {
+    return this.sendRequest<{ user_id: number }, SignOutResponse>(
       'signout',
       'delete',
       { user_id: userId }
-    );
-    return result;
+    ).pipe(map((response) => response));
   }
 
-  public async changePassword(
+  public changePassword(
     userData: UserDataVerify
-  ): Promise<ChangePasswordResponse> {
-    const result = await this.sendRequest<
-      UserDataVerify,
-      ChangePasswordResponse
-    >('change_password', 'post', userData);
-    return result;
+  ): Observable<ChangePasswordResponse> {
+    return this.sendRequest<UserDataVerify, ChangePasswordResponse>(
+      'change_password',
+      'post',
+      userData
+    ).pipe((response) => response);
   }
 }

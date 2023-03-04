@@ -1,6 +1,6 @@
-import { EventsService } from './../core/services/events/events.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EventsService } from '../core/services/events/events.service';
 import { User } from '../core/interfaces/users';
 import { LocalStorageService } from '../core/services/localStorage.service';
 import { UsersApiService } from '../core/services/users-api.service';
@@ -19,9 +19,9 @@ export class ProfilePageComponent implements OnInit {
   public readonly methodsSort = [
     {
       type: 'date',
-      name: 'Дате публикации'
-    }
-  ]
+      name: 'Дате публикации',
+    },
+  ];
 
   constructor(
     private userServiceApi: UsersApiService,
@@ -42,22 +42,23 @@ export class ProfilePageComponent implements OnInit {
     this.getEventsByUser();
   }
 
-  private async getEventsByUser(): Promise<void> {
-    this.events = await this.eventService.searchEvents({
-      user_id: this.userId,
-      type: 2,
-      limit: 1,
-      radius: 2000,
-      sort: 'id',
-      value: this.userId,
-      lon: 0,
-      lat: 0,
-      minutes: 0,
-    });
+  private getEventsByUser(): void {
+    this.eventService
+      .searchById({
+        user_id: this.userId,
+        limit: 1,
+        sort: 'id',
+        val: this.userId,
+      })
+      .subscribe((events) => {
+        this.events = events;
+      });
   }
 
   private async getUserInfo(id?: number): Promise<void> {
     this.userId = id || (await this.localStorage.getUserId());
-    this.user = await this.userServiceApi.getUser(this.userId);
+    this.userServiceApi.getUser(this.userId).subscribe((user) => {
+      this.user = user;
+    });
   }
 }

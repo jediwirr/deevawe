@@ -41,4 +41,21 @@ interface SearchParams {
   user_id: number;
 }
 
-export { DeleteEvent, ParamsAddEvent, Occasion, SearchParams, Occasions };
+interface SearchParamsByUserId {
+  val: number;
+  sort: string;
+  limit: number;
+  user_id: number;
+}
+
+interface SearchParamsEventBySubscription extends SearchParamsByUserId {}
+
+export {
+  DeleteEvent,
+  ParamsAddEvent,
+  Occasion,
+  SearchParams,
+  Occasions,
+  SearchParamsByUserId,
+  SearchParamsEventBySubscription,
+};
