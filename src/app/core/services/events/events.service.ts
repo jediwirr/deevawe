@@ -1,4 +1,4 @@
-import { map, Observable } from 'rxjs';
+import { map, Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SuccessReturn } from '../../interfaces/api';
 import {
@@ -16,6 +16,8 @@ import { Api } from '../api.service';
   providedIn: 'root',
 })
 export class EventsService extends Api {
+  public events = new BehaviorSubject(Object.create(null));
+
   public deleteEvent(
     paramsDeleteEvent: DeleteEvent
   ): Observable<SuccessReturn> {
@@ -55,13 +57,13 @@ export class EventsService extends Api {
     );
   }
 
-  public searchById(searchParams: SearchParamsByUserId): Observable<Occasions> {
+  public searchById(searchParams: SearchParamsByUserId): void {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const { val, user_id, limit, sort } = searchParams;
     const url = `events/user?val=${val}&sort=${sort}&limit=${limit}&user_id=${user_id}`;
-    return this.sendRequest<null, Occasions>(url, 'get').pipe(
-      map((occasion) => occasion)
-    );
+    this.sendRequest<null, Occasions>(url, 'get').subscribe((occasion) => {
+      this.events.next(occasion);
+    });
   }
 
   public searchBySubscription(

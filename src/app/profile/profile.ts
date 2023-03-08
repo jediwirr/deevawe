@@ -36,6 +36,9 @@ export class ProfilePageComponent implements OnInit {
       }
       this.getUserInfo();
     });
+    eventService.events.subscribe((occasion) => {
+      this.events = occasion;
+    });
   }
 
   public ngOnInit(): void {
@@ -43,16 +46,15 @@ export class ProfilePageComponent implements OnInit {
   }
 
   private getEventsByUser(): void {
-    this.eventService
-      .searchById({
-        user_id: this.userId,
-        limit: 1,
-        sort: 'id',
-        val: this.userId,
-      })
-      .subscribe((events) => {
-        this.events = events;
-      });
+    this.eventService.searchById({
+      user_id: this.userId,
+      limit: 1,
+      sort: 'id',
+      val: this.userId,
+    });
+    // .subscribe((events) => {
+    //   this.events = events;
+    // });
   }
 
   private async getUserInfo(id?: number): Promise<void> {

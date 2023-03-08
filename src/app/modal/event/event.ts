@@ -21,7 +21,7 @@ export class EventFormComponent extends ModalComponent {
 
   public eventForm = new FormGroup({
     title: new FormControl<string>('', { nonNullable: true }),
-    description: new FormControl<string>('', {nonNullable: true}),
+    description: new FormControl<string>('', { nonNullable: true }),
     geolocation: new FormControl<{
       lat: number;
       lon: number;
@@ -36,7 +36,10 @@ export class EventFormComponent extends ModalComponent {
     endDate: new FormControl<string>('', { nonNullable: true }),
   });
 
-  constructor(private localStorageService: LocalStorageService, private eventsService: EventsService) {
+  constructor(
+    private localStorageService: LocalStorageService,
+    private eventsService: EventsService
+  ) {
     super();
   }
 
@@ -65,22 +68,33 @@ export class EventFormComponent extends ModalComponent {
     // if (!this.eventForm.valid) {
     //   return;
     // }
-    debugger;
-    
+    const userId = await this.localStorageService.getUserId();
     const { title, description, geolocation } = this.eventForm.controls;
-    await this.eventsService.addOrUpdateEvent({
-      user_id: await this.localStorageService.getUserId(),
-      title: title.value,
-      description: description.value,
-      type: 1,
-      status: 2,
-      longitude: geolocation.value.lon,
-      latitude: geolocation.value.lat,
-      time_start: 1664542280,
-      time_end: 0,
-      time_zone: "Europe/Astrakhan"
-    }, 'put')
-    this.closeModal.emit()
+    this.eventsService
+      .addOrUpdateEvent(
+        {
+          user_id: userId,
+          title: title.value,
+          description: description.value,
+          type: 1,
+          status: 2,
+          longitude: geolocation.value.lon,
+          latitude: geolocation.value.lat,
+          time_start: 1664542280,
+          time_end: 1664542282,
+          time_zone: 'Europe/Astrakhan',
+        },
+        'put'
+      )
+      .subscribe(() => {
+        this.eventsService.searchById({
+          limit: 1,
+          sort: 'id',
+          user_id: userId,
+          val: userId,
+        });
+      });
+    this.destroyModal();
   }
 
   public destroyModal(): void {

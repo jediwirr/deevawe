@@ -1,6 +1,4 @@
-import { ErrorApiResponse } from './api';
 import { SubscribeBodyEvent } from './subscribe-event';
-import { TimeZones } from './time-zones';
 
 type DeleteEvent = Omit<SubscribeBodyEvent, 'subscribe'>;
 type OmitParamsAddEvent = Omit<ParamsAddEvent, 'time_zone'>;

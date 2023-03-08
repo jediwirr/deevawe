@@ -1,4 +1,4 @@
-import { Observable, from } from 'rxjs';
+import { Observable, from, catchError, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ENV } from '@app/env';
@@ -56,7 +56,9 @@ export class Api {
       from(this.getOptions(body)).subscribe((options) => {
         this.http
           .request<R>(method, ENV.baseUrl + url, options)
+          .pipe(catchError((error) => of(`Bad Promise: ${error}`)))
           .subscribe((result) => {
+            // @ts-ignore
             subscriber.next(result);
             subscriber.complete();
           });
