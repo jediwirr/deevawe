@@ -1,15 +1,17 @@
-import { EventsService } from './../../core/services/events/events.service';
-import { TimeZones } from './../../core/interfaces/time-zones.d';
-import { LocalStorageService } from './../../core/services/localStorage.service';
-import { Component } from '@angular/core';
+import { Occasion } from 'src/app/core/interfaces/events';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { EventsService } from '../../core/services/events/events.service';
+import { LocalStorageService } from '../../core/services/localStorage.service';
 import { ModalComponent } from '../modal-base';
 
 @Component({
   templateUrl: './event.component.html',
   styleUrls: ['./event.style.scss'],
 })
-export class EventFormComponent extends ModalComponent {
+export class EventFormComponent extends ModalComponent implements OnInit {
+  @Input() inputData?: Occasion;
+
   public readonly listTypeEvent = [
     {
       type: 'drink',
@@ -41,6 +43,18 @@ export class EventFormComponent extends ModalComponent {
     private eventsService: EventsService
   ) {
     super();
+  }
+
+  public ngOnInit(): void {
+    if (this.inputData) {
+      console.log(this.inputData);
+      // const { title, description, time_end} = this.infoEvent;
+      // this.eventForm.setValue({
+      //   title,
+      //   description,
+      //   endDate:
+      // })
+    }
   }
 
   public showOrHideMap(): void {

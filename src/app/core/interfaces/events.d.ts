@@ -4,6 +4,7 @@ type DeleteEvent = Omit<SubscribeBodyEvent, 'subscribe'>;
 type OmitParamsAddEvent = Omit<ParamsAddEvent, 'time_zone'>;
 
 interface Occasion extends OmitParamsAddEvent {
+  event_id: number;
   // created_time: string;
   // updated_time: string;
   // subscribe?: boolean;
@@ -11,7 +12,7 @@ interface Occasion extends OmitParamsAddEvent {
 
 interface Occasions {
   count: number;
-  events: OmitParamsAddEvent[];
+  events: Occasion[];
 }
 
 interface ParamsAddEvent {

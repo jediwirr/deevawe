@@ -15,7 +15,19 @@
   <div>
     <img src="../../../assets/icons/marker-map.svg" alt="marker" />
     <button>Участники</button>
-    <img src="../../../assets/icons/edit.svg" alt="edit" />
-    <img src="../../../assets/icons/trash.svg" alt="trash" />
+    <img
+      src="../../../assets/icons/edit.svg"
+      alt="edit"
+      (click)="updateEvent()"
+    />
+    <img
+      src="../../../assets/icons/trash.svg"
+      alt="trash"
+      (click)="deleteEvent()"
+    />
   </div>
+</div>
+
+<div>
+  <ng-container #modalFormEvent></ng-container>
 </div>
