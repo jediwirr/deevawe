@@ -13,7 +13,7 @@ export class ProfileCardComponent implements OnInit {
 
   public features: string[] = [];
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.init();
   }
 

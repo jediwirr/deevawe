@@ -1,15 +1,17 @@
-import { EventsService } from './../../core/services/events/events.service';
-import { TimeZones } from './../../core/interfaces/time-zones.d';
-import { LocalStorageService } from './../../core/services/localStorage.service';
-import { Component } from '@angular/core';
+import { Occasion } from 'src/app/core/interfaces/events';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { EventsService } from '../../core/services/events/events.service';
+import { LocalStorageService } from '../../core/services/localStorage.service';
 import { ModalComponent } from '../modal-base';
 
 @Component({
   templateUrl: './event.component.html',
   styleUrls: ['./event.style.scss'],
 })
-export class EventFormComponent extends ModalComponent {
+export class EventFormComponent extends ModalComponent implements OnInit {
+  @Input() inputData?: Occasion;
+
   public readonly listTypeEvent = [
     {
       type: 'drink',
@@ -19,9 +21,11 @@ export class EventFormComponent extends ModalComponent {
 
   public isShowMap = false;
 
+  public isShowEndDate = false;
+
   public eventForm = new FormGroup({
     title: new FormControl<string>('', { nonNullable: true }),
-    description: new FormControl<string>('', {nonNullable: true}),
+    description: new FormControl<string>('', { nonNullable: true }),
     geolocation: new FormControl<{
       lat: number;
       lon: number;
@@ -36,12 +40,31 @@ export class EventFormComponent extends ModalComponent {
     endDate: new FormControl<string>('', { nonNullable: true }),
   });
 
-  constructor(private localStorageService: LocalStorageService, private eventsService: EventsService) {
+  constructor(
+    private localStorageService: LocalStorageService,
+    private eventsService: EventsService
+  ) {
     super();
+  }
+
+  public ngOnInit(): void {
+    if (this.inputData) {
+      console.log(this.inputData);
+      // const { title, description, time_end} = this.infoEvent;
+      // this.eventForm.setValue({
+      //   title,
+      //   description,
+      //   endDate:
+      // })
+    }
   }
 
   public showOrHideMap(): void {
     this.isShowMap = !this.isShowMap;
+  }
+
+  public showOrHideEndDate(): void {
+    this.isShowEndDate = !this.isShowEndDate;
   }
 
   public getCoordinates(coordinates: number[] | undefined): void {
@@ -65,22 +88,33 @@ export class EventFormComponent extends ModalComponent {
     // if (!this.eventForm.valid) {
     //   return;
     // }
-    debugger;
-    
+    const userId = await this.localStorageService.getUserId();
     const { title, description, geolocation } = this.eventForm.controls;
-    await this.eventsService.addOrUpdateEvent({
-      user_id: await this.localStorageService.getUserId(),
-      title: title.value,
-      description: description.value,
-      type: 1,
-      status: 2,
-      longitude: geolocation.value.lon,
-      latitude: geolocation.value.lat,
-      time_start: 1664542280,
-      time_end: 0,
-      time_zone: "Europe/Astrakhan"
-    }, 'put')
-    this.closeModal.emit()
+    this.eventsService
+      .addOrUpdateEvent(
+        {
+          user_id: userId,
+          title: title.value,
+          description: description.value,
+          type: 1,
+          status: 2,
+          longitude: geolocation.value.lon,
+          latitude: geolocation.value.lat,
+          time_start: 1664542280,
+          time_end: 1664542282,
+          time_zone: 'Europe/Astrakhan',
+        },
+        'put'
+      )
+      .subscribe(() => {
+        this.eventsService.searchById({
+          limit: 1,
+          sort: 'id',
+          user_id: userId,
+          val: userId,
+        });
+      });
+    this.destroyModal();
   }
 
   public destroyModal(): void {
