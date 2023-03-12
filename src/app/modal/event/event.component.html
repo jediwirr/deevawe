@@ -22,12 +22,16 @@
         <label>Начало:</label>
         <app-date-picker></app-date-picker>
       </div>
-      <div>
+      <div *ngIf="isShowEndDate">
         <label>Конец:</label>
         <app-date-picker></app-date-picker>
       </div>
       <div>
-        <input type="checkbox" />
+        <input
+          [checked]="isShowEndDate"
+          (click)="showOrHideEndDate()"
+          type="checkbox"
+        />
         <label>Добавить время окончания события</label>
       </div>
       <div>

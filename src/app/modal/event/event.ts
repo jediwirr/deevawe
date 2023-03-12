@@ -21,6 +21,8 @@ export class EventFormComponent extends ModalComponent implements OnInit {
 
   public isShowMap = false;
 
+  public isShowEndDate = false;
+
   public eventForm = new FormGroup({
     title: new FormControl<string>('', { nonNullable: true }),
     description: new FormControl<string>('', { nonNullable: true }),
@@ -59,6 +61,10 @@ export class EventFormComponent extends ModalComponent implements OnInit {
 
   public showOrHideMap(): void {
     this.isShowMap = !this.isShowMap;
+  }
+
+  public showOrHideEndDate(): void {
+    this.isShowEndDate = !this.isShowEndDate;
   }
 
   public getCoordinates(coordinates: number[] | undefined): void {
