@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalComponent } from '../../modal/modal-base';
+import { ModalComponent } from '../modal/modal-base';
 
 @Component({
   selector: 'app-toast',

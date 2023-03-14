@@ -15,7 +15,7 @@ import {
   Type,
   ViewContainerRef,
 } from '@angular/core';
-import { ModalComponent } from 'src/app/modal/modal-base';
+import { ModalComponent } from '../../shared/modal/modal-base';
 
 @Injectable({
   providedIn: 'root',

@@ -8,6 +8,7 @@ import {
   AfterViewInit,
   ElementRef,
 } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-clock',
@@ -25,7 +26,39 @@ export class ClockComponent implements OnInit, AfterViewInit {
 
   public minutes: string[] = [];
 
+  public currentHour = moment().hour();
+
+  public currentMinutes = '00';
+
   public isShowPickTime = false;
+
+  public decrementOrIncrementTime(
+    typeTime: 'HOUR' | 'MINUTE',
+    type: 'INCREMENT' | 'DECREMENT'
+  ): void {
+    if (typeTime === 'HOUR') {
+      if (type === 'DECREMENT') {
+        this.currentHour = moment(this.currentHour).subtract('hour').hour();
+      } else {
+        this.currentHour = moment(this.currentHour).add('hour').hour();
+      }
+    }
+
+    if (typeTime === 'MINUTE') {
+      if (type === 'DECREMENT') {
+        this.currentMinutes = (
+          parseInt(this.currentMinutes, 10) - 15
+        ).toString();
+        if (this.currentMinutes === '0') {
+          this.currentMinutes = '00';
+        }
+      } else {
+        this.currentMinutes = (
+          parseInt(this.currentMinutes, 10) + 15
+        ).toString();
+      }
+    }
+  }
 
   public ngOnInit(): void {
     this.createHoursTime();
@@ -53,6 +86,9 @@ export class ClockComponent implements OnInit, AfterViewInit {
   }
 
   private createHoursTime() {
+    console.log(moment().hour());
+
+    moment().hour();
     let index = 0;
     while (index < 24) {
       if (index <= 9) {

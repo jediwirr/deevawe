@@ -1,7 +1,7 @@
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../core/services/localStorage.service';
-import { EventFormComponent } from '../../modal/event/event';
+import { EventFormComponent } from '../modal/event/event';
 import { ModalService } from '../../core/services/modal.service';
 
 @Component({

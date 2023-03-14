@@ -1,11 +1,11 @@
 import { Router } from '@angular/router';
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
-import { AuthApiService } from '../core/services/auth-api.service';
-import { AuthUserData } from '../core/interfaces/auth-user';
-import { UserData } from '../core/interfaces/localStorage';
-import { ModalService } from '../core/services/modal.service';
-import { ModalVerifyCodeComponent } from '../modal/verify/modal-verify-code';
-import { LocalStorageService } from '../core/services/localStorage.service';
+import { AuthApiService } from '../../core/services/auth-api.service';
+import { AuthUserData } from '../../core/interfaces/auth-user';
+import { UserData } from '../../core/interfaces/localStorage';
+import { ModalService } from '../../core/services/modal.service';
+import { ModalVerifyCodeComponent } from '../../shared/modal/verify/modal-verify-code';
+import { LocalStorageService } from '../../core/services/localStorage.service';
 
 @Component({
   selector: 'app-auth',

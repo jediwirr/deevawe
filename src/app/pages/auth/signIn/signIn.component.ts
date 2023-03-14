@@ -6,9 +6,9 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import type { AuthUserData } from '../../core/interfaces/auth-user';
-import { ChangePasswordComponent } from '../../modal/changePassword/changePassword';
-import { ModalService } from '../../core/services/modal.service';
+import type { AuthUserData } from '../../../core/interfaces/auth-user';
+import { ChangePasswordComponent } from '../../../shared/modal/changePassword/changePassword';
+import { ModalService } from '../../../core/services/modal.service';
 
 @Component({
   selector: 'app-sign-in',

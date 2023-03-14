@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventsService } from '../core/services/events/events.service';
-import { User } from '../core/interfaces/users';
-import { LocalStorageService } from '../core/services/localStorage.service';
-import { UsersApiService } from '../core/services/users-api.service';
-import { Occasions } from '../core/interfaces/events';
+import { EventsService } from '../../core/services/events/events.service';
+import { User } from '../../core/interfaces/users';
+import { LocalStorageService } from '../../core/services/localStorage.service';
+import { UsersApiService } from '../../core/services/users-api.service';
+import { Occasions } from '../../core/interfaces/events';
 
 @Component({
   templateUrl: './profile.component.html',
