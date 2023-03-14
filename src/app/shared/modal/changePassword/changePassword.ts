@@ -1,7 +1,7 @@
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalComponent } from '../modal-base';
-import { ModalService } from '../../core/services/modal.service';
+import { ModalService } from '../../../core/services/modal.service';
 import { ModalVerifyCodeComponent } from '../verify/modal-verify-code';
 
 @Component({

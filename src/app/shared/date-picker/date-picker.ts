@@ -27,7 +27,7 @@ export class DatePickerComponent implements OnInit {
   }
 
   public setTime(time: string[]): void {
-    // this.time = time;
+    this.time = time;
   }
 
   private createIsoDate(date: moment.Moment, time?: string[]): void {

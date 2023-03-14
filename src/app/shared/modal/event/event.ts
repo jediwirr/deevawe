@@ -1,8 +1,8 @@
 import { Occasion } from 'src/app/core/interfaces/events';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { EventsService } from '../../core/services/events/events.service';
-import { LocalStorageService } from '../../core/services/localStorage.service';
+import { EventsService } from '../../../core/services/events/events.service';
+import { LocalStorageService } from '../../../core/services/localStorage.service';
 import { ModalComponent } from '../modal-base';
 
 @Component({

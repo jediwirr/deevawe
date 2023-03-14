@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthUserData } from 'src/app/core/interfaces/auth-user';
-import { ValidatorsService } from '../../core/services/validators.service';
+import { ValidatorsService } from '../../../core/services/validators.service';
 
 @Component({
   selector: 'app-sign-up',

@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { VerifyApiService } from '../../core/services/verify.service';
-import { VerifyUserResponse } from '../../core/interfaces/api';
-import { ModalComponent } from '../modal-base';
 import { map } from 'rxjs';
+import { VerifyApiService } from '../../../core/services/verify.service';
+import { VerifyUserResponse } from '../../../core/interfaces/api';
+import { ModalComponent } from '../modal-base';
 
 const enterAnimation = transition(':enter', [
   style({
