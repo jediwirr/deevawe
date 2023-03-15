@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation';
 import { ToastComponent } from './toast/toast';
 import { DatePickerComponent } from './date-picker/date-picker';
@@ -12,7 +13,6 @@ import { ClockComponent } from './clock/clock';
 import { PipeModule } from '../core/pipes/pipes.module';
 import { DirectiveModule } from '../core/directives/directive.module';
 import { CardEventComponent } from './card-events/card-event';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PipeModule,
     DirectiveModule,
     ScrollingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
     ToastComponent,

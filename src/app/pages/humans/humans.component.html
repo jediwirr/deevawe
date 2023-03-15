@@ -1,0 +1,22 @@
+<app-navigation></app-navigation>
+
+<div class="card flex-space-between">
+  <div>
+    <input
+      placeholder="найти пользователя"
+      type="text"
+      [formControl]="valueForSearchUser"
+    />
+  </div>
+  <div class="card__actions flex-space-between">
+    <button class="card__actions--friends">Друзья</button>
+    <button class="card__actions--request-friend">Запросы в друзья</button>
+    <div class="card__actions--setting">
+      <img src="../../../assets/icons/setting.svg" alt="setting" />
+    </div>
+  </div>
+</div>
+
+<div *ngIf="people">
+  {{ people | json }}
+</div>
