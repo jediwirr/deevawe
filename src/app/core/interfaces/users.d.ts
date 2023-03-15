@@ -1,6 +1,7 @@
 interface User {
   id: number;
   name: string;
+  descriptions: string[];
   features: string[];
   connections: Connection[];
   image: string;

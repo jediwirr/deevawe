@@ -5,10 +5,6 @@
     @include Mixins.flex-space-between;
   }
 
-  &.padding-space {
-    padding: 16px;
-  }
-
   &__about-profile {
     display: flex;
     img {
