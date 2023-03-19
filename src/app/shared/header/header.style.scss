@@ -3,22 +3,20 @@
 
 header {
   @include Mixins.flex-space-between;
-  padding-top: 34px;
-  padding-bottom: 15px;
+  align-items: center;
+  padding: 5px 17px 6px 10px;
+  background: Variables.$background-light-blue;
+
   nav {
-    min-width: 480px;
+    margin-right: 18px;
     ul {
       @include Mixins.flex-space-between;
       .navigation-link {
         display: flex;
         min-width: 100px;
-        min-height: 30px;
         font-weight: 700;
         font-size: 0.875rem;
         line-height: 1.0625rem;
-        background: Variables.$gray;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 15px;
         li {
           @include Mixins.flex-center-vertical-horizontal;
           width: 100%;
@@ -27,8 +25,29 @@ header {
       }
     }
   }
+
+  .create-event {
+    border: 1px solid Variables.$orange;
+    border-radius: 15px;
+    width: 165px;
+    height: 30px;
+    margin: auto;
+  }
+
+  .logo {
+    width: 141px;
+    height: 57px;
+  }
+
+  .btn-exit {
+    border: 1px solid #319aac;
+    border-radius: 15px;
+    width: 78px;
+    height: 25px;
+    font-weight: 700;
+  }
 }
 
 .active-link {
-  background: rgba(130, 130, 130, 0.5) !important;
+  color: Variables.$orange;
 }

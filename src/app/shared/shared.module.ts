@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NavigationComponent } from './navigation/navigation';
+import { HeaderComponent } from './header/header';
 import { ToastComponent } from './toast/toast';
 import { DatePickerComponent } from './date-picker/date-picker';
 import { SelectComponent } from './select/select';
@@ -25,7 +25,7 @@ import { CardEventComponent } from './card-events/card-event';
   ],
   declarations: [
     ToastComponent,
-    NavigationComponent,
+    HeaderComponent,
     DatePickerComponent,
     SelectComponent,
     MapComponent,
@@ -35,7 +35,7 @@ import { CardEventComponent } from './card-events/card-event';
   ],
   exports: [
     ToastComponent,
-    NavigationComponent,
+    HeaderComponent,
     DatePickerComponent,
     SelectComponent,
     MapComponent,

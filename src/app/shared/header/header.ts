@@ -5,11 +5,11 @@ import { EventFormComponent } from '../modal/event/event';
 import { ModalService } from '../../core/services/modal.service';
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.style.scss'],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.style.scss'],
 })
-export class NavigationComponent {
+export class HeaderComponent {
   @ViewChild('modalFormEvent', { read: ViewContainerRef })
   modalFormEvent!: ViewContainerRef;
 
@@ -18,7 +18,6 @@ export class NavigationComponent {
     { name: 'Подписки', routingName: '/subscribes', visible: true },
     { name: 'Люди', routingName: '/humans', visible: true },
     { name: 'Профиль', routingName: '/profile', visible: true },
-    { name: 'Выйти', visible: true },
   ];
 
   public nameActivePage!: string;

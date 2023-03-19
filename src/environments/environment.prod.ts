@@ -8,4 +8,6 @@
 
 export const ENV = {
   production: true,
+  baseUrl: 'https://deewave.online/api/',
+  client: 'deewave',
 };

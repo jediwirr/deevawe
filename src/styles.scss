@@ -36,6 +36,10 @@ input:focus {
   outline: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 app-auth {
   display: flex;
   align-items: center;

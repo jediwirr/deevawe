@@ -1,0 +1,25 @@
+<header>
+  <img class="logo" src="../../../assets/images/logo.png" />
+  <button class="create-event" (click)="openFormEvent()">
+    Создать событие
+  </button>
+  <nav>
+    <ul>
+      <li *ngFor="let item of listNavigation">
+        <a
+          class="navigation-link"
+          [routerLink]="[item.routingName]"
+          [routerLinkActive]="['active-link']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          {{ item.name }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <button class="btn-exit">Выйти</button>
+</header>
+
+<div>
+  <ng-container #modalFormEvent></ng-container>
+</div>
