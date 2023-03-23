@@ -5,8 +5,8 @@ import { ProfileCardComponent } from './profile-card/profile-card';
 import { ProfileRouterModule } from './profile-routing.module';
 
 @NgModule({
-  imports: [ProfileRouterModule, SharedModule],
-  declarations: [ProfilePageComponent, ProfileCardComponent],
-  exports: [ProfilePageComponent],
+	imports: [ProfileRouterModule, SharedModule],
+	declarations: [ProfilePageComponent, ProfileCardComponent],
+	exports: [ProfilePageComponent],
 })
 export class ProfileModule {}

@@ -13,30 +13,30 @@ import { DirectiveModule } from './core/directives/directive.module';
 import { ModalModule } from './shared/modal/modal.module';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    ScrollingModule,
-    // modal
-    ModalModule,
-    // directives
-    DirectiveModule,
-    // shared
-    SharedModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
+	declarations: [AppComponent],
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		AppRoutingModule,
+		HttpClientModule,
+		ReactiveFormsModule,
+		FormsModule,
+		CommonModule,
+		ScrollingModule,
+		// modal
+		ModalModule,
+		// directives
+		DirectiveModule,
+		// shared
+		SharedModule,
+	],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: HttpInterceptorService,
+			multi: true,
+		},
+	],
+	bootstrap: [AppComponent],
 })
 export class AppModule {}

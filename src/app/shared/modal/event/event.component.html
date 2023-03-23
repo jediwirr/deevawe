@@ -1,48 +1,48 @@
 <div class="wrapper">
-  <div class="modal" app-out-side-click (outSideClick)="destroyModal()">
-    <form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
-      <div>
-        <label for="title">Название</label>
-        <input formControlName="title" />
-        <p>До 30 символов</p>
-      </div>
-      <div>
-        <label> Описание </label>
-        <textarea formControlName="description"></textarea>
-      </div>
-      <div>
-        <label>Место</label>
-        <p (click)="showOrHideMap()">Мое местоположение</p>
-        <app-map
-          *ngIf="isShowMap"
-          (closeMap)="getCoordinates($event)"
-        ></app-map>
-      </div>
-      <div>
-        <label>Начало:</label>
-        <app-date-picker></app-date-picker>
-      </div>
-      <div *ngIf="isShowEndDate">
-        <label>Конец:</label>
-        <app-date-picker></app-date-picker>
-      </div>
-      <div>
-        <input
-          [checked]="isShowEndDate"
-          (click)="showOrHideEndDate()"
-          type="checkbox"
-        />
-        <label>Добавить время окончания события</label>
-      </div>
-      <div>
-        <label>Тип:</label>
-        <app-select
-          [listType]="listTypeEvent"
-          [isShowImage]="true"
-          (emitOptionSelect)="setOptionSelect($event)"
-        ></app-select>
-      </div>
-      <button type="submit">Создать событие</button>
-    </form>
-  </div>
+	<div class="modal" app-out-side-click (outSideClick)="destroyModal()">
+		<form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
+			<div>
+				<label for="title">Название</label>
+				<input formControlName="title" />
+				<p>До 30 символов</p>
+			</div>
+			<div>
+				<label> Описание </label>
+				<textarea formControlName="description"></textarea>
+			</div>
+			<div>
+				<label>Место</label>
+				<p (click)="showOrHideMap()">Мое местоположение</p>
+				<app-map
+					*ngIf="isShowMap"
+					(closeMap)="getCoordinates($event)"
+				></app-map>
+			</div>
+			<div>
+				<label>Начало:</label>
+				<app-date-picker></app-date-picker>
+			</div>
+			<div *ngIf="isShowEndDate">
+				<label>Конец:</label>
+				<app-date-picker></app-date-picker>
+			</div>
+			<div>
+				<input
+					[checked]="isShowEndDate"
+					(click)="showOrHideEndDate()"
+					type="checkbox"
+				/>
+				<label>Добавить время окончания события</label>
+			</div>
+			<div>
+				<label>Тип:</label>
+				<app-select
+					[listType]="listTypeEvent"
+					[isShowImage]="true"
+					(emitOptionSelect)="setOptionSelect($event)"
+				></app-select>
+			</div>
+			<button type="submit">Создать событие</button>
+		</form>
+	</div>
 </div>

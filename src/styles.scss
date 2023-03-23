@@ -7,70 +7,70 @@
 @include Mixins.font-face('Inter', 'Regular');
 
 * {
-  margin: 0;
+	margin: 0;
 }
 
 a {
-  text-decoration: none;
-  color: #000;
+	text-decoration: none;
+	color: #000;
 }
 
 ul {
-  list-style-type: none;
+	list-style-type: none;
 }
 
 body {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 app-root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: 'Inter';
-  background: Variables.$light-gray;
-  padding: 0 63px;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	font-family: 'Inter';
+	background: Variables.$light-gray;
+	padding: 0 63px;
 }
 
 input:focus {
-  outline: 0;
+	outline: 0;
 }
 
 button {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 app-auth {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 100vw;
-  min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 100vw;
+	min-height: 100vh;
 }
 
 .auth {
-  &__input {
-    border-radius: 2px;
-    border: 2px solid Variables.$light-gray;
-    &.ng-invalid:not(.ng-untouched):not(.ng-pristine) {
-      border: 2px solid Variables.$input__auth--error;
-    }
-  }
+	&__input {
+		border-radius: 2px;
+		border: 2px solid Variables.$light-gray;
+		&.ng-invalid:not(.ng-untouched):not(.ng-pristine) {
+			border: 2px solid Variables.$input__auth--error;
+		}
+	}
 }
 
 .vertical-line-gray-thin {
-  @include Mixins.vertical-line(
-    Variables.$light-gray,
-    2px,
-    Variables.$light-gray
-  );
+	@include Mixins.vertical-line(
+		Variables.$light-gray,
+		2px,
+		Variables.$light-gray
+	);
 }
 
 .flex-space-between {
-  @include Mixins.flex-space-between;
+	@include Mixins.flex-space-between;
 }
 
 .card {
-  background: #fff;
-  border-radius: 15px;
+	background: #fff;
+	border-radius: 15px;
 }

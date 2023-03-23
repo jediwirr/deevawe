@@ -1,40 +1,44 @@
 <div class="calendar">
-  <div>
-    <div>
-      <span>
-        {{ month }}
-      </span>
-      <span> {{ year }} </span>
-    </div>
-    <div>
-      <button [disabled]="!canChangePrev" type="button" (click)="prevMonth(1)">
-        prev
-      </button>
-      <button type="button" (click)="nextMonth(1)">next</button>
-    </div>
-  </div>
-  <div class="calendar__grid">
-    <div class="calendar__grid-week">
-      <span *ngFor="let day of weekDaysHeaderArr">
-        {{ day }}
-      </span>
-    </div>
-    <div class="calendar__grid-day">
-      <ng-container *ngFor="let item of gridArr">
-        <button
-          type="button"
-          class="calendar__grid-date-item select-date"
-          *ngIf="item.value !== 0"
-          (click)="selectDay(item)"
-        >
-          {{ item.value }}
-        </button>
-        <button
-          type="button"
-          class="calendar__grid-date-item"
-          *ngIf="item.value === 0"
-        ></button>
-      </ng-container>
-    </div>
-  </div>
+	<div>
+		<div>
+			<span>
+				{{ month }}
+			</span>
+			<span> {{ year }} </span>
+		</div>
+		<div>
+			<button
+				[disabled]="!canChangePrev"
+				type="button"
+				(click)="prevMonth(1)"
+			>
+				prev
+			</button>
+			<button type="button" (click)="nextMonth(1)">next</button>
+		</div>
+	</div>
+	<div class="calendar__grid">
+		<div class="calendar__grid-week">
+			<span *ngFor="let day of weekDaysHeaderArr">
+				{{ day }}
+			</span>
+		</div>
+		<div class="calendar__grid-day">
+			<ng-container *ngFor="let item of gridArr">
+				<button
+					type="button"
+					class="calendar__grid-date-item select-date"
+					*ngIf="item.value !== 0"
+					(click)="selectDay(item)"
+				>
+					{{ item.value }}
+				</button>
+				<button
+					type="button"
+					class="calendar__grid-date-item"
+					*ngIf="item.value === 0"
+				></button>
+			</ng-container>
+		</div>
+	</div>
 </div>

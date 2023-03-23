@@ -7,9 +7,9 @@
  */
 
 export const ENV = {
-  production: false,
-  baseUrl: 'https://deewave.online/api/',
-  client: 'deewave',
+	production: false,
+	baseUrl: 'https://deewave.online/api/',
+	client: 'deewave',
 };
 
 /*

@@ -1,43 +1,43 @@
 <div class="clock" app-out-side-click (outSideClick)="isShowPickTime = false">
-  <input
-    type="text"
-    (click)="setShowPickTime()"
-    #refTime
-    [value]="hours | timer : minutes : time"
-  />
-  <div *ngIf="isShowPickTime" class="clock__time">
-    <div class="clock__time--hour">
-      <span>
-        <p>up</p>
-        {{ currentHour }}
-        <p>down</p>
-      </span>
-      <!-- <div *ngFor="let hour of hours; let i = index">
+	<input
+		type="text"
+		(click)="setShowPickTime()"
+		#refTime
+		[value]="hours | timer : minutes : time"
+	/>
+	<div *ngIf="isShowPickTime" class="clock__time">
+		<div class="clock__time--hour">
+			<span>
+				<p>up</p>
+				{{ currentHour }}
+				<p>down</p>
+			</span>
+			<!-- <div *ngFor="let hour of hours; let i = index">
         <span (click)="setTime(0, i)"> {{ hour }} </span>
       </div> -->
-    </div>
-    <span> : </span>
-    <div class="clock__time--minutes">
-      <span>
-        <button
-          type="button"
-          [disabled]="currentMinutes === '00'"
-          (click)="decrementOrIncrementTime('MINUTE', 'DECREMENT')"
-        >
-          up
-        </button>
-        {{ currentMinutes }}
-        <button
-          type="button"
-          [disabled]="currentMinutes === '60'"
-          (click)="decrementOrIncrementTime('MINUTE', 'INCREMENT')"
-        >
-          down
-        </button>
-      </span>
-      <!-- <div *ngFor="let minute of minutes; let i = index">
+		</div>
+		<span> : </span>
+		<div class="clock__time--minutes">
+			<span>
+				<button
+					type="button"
+					[disabled]="currentMinutes === '00'"
+					(click)="decrementOrIncrementTime('MINUTE', 'DECREMENT')"
+				>
+					up
+				</button>
+				{{ currentMinutes }}
+				<button
+					type="button"
+					[disabled]="currentMinutes === '60'"
+					(click)="decrementOrIncrementTime('MINUTE', 'INCREMENT')"
+				>
+					down
+				</button>
+			</span>
+			<!-- <div *ngFor="let minute of minutes; let i = index">
         <span (click)="setTime(1, i)"> {{ minute }} </span>
       </div> -->
-    </div>
-  </div>
+		</div>
+	</div>
 </div>

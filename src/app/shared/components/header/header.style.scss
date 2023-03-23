@@ -2,52 +2,52 @@
 @use '../../../../mixins.scss' as Mixins;
 
 header {
-  @include Mixins.flex-space-between;
-  align-items: center;
-  padding: 5px 17px 6px 10px;
-  background: Variables.$background-light-blue;
+	@include Mixins.flex-space-between;
+	align-items: center;
+	padding: 5px 17px 6px 10px;
+	background: Variables.$background-light-blue;
 
-  nav {
-    margin-right: 18px;
-    ul {
-      @include Mixins.flex-space-between;
-      .navigation-link {
-        display: flex;
-        min-width: 100px;
-        font-weight: 700;
-        font-size: 0.875rem;
-        line-height: 1.0625rem;
-        li {
-          @include Mixins.flex-center-vertical-horizontal;
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-  }
+	nav {
+		margin-right: 18px;
+		ul {
+			@include Mixins.flex-space-between;
+			.navigation-link {
+				display: flex;
+				min-width: 100px;
+				font-weight: 700;
+				font-size: 0.875rem;
+				line-height: 1.0625rem;
+				li {
+					@include Mixins.flex-center-vertical-horizontal;
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+	}
 
-  .create-event {
-    border: 1px solid Variables.$orange;
-    border-radius: 15px;
-    width: 165px;
-    height: 30px;
-    margin: auto;
-  }
+	.create-event {
+		border: 1px solid Variables.$orange;
+		border-radius: 15px;
+		width: 165px;
+		height: 30px;
+		margin: auto;
+	}
 
-  .logo {
-    width: 141px;
-    height: 57px;
-  }
+	.logo {
+		width: 141px;
+		height: 57px;
+	}
 
-  .btn-exit {
-    border: 1px solid #319aac;
-    border-radius: 15px;
-    width: 78px;
-    height: 25px;
-    font-weight: 700;
-  }
+	.btn-exit {
+		border: 1px solid #319aac;
+		border-radius: 15px;
+		width: 78px;
+		height: 25px;
+		font-weight: 700;
+	}
 }
 
 .active-link {
-  color: Variables.$orange;
+	color: Variables.$orange;
 }

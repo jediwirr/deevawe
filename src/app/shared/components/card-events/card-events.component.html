@@ -1,33 +1,33 @@
 <div *ngIf="event">
-  <div>
-    <h2>{{ event.title }}</h2>
-    <img />
-  </div>
-  <div>
-    <p>{{ event.description }}</p>
-  </div>
-  <div>
-    <p>Начало:&nbsp;{{ event.time_start | date : 'yyyy MM dd' }}</p>
-    <p *ngIf="event.time_end">
-      Конец:&nbsp;{{ event.time_end | date : 'yyyy MM dd' }}
-    </p>
-  </div>
-  <div>
-    <img src="../../../assets/icons/marker-map.svg" alt="marker" />
-    <button>Участники</button>
-    <img
-      src="../../../assets/icons/edit.svg"
-      alt="edit"
-      (click)="updateEvent()"
-    />
-    <img
-      src="../../../assets/icons/trash.svg"
-      alt="trash"
-      (click)="deleteEvent()"
-    />
-  </div>
+	<div>
+		<h2>{{ event.title }}</h2>
+		<img />
+	</div>
+	<div>
+		<p>{{ event.description }}</p>
+	</div>
+	<div>
+		<p>Начало:&nbsp;{{ event.time_start | date : 'yyyy MM dd' }}</p>
+		<p *ngIf="event.time_end">
+			Конец:&nbsp;{{ event.time_end | date : 'yyyy MM dd' }}
+		</p>
+	</div>
+	<div>
+		<img src="../../../assets/icons/marker-map.svg" alt="marker" />
+		<button>Участники</button>
+		<img
+			src="../../../assets/icons/edit.svg"
+			alt="edit"
+			(click)="updateEvent()"
+		/>
+		<img
+			src="../../../assets/icons/trash.svg"
+			alt="trash"
+			(click)="deleteEvent()"
+		/>
+	</div>
 </div>
 
 <div>
-  <ng-container #modalFormEvent></ng-container>
+	<ng-container #modalFormEvent></ng-container>
 </div>

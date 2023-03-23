@@ -1,28 +1,28 @@
 @use '../../../variables.scss' as Variables;
 
 .card {
-  &__actions {
-    align-items: center;
-    button {
-      margin-right: 7px;
-      border-radius: 15px;
-      border: none;
-      background: Variables.$light-gray;
-      cursor: pointer;
-    }
-    &--friends {
-      width: 90px;
-      height: 24px;
-    }
-    &--request-friend {
-      width: 163px;
-      height: 24px;
-    }
-    &--setting {
-      img {
-        cursor: pointer;
-      }
-      margin-left: calc(13px - 7px);
-    }
-  }
+	&__actions {
+		align-items: center;
+		button {
+			margin-right: 7px;
+			border-radius: 15px;
+			border: none;
+			background: Variables.$light-gray;
+			cursor: pointer;
+		}
+		&--friends {
+			width: 90px;
+			height: 24px;
+		}
+		&--request-friend {
+			width: 163px;
+			height: 24px;
+		}
+		&--setting {
+			img {
+				cursor: pointer;
+			}
+			margin-left: calc(13px - 7px);
+		}
+	}
 }

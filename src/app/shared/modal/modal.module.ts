@@ -7,17 +7,15 @@ import { AuthModule } from './auth/auth.module';
 import { EventFormComponent } from './event/event';
 
 @NgModule({
-  imports: [
-    ReactiveFormsModule,
-    DirectiveModule,
-    CommonModule,
-    SharedModule,
-    FormsModule,
-    AuthModule
-  ],
-  declarations: [
-    EventFormComponent,
-  ],
-  exports: [],
+	imports: [
+		ReactiveFormsModule,
+		DirectiveModule,
+		CommonModule,
+		SharedModule,
+		FormsModule,
+		AuthModule,
+	],
+	declarations: [EventFormComponent],
+	exports: [],
 })
 export class ModalModule {}

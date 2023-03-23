@@ -1,3 +1,3 @@
 export enum ErrorApiCode {
-    NO_ACCESS = 406
+	NO_ACCESS = 406,
 }

@@ -5,73 +5,73 @@ import { VerifyApiService } from '../../../core/services/verify.service';
 import { VerifyUserResponse } from '../../../core/interfaces/api';
 
 const enterAnimation = transition(':enter', [
-  style({
-    right: '-250px',
-  }),
-  animate('1s ease-in', style({ right: 0 })),
+	style({
+		right: '-250px',
+	}),
+	animate('1s ease-in', style({ right: 0 })),
 ]);
 
 const enterTransition = trigger('animationToast', [enterAnimation]);
 
 @Component({
-  selector: 'app-verify',
-  templateUrl: './verify-code.component.html',
-  styleUrls: ['./verify-code.style.scss'],
-  animations: [enterTransition],
+	selector: 'app-verify',
+	templateUrl: './verify-code.component.html',
+	styleUrls: ['./verify-code.style.scss'],
+	animations: [enterTransition],
 })
 export class VerifyCodeComponent implements OnInit {
-  @Input() email = '';
+	@Input() email = '';
 
-  @Output() changePreviousContent = new EventEmitter();
+	@Output() changePreviousContent = new EventEmitter();
 
-  public field = new FormControl<string>('', {
-    nonNullable: true,
-    validators: [Validators.required],
-  });
+	public field = new FormControl<string>('', {
+		nonNullable: true,
+		validators: [Validators.required],
+	});
 
-  public showToast = false;
+	public showToast = false;
 
-  constructor(private verifyService: VerifyApiService) {
-  }
+	constructor(private verifyService: VerifyApiService) {}
 
-  ngOnInit(): void {
-    this.sendCodeToEmail();
-  }
+	ngOnInit(): void {
+		this.sendCodeToEmail();
+	}
 
-  public sendCodeToEmail(): void {
-     if (!this.email) {
-      return;
-     }
-     this.verifyService.sendCode(this.email).subscribe((result) => {
-     console.log(result);
-     });
-  }
+	public sendCodeToEmail(): void {
+		if (!this.email) {
+			return;
+		}
+		this.verifyService.sendCode(this.email).subscribe((result) => {
+			console.log(result);
+		});
+	}
 
-  public submitField(): void {
-    if (this.field.valid) {
-      if (this.email) {
-        this.verifyService
-          .sendUser({
-            code: this.field.value,
-            email: this.email,
-            type: 'activation',
-          }).subscribe((result) => {
-            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-            this.isValidResponse(result);
-          });
-      }
-    }
-  }
+	public submitField(): void {
+		if (this.field.valid) {
+			if (this.email) {
+				this.verifyService
+					.sendUser({
+						code: this.field.value,
+						email: this.email,
+						type: 'activation',
+					})
+					.subscribe((result) => {
+						// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+						this.isValidResponse(result);
+					});
+			}
+		}
+	}
 
-  public changeBackBtn(): void {
-    this.changePreviousContent.emit();
-  }
+	public changeBackBtn(): void {
+		this.changePreviousContent.emit();
+	}
 
-  private isValidResponse(data: VerifyUserResponse): boolean {
-    if (data.code) {
-      return false;
-    }
+	private isValidResponse(data: VerifyUserResponse): boolean {
+		if (data.code) {
+			return false;
+		}
 
-    return true;
-  }
+		return true;
+	}
 }

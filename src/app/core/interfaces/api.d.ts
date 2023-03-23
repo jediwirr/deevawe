@@ -1,46 +1,46 @@
 interface SendVerifyCodeResponse {
-  success: boolean;
+	success: boolean;
 }
 
 interface VerifyUserResponse extends ErrorApiResponse {
-  success: boolean;
+	success: boolean;
 }
 
 interface SingInUserResponse extends ErrorApiResponse {
-  success: boolean;
-  user: number;
-  token: string;
+	success: boolean;
+	user: number;
+	token: string;
 }
 
 interface SignUpUserResponse extends ErrorApiResponse {
-  success: boolean;
+	success: boolean;
 }
 
 interface ChangePasswordResponse extends ErrorApiResponse {
-  success: boolean;
+	success: boolean;
 }
 
 interface SignOutResponse extends ErrorApiResponse {
-  success?: boolean;
+	success?: boolean;
 }
 
 interface ErrorApiResponse {
-  message?: string;
-  code?: number;
+	message?: string;
+	code?: number;
 }
 
 interface SuccessReturn {
-  success: boolean;
-  message?: string;
+	success: boolean;
+	message?: string;
 }
 
 export {
-  SendVerifyCodeResponse,
-  VerifyUserResponse,
-  SingInUserResponse,
-  SignUpUserResponse,
-  ChangePasswordResponse,
-  SignOutResponse,
-  ErrorApiResponse,
-  SuccessReturn,
+	SendVerifyCodeResponse,
+	VerifyUserResponse,
+	SingInUserResponse,
+	SignUpUserResponse,
+	ChangePasswordResponse,
+	SignOutResponse,
+	ErrorApiResponse,
+	SuccessReturn,
 };

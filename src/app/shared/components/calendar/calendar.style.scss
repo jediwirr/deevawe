@@ -1,28 +1,28 @@
 @use '../../../../mixins.scss' as Mixins;
 
 .calendar {
-  max-width: 400px;
-  max-height: 300px;
-  &__grid {
-    &-week {
-      @include Mixins.flex-space-between;
-      span {
-        text-align: center;
-        width: calc(400px / 7);
-      }
-    }
+	max-width: 400px;
+	max-height: 300px;
+	&__grid {
+		&-week {
+			@include Mixins.flex-space-between;
+			span {
+				text-align: center;
+				width: calc(400px / 7);
+			}
+		}
 
-    &-date-item {
-      border: none;
-      width: calc(400px / 7);
-      &.select-date {
-        cursor: pointer;
-      }
-    }
+		&-date-item {
+			border: none;
+			width: calc(400px / 7);
+			&.select-date {
+				cursor: pointer;
+			}
+		}
 
-    &-day {
-      @include Mixins.flex-space-between;
-      flex-wrap: wrap;
-    }
-  }
+		&-day {
+			@include Mixins.flex-space-between;
+			flex-wrap: wrap;
+		}
+	}
 }

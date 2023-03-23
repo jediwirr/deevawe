@@ -4,16 +4,16 @@ import { ConnectionApproveParams } from '../interfaces/connections';
 import { Api } from './api.service';
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: 'root',
 })
 export class ConnectionsService extends Api {
-  public async approveOrHideConnection(
-    connectionParams: ConnectionApproveParams
-  ): Promise<SuccessReturn> {
-    const result = await this.sendRequest<
-      ConnectionApproveParams,
-      SuccessReturn
-    >('approve_connection', 'post', connectionParams);
-    return result;
-  }
+	public async approveOrHideConnection(
+		connectionParams: ConnectionApproveParams
+	): Promise<SuccessReturn> {
+		const result = await this.sendRequest<
+			ConnectionApproveParams,
+			SuccessReturn
+		>('approve_connection', 'post', connectionParams);
+		return result;
+	}
 }

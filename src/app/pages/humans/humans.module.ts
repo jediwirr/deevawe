@@ -5,8 +5,8 @@ import { HumansRoutingModule } from './humans-routing.module';
 import { HumansPageComponent } from './humans';
 
 @NgModule({
-  imports: [HumansRoutingModule, ReactiveFormsModule, SharedModule],
-  declarations: [HumansPageComponent],
-  exports: [HumansPageComponent],
+	imports: [HumansRoutingModule, ReactiveFormsModule, SharedModule],
+	declarations: [HumansPageComponent],
+	exports: [HumansPageComponent],
 })
 export class HumansModule {}

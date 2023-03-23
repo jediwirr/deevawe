@@ -5,7 +5,7 @@ import { HumansPageComponent } from './humans';
 const routes: Routes = [{ path: '', component: HumansPageComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule],
 })
 export class HumansRoutingModule {}

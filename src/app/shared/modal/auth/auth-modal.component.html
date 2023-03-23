@@ -1,12 +1,12 @@
 <div class="auth">
-  <div>integration for authorization</div>
-  <div class="vertical-line-gray-thin"></div>
-  <app-sign-in
-    *ngIf="!isSignUp"
-    (redirectEvent)="setFlagSignUp()"
-  ></app-sign-in>
-  <app-sign-up
-    *ngIf="isSignUp"
-    (redirectEvent)="setFlagSignUp()"
-  ></app-sign-up>
+	<div>integration for authorization</div>
+	<div class="vertical-line-gray-thin"></div>
+	<app-sign-in
+		*ngIf="!isSignUp"
+		(redirectEvent)="setFlagSignUp()"
+	></app-sign-in>
+	<app-sign-up
+		*ngIf="isSignUp"
+		(redirectEvent)="setFlagSignUp()"
+	></app-sign-up>
 </div>

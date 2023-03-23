@@ -2,18 +2,25 @@
 </ng-container>
 
 <ng-template #signUp>
-  <form class="sign" [formGroup]="signUpForm" (submit)="submitForm()">
-    <label for="email">Почта:</label>
-    <input class="auth__input" formControlName="email" type="text" />
-    <label for="password">Пароль:</label>
-    <input class="auth__input" formControlName="password" type="password" />
-    <label for="repeatPassword">Повторить пароль:</label>
-    <input class="auth__input" formControlName="repeatPassword" type="password" />
-    <button class="sign__submit" type="submit">Зарегистрироваться</button>
-    <a (click)="redirectToSignIn()">Есть аккаунт</a>
-  </form>
+	<form class="sign" [formGroup]="signUpForm" (submit)="submitForm()">
+		<label for="email">Почта:</label>
+		<input class="auth__input" formControlName="email" type="text" />
+		<label for="password">Пароль:</label>
+		<input class="auth__input" formControlName="password" type="password" />
+		<label for="repeatPassword">Повторить пароль:</label>
+		<input
+			class="auth__input"
+			formControlName="repeatPassword"
+			type="password"
+		/>
+		<button class="sign__submit" type="submit">Зарегистрироваться</button>
+		<a (click)="redirectToSignIn()">Есть аккаунт</a>
+	</form>
 </ng-template>
 
 <ng-template #verify>
-  <app-verify (changePreviousContent)="setIsShowContent()" [email]="signUpForm.controls.email.value"></app-verify>
+	<app-verify
+		(changePreviousContent)="setIsShowContent()"
+		[email]="signUpForm.controls.email.value"
+	></app-verify>
 </ng-template>

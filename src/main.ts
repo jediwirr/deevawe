@@ -6,11 +6,11 @@ import { AppModule } from './app/app.module';
 import { ENV } from './environments/environment';
 
 if (ENV.production) {
-  enableProdMode();
+	enableProdMode();
 }
 
 moment.locale('ru');
 
 platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+	.bootstrapModule(AppModule)
+	.catch((err) => console.error(err));

@@ -1,18 +1,20 @@
-
 <div app-out-side-click (outSideClick)="close()">
-  <button type="button" (click)="open()">
-    <input [formControl]="searchControl" />
-  </button>
-  <img *ngIf="isShowImage" src="../../../assets/icons/{{activeTypeImage}}.svg" />
-  <ng-container *ngIf="!isDropDown; else dropDown"></ng-container>
+	<button type="button" (click)="open()">
+		<input [formControl]="searchControl" />
+	</button>
+	<img
+		*ngIf="isShowImage"
+		src="../../../assets/icons/{{ activeTypeImage }}.svg"
+	/>
+	<ng-container *ngIf="!isDropDown; else dropDown"></ng-container>
 </div>
 
 <ng-template #dropDown>
-  <div>
-      <div *ngFor="let item of list">
-        <p (click)="selected(item.name, item.type)">
-          {{ item.name }}
-        </p>
-      </div>
-  </div>
+	<div>
+		<div *ngFor="let item of list">
+			<p (click)="selected(item.name, item.type)">
+				{{ item.name }}
+			</p>
+		</div>
+	</div>
 </ng-template>

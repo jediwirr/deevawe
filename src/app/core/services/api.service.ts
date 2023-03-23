@@ -7,62 +7,62 @@ import { LocalStorageService } from './localStorage.service';
 
 @Injectable()
 export class Api {
-  constructor(
-    private http: HttpClient,
-    private localStorageService: LocalStorageService
-  ) {}
+	constructor(
+		private http: HttpClient,
+		private localStorageService: LocalStorageService
+	) {}
 
-  private async getOptions<B>(body?: B) {
-    const options: Partial<Record<string, unknown>> = {};
-    options['headers'] = await this.getHttpHeader();
+	private async getOptions<B>(body?: B) {
+		const options: Partial<Record<string, unknown>> = {};
+		options['headers'] = await this.getHttpHeader();
 
-    if (body) {
-      options['body'] = JSON.stringify(body);
-    }
-    return options;
-  }
+		if (body) {
+			options['body'] = JSON.stringify(body);
+		}
+		return options;
+	}
 
-  private async getHttpHeader(): Promise<HttpHeaders> {
-    let headers = new HttpHeaders({
-      Client: ENV.client,
-      Accept: '*/*',
-    });
+	private async getHttpHeader(): Promise<HttpHeaders> {
+		let headers = new HttpHeaders({
+			Client: ENV.client,
+			Accept: '*/*',
+		});
 
-    const token = await this.getToken();
+		const token = await this.getToken();
 
-    if (token) {
-      headers = headers.set('Authorization', `${token?.authToken}`);
-    }
+		if (token) {
+			headers = headers.set('Authorization', `${token?.authToken}`);
+		}
 
-    return headers;
-  }
+		return headers;
+	}
 
-  private async getToken(): Promise<UserData | null> {
-    try {
-      return await this.localStorageService.getItemLocalStorage<UserData>(
-        'dataUser'
-      );
-    } catch (error) {
-      return null;
-    }
-  }
+	private async getToken(): Promise<UserData | null> {
+		try {
+			return await this.localStorageService.getItemLocalStorage<UserData>(
+				'dataUser'
+			);
+		} catch (error) {
+			return null;
+		}
+	}
 
-  public sendRequest<T, R>(
-    url: string,
-    method: string,
-    body: T | null = null
-  ): Observable<R> {
-    return new Observable((subscriber) => {
-      from(this.getOptions(body)).subscribe((options) => {
-        this.http
-          .request<R>(method, ENV.baseUrl + url, options)
-          .pipe(catchError((err) => of(err.error)))
-          .subscribe((result) => {
-            // @ts-ignore
-            subscriber.next(result);
-            subscriber.complete();
-          });
-      });
-    });
-  }
+	public sendRequest<T, R>(
+		url: string,
+		method: string,
+		body: T | null = null
+	): Observable<R> {
+		return new Observable((subscriber) => {
+			from(this.getOptions(body)).subscribe((options) => {
+				this.http
+					.request<R>(method, ENV.baseUrl + url, options)
+					.pipe(catchError((err) => of(err.error)))
+					.subscribe((result) => {
+						// @ts-ignore
+						subscriber.next(result);
+						subscriber.complete();
+					});
+			});
+		});
+	}
 }

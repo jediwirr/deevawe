@@ -1,6 +1,6 @@
 interface UserData {
-  id: number;
-  authToken: string;
+	id: number;
+	authToken: string;
 }
 
 export { UserData };
