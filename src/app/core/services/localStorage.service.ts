@@ -32,4 +32,8 @@ export class LocalStorageService {
       throw new Error('Not found userId in storage dataUser');
     }
   }
+
+  public clear(): void {
+    localStorage.clear();
+  }
 }

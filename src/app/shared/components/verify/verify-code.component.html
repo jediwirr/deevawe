@@ -1,8 +1,10 @@
-<div class="wrapper">
-  <div class="modal">
+<div class="verify">
+  <button type="button" (click)="changeBackBtn()"> back button</button>
+  <div class="verify__form">
     <h2>Подтвердить почту</h2>
     <input [formControl]="field" type="string" size="4" />
     <button (click)="submitField()">send</button>
+    <button (click)="sendCodeToEmail()"> Отправить еще раз  </button>
   </div>
   <!-- <div *ngIf="showToast">
   <app-toast [inputData]="{text: 'Код отправлен на почту ' + ' ' + this.inputData.email}"></app-toast>

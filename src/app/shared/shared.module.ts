@@ -13,6 +13,8 @@ import { ClockComponent } from "./components/clock/clock";
 import { PipeModule } from '../core/pipes/pipes.module';
 import { DirectiveModule } from '../core/directives/directive.module';
 import { CardEventComponent } from "./components/card-events/card-event";
+import { VerifyCodeComponent } from './components/verify/verify-code';
+import { ChangePasswordComponent } from './components/changePassword/changePassword';
 
 @NgModule({
   imports: [
@@ -32,6 +34,8 @@ import { CardEventComponent } from "./components/card-events/card-event";
     CalendarComponent,
     ClockComponent,
     CardEventComponent,
+    VerifyCodeComponent,
+    ChangePasswordComponent
   ],
   exports: [
     ToastComponent,
@@ -43,6 +47,8 @@ import { CardEventComponent } from "./components/card-events/card-event";
     ClockComponent,
     CardEventComponent,
     CommonModule,
+    VerifyCodeComponent,
+    ChangePasswordComponent
   ],
 })
 export class SharedModule {}

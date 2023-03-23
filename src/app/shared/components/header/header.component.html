@@ -17,9 +17,9 @@
       </li>
     </ul>
   </nav>
-  <button class="btn-exit">Выйти</button>
+  <button (click)="isAuth && openAuthModal()" class="btn-exit">{{ isAuth ? 'Выйти' : 'Войти'}}</button>
 </header>
 
 <div>
-  <ng-container #modalFormEvent></ng-container>
+  <ng-container #modalForm></ng-container>
 </div>

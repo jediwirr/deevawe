@@ -1,0 +1,9 @@
+@use "../../../../mixins.scss" as Mixins;
+
+.verify {
+  width: 100%;
+  height: 100%;
+  &__form {
+    @include Mixins.flex-direction-column-center;
+  }
+}

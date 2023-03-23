@@ -1,4 +1,11 @@
-<form class="sign" [formGroup]="sigInForm" (submit)="submitForm()">
+<ng-container [ngTemplateOutlet]="isShowResetPassword ? resetPassword : authorization"></ng-container>
+
+<ng-template #resetPassword>
+  <app-reset-password (changePreviousContent)="setIsShowResetPassword()"></app-reset-password>
+</ng-template>
+
+<ng-template #authorization>
+  <form class="sign" [formGroup]="sigInForm" (submit)="submitForm()">
   <label for="email">Почта:</label>
   <input class="auth__input" formControlName="email" type="text" />
   <label for="password">Пароль:</label>
@@ -11,7 +18,6 @@
     signIn
   </button>
   <a class="space-bottom" (click)="redirectToSignUp()">Создать аккаунт</a>
-  <a (click)="changePassword()">Забыли пароль</a>
+  <a (click)="setIsShowResetPassword()">Забыли пароль</a>
 </form>
-
-<ng-container #modal></ng-container>
+</ng-template>

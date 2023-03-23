@@ -3,9 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DirectiveModule } from '../../core/directives/directive.module';
 import { SharedModule } from '../shared.module';
-import { ChangePasswordComponent } from './changePassword/changePassword';
+import { AuthModule } from './auth/auth.module';
 import { EventFormComponent } from './event/event';
-import { ModalVerifyCodeComponent } from './verify/modal-verify-code';
 
 @NgModule({
   imports: [
@@ -14,12 +13,11 @@ import { ModalVerifyCodeComponent } from './verify/modal-verify-code';
     CommonModule,
     SharedModule,
     FormsModule,
+    AuthModule
   ],
   declarations: [
-    ChangePasswordComponent,
-    ModalVerifyCodeComponent,
     EventFormComponent,
   ],
-  exports: [ChangePasswordComponent, ModalVerifyCodeComponent],
+  exports: [],
 })
 export class ModalModule {}

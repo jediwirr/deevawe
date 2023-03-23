@@ -38,9 +38,9 @@ export class AuthApiService extends Api {
   }
 
   public changePassword(
-    userData: UserDataVerify
+    userData: AuthUserData
   ): Observable<ChangePasswordResponse> {
-    return this.sendRequest<UserDataVerify, ChangePasswordResponse>(
+    return this.sendRequest<AuthUserData, ChangePasswordResponse>(
       'change_password',
       'post',
       userData
