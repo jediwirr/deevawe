@@ -1,8 +1,8 @@
 import { Component, Input, ViewChild, ViewContainerRef } from '@angular/core';
 import { Occasion } from 'src/app/core/interfaces/events';
-import { ModalService } from '../../core/services/modal.service';
-import { EventsService } from '../../core/services/events/events.service';
-import { EventFormComponent } from '../modal/event/event';
+import { ModalService } from '../../../core/services/modal.service';
+import { EventsService } from '../../../core/services/events/events.service';
+import { EventFormComponent } from '../../modal/event/event';
 
 @Component({
   selector: 'app-card-event',

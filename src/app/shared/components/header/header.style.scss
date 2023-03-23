@@ -1,5 +1,5 @@
-@use '../../../variables.scss' as Variables;
-@use '../../../mixins.scss' as Mixins;
+@use '../../../../variables.scss' as Variables;
+@use '../../../../mixins.scss' as Mixins;
 
 header {
   @include Mixins.flex-space-between;

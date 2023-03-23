@@ -49,7 +49,9 @@ export class ModalVerifyCodeComponent extends ModalComponent implements OnInit {
   }
 
   private async sendCodeToEmail(): Promise<void> {
-    await this.verifyService.sendCode(this.inputData.email);
+     this.verifyService.sendCode(this.inputData.email).subscribe((result) => {
+      if (result.success)
+     })
     // console.log('asdwws');
     // this.setShowToast();
     //  if (this.toast.length) {
