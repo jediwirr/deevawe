@@ -93,16 +93,16 @@ export class EventFormComponent extends ModalComponent implements OnInit {
 		this.eventsService
 			.addOrUpdateEvent(
 				{
-					user_id: userId,
+					userId: userId,
 					title: title.value,
 					description: description.value,
 					type: 1,
 					status: 2,
 					longitude: geolocation.value.lon,
 					latitude: geolocation.value.lat,
-					time_start: 1664542280,
+					timeStart: 1664542280,
 					time_end: 1664542282,
-					time_zone: 'Europe/Astrakhan',
+					timeZone: 'Europe/Astrakhan',
 				},
 				'put'
 			)
@@ -110,7 +110,7 @@ export class EventFormComponent extends ModalComponent implements OnInit {
 				this.eventsService.searchById({
 					limit: 1,
 					sort: 'id',
-					user_id: userId,
+					userId: userId,
 					val: userId,
 				});
 			});

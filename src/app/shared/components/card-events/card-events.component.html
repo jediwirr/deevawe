@@ -7,7 +7,7 @@
 		<p>{{ event.description }}</p>
 	</div>
 	<div>
-		<p>Начало:&nbsp;{{ event.time_start | date : 'yyyy MM dd' }}</p>
+		<p>Начало:&nbsp;{{ event.timeStart | date : 'yyyy MM dd' }}</p>
 		<p *ngIf="event.time_end">
 			Конец:&nbsp;{{ event.time_end | date : 'yyyy MM dd' }}
 		</p>

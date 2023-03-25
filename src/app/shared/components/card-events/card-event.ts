@@ -22,16 +22,16 @@ export class CardEventComponent {
 	public deleteEvent(): void {
 		this.eventsService
 			.deleteEvent({
-				user_id: this.event.user_id,
-				event_id: this.event.event_id,
+				user_id: this.event.userId,
+				event_id: this.event.eventId,
 			})
 			.subscribe((result) => {
 				if (result.success) {
 					this.eventsService.searchById({
 						limit: 1,
 						sort: 'id',
-						user_id: this.event.user_id,
-						val: this.event.user_id,
+						userId: this.event.userId,
+						val: this.event.userId,
 					});
 				}
 			});

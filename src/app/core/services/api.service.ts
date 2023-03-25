@@ -75,6 +75,13 @@ export class Api {
 		return this.sendRequest(url, 'delete', body);
 	}
 
+	/**
+	 * @deprecated
+	 * Будет приватным приватным
+	 * @param url
+	 * @param method
+	 * @param body
+	 */
 	public sendRequest<T, R>(
 		url: string,
 		method: string,

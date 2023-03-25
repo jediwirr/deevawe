@@ -6,7 +6,6 @@ import {
 	Occasion,
 	Occasions,
 	ParamsAddEvent,
-	SearchParams,
 	SearchParamsByUserId,
 	SearchParamsEventBySubscription,
 } from '../../interfaces/events';
@@ -27,6 +26,11 @@ export class EventsService extends Api {
 		).pipe(map((response) => response));
 	}
 
+	/**
+	 * @deprecated
+	 * @param paramsAddEvent
+	 * @param method
+	 */
 	public addOrUpdateEvent(
 		paramsAddEvent: ParamsAddEvent,
 		method: 'put' | 'path'
@@ -39,9 +43,8 @@ export class EventsService extends Api {
 	}
 
 	public searchById(searchParams: SearchParamsByUserId): void {
-		// eslint-disable-next-line @typescript-eslint/naming-convention
-		const { val, user_id, limit, sort } = searchParams;
-		const url = `events/user?val=${val}&sort=${sort}&limit=${limit}&user_id=${user_id}`;
+		const { val, userId, limit, sort } = searchParams;
+		const url = `events/user?val=${val}&sort=${sort}&limit=${limit}&user_id=${userId}`;
 		this.sendGetRequest<null, Occasions>(url).subscribe((occasion) => {
 			this.events.next(occasion);
 		});
@@ -50,9 +53,8 @@ export class EventsService extends Api {
 	public searchBySubscription(
 		searchParams: SearchParamsEventBySubscription
 	): Observable<Occasions> {
-		// eslint-disable-next-line @typescript-eslint/naming-convention
-		const { val, user_id, limit, sort } = searchParams;
-		const url = `events/subscribe?sort=${sort}&limit=${limit}&user_id=${user_id}&val=${val}`;
+		const { val, userId, limit, sort } = searchParams;
+		const url = `events/subscribe?sort=${sort}&limit=${limit}&user_id=${userId}&val=${val}`;
 		return this.sendGetRequest<null, Occasions>(url).pipe(
 			map((occasion) => occasion)
 		);

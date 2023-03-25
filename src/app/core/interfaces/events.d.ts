@@ -1,10 +1,10 @@
 import { SubscribeBodyEvent } from './subscribe-event';
 
 type DeleteEvent = Omit<SubscribeBodyEvent, 'subscribe'>;
-type OmitParamsAddEvent = Omit<ParamsAddEvent, 'time_zone'>;
+type OmitParamsAddEvent = Omit<ParamsAddEvent, 'timeZone'>;
 
 interface Occasion extends OmitParamsAddEvent {
-	event_id: number;
+	eventId: number;
 	// created_time: string;
 	// updated_time: string;
 	// subscribe?: boolean;
@@ -16,16 +16,16 @@ interface Occasions {
 }
 
 interface ParamsAddEvent {
-	user_id: number;
+	userId: number;
 	title: string;
 	description: string;
 	type: number;
 	status: number;
 	longitude: number;
 	latitude: number;
-	time_start: number;
-	time_end: number;
-	time_zone: string;
+	timeStart: number;
+	timeEnd: number;
+	timeZone: string;
 }
 
 interface SearchParams {
@@ -37,14 +37,14 @@ interface SearchParams {
 	radius: number;
 	sort: string;
 	limit: number;
-	user_id: number;
+	userId: number;
 }
 
 interface SearchParamsByUserId {
 	val: number;
 	sort: string;
 	limit: number;
-	user_id: number;
+	userId: number;
 }
 
 interface SearchParamsEventBySubscription extends SearchParamsByUserId {}

@@ -47,7 +47,7 @@ export class ProfilePageComponent implements OnInit {
 
 	private getEventsByUser(): void {
 		this.eventService.searchById({
-			user_id: this.userId,
+			userId: this.userId,
 			limit: 1,
 			sort: 'id',
 			val: this.userId,
