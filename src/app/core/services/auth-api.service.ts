@@ -6,7 +6,7 @@ import {
 	SignUpUserResponse,
 	SingInUserResponse,
 } from '../interfaces/api';
-import { AuthUserData, UserDataVerify } from '../interfaces/auth-user';
+import { AuthUserData } from '../interfaces/auth-user';
 import { Api } from './api.service';
 
 @Injectable({
@@ -14,25 +14,22 @@ import { Api } from './api.service';
 })
 export class AuthApiService extends Api {
 	public signIn(userData: AuthUserData): Observable<SingInUserResponse> {
-		return this.sendRequest<AuthUserData, SingInUserResponse>(
+		return this.sendPostRequest<AuthUserData, SingInUserResponse>(
 			'signin',
-			'post',
 			userData
 		).pipe(map((user) => user));
 	}
 
 	public signUp(userData: AuthUserData): Observable<SignUpUserResponse> {
-		return this.sendRequest<AuthUserData, SignUpUserResponse>(
+		return this.sendPutRequest<AuthUserData, SignUpUserResponse>(
 			'signup',
-			'put',
 			userData
 		).pipe(map((user) => user));
 	}
 
 	public signOut(userId: number): Observable<SignOutResponse> {
-		return this.sendRequest<{ user_id: number }, SignOutResponse>(
+		return this.sendDeleteRequest<{ user_id: number }, SignOutResponse>(
 			'signout',
-			'delete',
 			{ user_id: userId }
 		).pipe(map((response) => response));
 	}
@@ -40,9 +37,8 @@ export class AuthApiService extends Api {
 	public changePassword(
 		userData: AuthUserData
 	): Observable<ChangePasswordResponse> {
-		return this.sendRequest<AuthUserData, ChangePasswordResponse>(
+		return this.sendPostRequest<AuthUserData, ChangePasswordResponse>(
 			'change_password',
-			'post',
 			userData
 		).pipe((response) => response);
 	}

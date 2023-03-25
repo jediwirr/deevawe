@@ -13,20 +13,20 @@ export class SubscribeEventService extends Api {
 	public async subscribe(
 		subscribeEventData: SubscribeBodyEvent
 	): Promise<SuccessReturn> {
-		const result = await this.sendRequest<
+		const result = await this.sendPostRequest<
 			SubscribeBodyEvent,
 			SuccessReturn
-		>('subscribe_event', 'post', subscribeEventData);
+		>('subscribe_event', subscribeEventData);
 		return result;
 	}
 
 	public async confirm(
 		confirmSubscribeEvent: SubscribeConfirmEvent
 	): Promise<SuccessReturn> {
-		const result = await this.sendRequest<
+		const result = await this.sendPostRequest<
 			SubscribeConfirmEvent,
 			SuccessReturn
-		>('confirm_subscribe', 'post', confirmSubscribeEvent);
+		>('confirm_subscribe', confirmSubscribeEvent);
 		return result;
 	}
 }

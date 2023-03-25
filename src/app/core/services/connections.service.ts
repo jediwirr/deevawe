@@ -10,10 +10,10 @@ export class ConnectionsService extends Api {
 	public async approveOrHideConnection(
 		connectionParams: ConnectionApproveParams
 	): Promise<SuccessReturn> {
-		const result = await this.sendRequest<
+		const result = await this.sendPostRequest<
 			ConnectionApproveParams,
 			SuccessReturn
-		>('approve_connection', 'post', connectionParams);
+		>('approve_connection', connectionParams);
 		return result;
 	}
 }

@@ -47,6 +47,34 @@ export class Api {
 		}
 	}
 
+	public sendGetRequest<T, R>(
+		url: string,
+		body: T | null = null
+	): Observable<R> {
+		return this.sendRequest(url, 'get', body);
+	}
+
+	public sendPutRequest<T, R>(
+		url: string,
+		body: T | null = null
+	): Observable<R> {
+		return this.sendRequest(url, 'put', body);
+	}
+
+	public sendPostRequest<T, R>(
+		url: string,
+		body: T | null = null
+	): Observable<R> {
+		return this.sendRequest(url, 'post', body);
+	}
+
+	public sendDeleteRequest<T, R>(
+		url: string,
+		body: T | null = null
+	): Observable<R> {
+		return this.sendRequest(url, 'delete', body);
+	}
+
 	public sendRequest<T, R>(
 		url: string,
 		method: string,

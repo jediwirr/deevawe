@@ -10,9 +10,7 @@ import { ErrorApiResponse } from '../interfaces/api';
 export class UsersApiService extends Api {
 	public getUser(userId: number): Observable<User> {
 		const url = `user?user_id=${userId}`;
-		return this.sendRequest<null, User>(url, 'get', null).pipe(
-			map((value) => value)
-		);
+		return this.sendGetRequest<null, User>(url).pipe(map((value) => value));
 	}
 
 	/**
@@ -27,16 +25,14 @@ export class UsersApiService extends Api {
 		userId: string | number
 	): Observable<User & Partial<ErrorApiResponse>> {
 		const url = `users?type=${type}&value=${value}&user_id=${userId}`;
-		return this.sendRequest<null, User & Partial<ErrorApiResponse>>(
-			url,
-			'get'
+		return this.sendGetRequest<null, User & Partial<ErrorApiResponse>>(
+			url
 		).pipe(map((user) => user));
 	}
 
 	public updateUser(updateUserField: UpdateUser): Observable<User> {
-		return this.sendRequest<UpdateUser, User>(
+		return this.sendPutRequest<UpdateUser, User>(
 			'user',
-			'put',
 			updateUserField
 		).pipe((user) => user);
 	}

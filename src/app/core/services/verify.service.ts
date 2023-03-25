@@ -9,17 +9,15 @@ import { Api } from './api.service';
 })
 export class VerifyApiService extends Api {
 	public sendCode(email: string): Observable<SendVerifyCodeResponse> {
-		return this.sendRequest<{ email: string }, SendVerifyCodeResponse>(
+		return this.sendPostRequest<{ email: string }, SendVerifyCodeResponse>(
 			'send_verify_code',
-			'post',
 			{ email }
 		).pipe((code) => code);
 	}
 
 	public sendUser(userData: UserDataVerify): Observable<VerifyUserResponse> {
-		return this.sendRequest<UserDataVerify, VerifyUserResponse>(
+		return this.sendPostRequest<UserDataVerify, VerifyUserResponse>(
 			'verify_user',
-			'post',
 			userData
 		).pipe(map((value) => value));
 	}
