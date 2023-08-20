@@ -7,12 +7,16 @@ import { LocalStorageService } from './localStorage.service';
 
 @Injectable()
 export class Api {
-	constructor(
-		private http: HttpClient,
-		private localStorageService: LocalStorageService
-	) {}
+	private baseUrl: string;
 
-	private async getOptions<B>(body?: B) {
+	constructor(
+		protected http: HttpClient,
+		private localStorageService: LocalStorageService
+	) {
+		this.baseUrl = ENV.baseUrl;
+	}
+
+	protected async getOptions<B>(body?: B): Promise<Record<string, unknown>> {
 		const options: Partial<Record<string, unknown>> = {};
 		options['headers'] = await this.getHttpHeader();
 
@@ -47,32 +51,36 @@ export class Api {
 		}
 	}
 
-	public sendGetRequest<T, R>(
+	protected sendGetRequest<T, R>(
 		url: string,
 		body: T | null = null
 	): Observable<R> {
 		return this.sendRequest(url, 'get', body);
 	}
 
-	public sendPutRequest<T, R>(
+	protected sendPutRequest<T, R>(
 		url: string,
 		body: T | null = null
 	): Observable<R> {
 		return this.sendRequest(url, 'put', body);
 	}
 
-	public sendPostRequest<T, R>(
+	protected sendPostRequest<T, R>(
 		url: string,
 		body: T | null = null
 	): Observable<R> {
 		return this.sendRequest(url, 'post', body);
 	}
 
-	public sendDeleteRequest<T, R>(
+	protected sendDeleteRequest<T, R>(
 		url: string,
 		body: T | null = null
 	): Observable<R> {
 		return this.sendRequest(url, 'delete', body);
+	}
+
+	protected setBaseUrl(baseUrl: string): void {
+		this.baseUrl = baseUrl;
 	}
 
 	/**
@@ -90,10 +98,9 @@ export class Api {
 		return new Observable((subscriber) => {
 			from(this.getOptions(body)).subscribe((options) => {
 				this.http
-					.request<R>(method, ENV.baseUrl + url, options)
+					.request<R>(method, this.baseUrl + url, options)
 					.pipe(catchError((err) => of(err.error)))
 					.subscribe((result) => {
-						// @ts-ignore
 						subscriber.next(result);
 						subscriber.complete();
 					});

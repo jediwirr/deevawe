@@ -1,0 +1,10 @@
+{
+    "/image/*": {
+        "target": "http://213.139.209.66:8089",
+        "secure": false,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/image/*": ""
+          }
+    }
+}

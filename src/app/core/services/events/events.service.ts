@@ -5,7 +5,7 @@ import {
 	DeleteEvent,
 	Occasion,
 	Occasions,
-	ParamsAddEvent,
+	ParamsAddEventRes,
 	SearchParamsByUserId,
 	SearchParamsEventBySubscription,
 } from '../../interfaces/events';
@@ -32,20 +32,18 @@ export class EventsService extends Api {
 	 * @param method
 	 */
 	public addOrUpdateEvent(
-		paramsAddEvent: ParamsAddEvent,
+		paramsAddEvent: ParamsAddEventRes,
 		method: 'put' | 'path'
 	): Observable<Occasion> {
-		return this.sendRequest<ParamsAddEvent, Occasion>(
+		return this.sendRequest<ParamsAddEventRes, Occasion>(
 			'event',
 			method,
 			paramsAddEvent
 		).pipe(map((occasion) => occasion));
 	}
 
-	public searchById(searchParams: SearchParamsByUserId): void {
-		const { val, userId, limit, sort } = searchParams;
-		const url = `events/user?val=${val}&sort=${sort}&limit=${limit}&user_id=${userId}`;
-		this.sendGetRequest<null, Occasions>(url).subscribe((occasion) => {
+	public searchById(id: number): void {
+		this.sendGetRequest<null, Occasions>(`events/user?val=${id}`).subscribe((occasion) => {
 			this.events.next(occasion);
 		});
 	}

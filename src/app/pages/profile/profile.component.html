@@ -1,10 +1,27 @@
 <app-header></app-header>
-<app-profile-card *ngIf="user" [user]="user"></app-profile-card>
-<div>
-	<h3>Мои события</h3>
-	<label> Сортировать по: </label>
-	<app-select [listType]="methodsSort"></app-select>
+<div class="content">
+	<app-profile-card 
+	*ngIf="user"
+	[user]="user"
+	[isRemoteProfile]="isRemoteProfile"
+	[pendingSuggest]="pendingSuggest"
+	(emitSuggest)="addAsFriend()"
+	(emitSaveImage)="saveImage($event)"
+	></app-profile-card>
+	<div class="card flex-space-between profile__my-events">
+		<div>
+			<h2>Мои события</h2>
+		</div>
+		<div class="profile__my-events-sort">
+			<label class="profile__my-events-sort--label">
+				Сортировать по:
+			</label>
+			<app-select [listType]="methodsSort"></app-select>
+		</div>
+	</div>
+	<div class="profile__events">
+		<ng-container *ngFor="let event of events.events">
+			<app-card-event [event]="event"></app-card-event>
+		</ng-container>
+	</div>
 </div>
-<ng-container *ngFor="let event of events.events">
-	<app-card-event [event]="event"></app-card-event>
-</ng-container>

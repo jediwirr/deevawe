@@ -14,7 +14,7 @@ import { PipeModule } from '../core/pipes/pipes.module';
 import { DirectiveModule } from '../core/directives/directive.module';
 import { CardEventComponent } from './components/card-events/card-event';
 import { VerifyCodeComponent } from './components/verify/verify-code';
-import { ChangePasswordComponent } from './components/changePassword/changePassword';
+import { ProfileCardComponent } from './components/profile-card/profile-card';
 
 @NgModule({
 	imports: [
@@ -35,7 +35,7 @@ import { ChangePasswordComponent } from './components/changePassword/changePassw
 		ClockComponent,
 		CardEventComponent,
 		VerifyCodeComponent,
-		ChangePasswordComponent,
+		ProfileCardComponent
 	],
 	exports: [
 		ToastComponent,
@@ -45,10 +45,11 @@ import { ChangePasswordComponent } from './components/changePassword/changePassw
 		MapComponent,
 		CalendarComponent,
 		ClockComponent,
+		DirectiveModule,
 		CardEventComponent,
 		CommonModule,
 		VerifyCodeComponent,
-		ChangePasswordComponent,
+		ProfileCardComponent
 	],
 })
 export class SharedModule {}

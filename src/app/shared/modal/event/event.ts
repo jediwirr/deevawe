@@ -93,26 +93,21 @@ export class EventFormComponent extends ModalComponent implements OnInit {
 		this.eventsService
 			.addOrUpdateEvent(
 				{
-					userId: userId,
+					user_id: userId,
 					title: title.value,
 					description: description.value,
 					type: 1,
 					status: 2,
 					longitude: geolocation.value.lon,
 					latitude: geolocation.value.lat,
-					timeStart: 1664542280,
+					time_start: 1664542280,
 					time_end: 1664542282,
-					timeZone: 'Europe/Astrakhan',
+					time_zone: 'Europe/Astrakhan',
 				},
 				'put'
 			)
 			.subscribe(() => {
-				this.eventsService.searchById({
-					limit: 1,
-					sort: 'id',
-					userId: userId,
-					val: userId,
-				});
+				this.eventsService.searchById(userId);
 			});
 		this.destroyModal();
 	}

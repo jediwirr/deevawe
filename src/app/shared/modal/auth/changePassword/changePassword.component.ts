@@ -1,33 +1,37 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthApiService } from 'src/app/core/services/auth-api.service';
+import { AuthApiService } from '../../../../core/services/auth-api.service';
+import { LocalStorageService } from '../../../../core/services/localStorage.service';
 
 @Component({
-	selector: 'app-reset-password',
+	selector: 'app-change-password',
 	templateUrl: './changePassword.component.html',
-	styleUrls: ['./changePassword.style.scss'],
+	styleUrls: ['../auth-modal.style.scss'],
 })
 export class ChangePasswordComponent {
-	public isShowVerifyComponent = false;
-
-	@Output() changePreviousContent = new EventEmitter();
-
-	constructor(private authApiService: AuthApiService) {}
+	@Output() redirectEventToSignIn = new EventEmitter();
 
 	public changePasswordForm = new FormGroup({
 		email: new FormControl<string>('', {
 			nonNullable: true,
 			validators: [Validators.required, Validators.email],
 		}),
-		password: new FormControl<string>('', {
+		oldPassword: new FormControl<string>('', {
 			nonNullable: true,
 			validators: [Validators.required, Validators.minLength(8)],
 		}),
-		newPassword: new FormControl('', {
+		newPassword: new FormControl<string>('', {
 			nonNullable: true,
 			validators: [Validators.required, Validators.minLength(8)],
 		}),
 	});
+
+	constructor(
+		private authApiService: AuthApiService,
+		protected localStorageService: LocalStorageService,
+		protected router: Router
+	) {}
 
 	public submitForm(): void {
 		if (!this.changePasswordForm.valid) {
@@ -41,17 +45,16 @@ export class ChangePasswordComponent {
 			})
 			.subscribe((result) => {
 				if (result.success) {
-					this.setIsShowVerifyComponent();
+					// this.setIsShowVerifyComponent();
 					console.log(result);
+					throw new Error(
+						'Redirect to verify component not implemented!'
+					);
 				}
 			});
 	}
 
-	public setIsShowVerifyComponent(): void {
-		this.isShowVerifyComponent = !this.isShowVerifyComponent;
-	}
-
-	public changeBackBtn(): void {
-		this.changePreviousContent.emit();
+	public redirectToSignIn(): void {
+		this.redirectEventToSignIn.emit();
 	}
 }

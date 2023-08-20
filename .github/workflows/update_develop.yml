@@ -1,0 +1,37 @@
+name: Deewave update develop frontend
+
+on:
+    push:
+        branches: ['develop']
+
+jobs:
+    build:
+        name: Build application
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Preparing git branch
+              uses: actions/checkout@v3
+
+            - name: Install NodeJS
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+
+            - name: Install dependencies
+              run: npm install
+
+            #            - name: Test
+            #              run: npm run test
+
+            - name: Build
+              run: npm run build
+
+            - name: Login into docker
+              run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_ACCESS_TOKEN}}
+
+            - name: Build docker image for Application
+              run: docker build -t ${{secrets.DOCKER_USERNAME}}/deewave:frontend_${{github.ref_name}} -f Dockerfile .
+
+            - name: Push docker tag for Application
+              run: docker push ${{secrets.DOCKER_USERNAME}}/deewave:frontend_${{github.ref_name}}

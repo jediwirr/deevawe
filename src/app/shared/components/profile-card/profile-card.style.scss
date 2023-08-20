@@ -1,0 +1,61 @@
+@use '../../../../mixins.scss' as Mixins;
+
+.card {
+	padding: 30px 25px;
+	margin-bottom: 20px;
+
+	&.flex-space-between {
+		@include Mixins.flex-space-between;
+	}
+
+	&__about-profile {
+		display: flex;
+
+		img {
+			min-width: 144px;
+			min-height: 144px;
+			margin-right: 31px;
+		}
+	}
+
+	&__about {
+		@include Mixins.flex-direction-column;
+
+		span {
+			font-weight: 700;
+			font-size: 14px;
+		}
+
+		&--rating {
+			&--value {
+				margin-left: 22px;
+			}
+		}
+	}
+
+	&__about-me {
+		display: flex;
+		flex: 1;
+		margin-top: 19px;
+
+		&--items {
+			font-weight: 500;
+			font-size: 12px;
+			line-height: 15px;
+		}
+	}
+
+	&__action-profile {
+		@include Mixins.flex-direction-column;
+
+		&--top {
+			button {
+				color: #fff;
+				height: 24px;
+				border: none;
+				background: #575757;
+				border-radius: 5px;
+			}
+		}
+	}
+}

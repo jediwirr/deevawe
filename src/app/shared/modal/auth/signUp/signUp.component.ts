@@ -10,7 +10,7 @@ import { AuthApiService } from '../../../../core/services/auth-api.service';
 	styleUrls: ['../auth-modal.style.scss'],
 })
 export class SignUpComponent {
-	@Output() redirectEvent = new EventEmitter();
+	@Output() redirectEventToSignIn = new EventEmitter();
 
 	public isShowVerifyContent = false;
 
@@ -58,6 +58,6 @@ export class SignUpComponent {
 	}
 
 	public redirectToSignIn(): void {
-		this.redirectEvent.emit();
+		this.redirectEventToSignIn.emit();
 	}
 }

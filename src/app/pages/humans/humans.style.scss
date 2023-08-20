@@ -1,8 +1,60 @@
 @use '../../../variables.scss' as Variables;
+@use '../../../mixins.scss' as Mixins;
 
-.card {
+.content {
+	max-width: 1200px;
+	margin: 36px auto 77px auto;
+	min-height: calc(100vh - (77px + 68px));
+	&__head {
+		@include Mixins.flex-space-around;
+		min-height: inherit;
+	}
+
+	&__left-side {
+		&--head {
+			@include Mixins.flex-space-between;
+			margin-bottom: 25px;
+		}
+
+		.card {
+			min-height: calc(100% - (77px + 68px));
+		}
+
+		flex-direction: column;
+		min-width: 60%;
+		margin-right: 17px;
+		&--filter {
+			min-width: 170px;
+			min-height: 34px;
+			border: none;
+			background: #fff;
+			border-radius: 6px;
+			-webkit-box-shadow: 0px 5px 8px 2px rgba(34, 60, 80, 0.2);
+			-moz-box-shadow: 0px 5px 8px 2px rgba(34, 60, 80, 0.2);
+			box-shadow: 0px 5px 8px 2px rgba(34, 60, 80, 0.2);
+		}
+	}
+
+	&__right-side {
+		min-width: 300px;
+	}
+}
+
+.people {
+
+	&-tabs {
+		margin-top: 29px;
+		margin-bottom: 16px;
+	}
+
+	&__list {
+		@include Mixins.flex-wrap;
+		margin-top: 15px;
+	}
+
 	&__actions {
 		align-items: center;
+
 		button {
 			margin-right: 7px;
 			border-radius: 15px;
@@ -10,19 +62,90 @@
 			background: Variables.$light-gray;
 			cursor: pointer;
 		}
+
 		&--friends {
 			width: 90px;
 			height: 24px;
 		}
+
 		&--request-friend {
 			width: 163px;
 			height: 24px;
 		}
+
 		&--setting {
+			@include Mixins.flex-center-vertical-horizontal;
+
 			img {
 				cursor: pointer;
 			}
+
 			margin-left: calc(13px - 7px);
+		}
+
+	}
+
+	&__search {
+		@include Mixins.flex-align-center;
+		min-width: calc(100% - 30px);
+		border: none;
+		min-height: 34px;
+		background: #fff;
+		border-radius: 6px;
+		-webkit-box-shadow: 0px 5px 8px 2px rgba(34, 60, 80, 0.2);
+		-moz-box-shadow: 0px 5px 8px 2px rgba(34, 60, 80, 0.2);
+		box-shadow: 0px 5px 8px 2px rgba(34, 60, 80, 0.2);
+		padding: 0 20px 0 10px;
+
+		img {
+			width: 14px;
+			height: 14px;
+		}
+
+		input {
+			margin-left: 10px;
+			border: none;
+			min-width: calc(100% - 20px);
+		}
+	}
+
+	&-item {
+		display: flex;
+		background: Variables.$gray-btn;
+		margin-right: 32px;
+		margin-bottom: 15px;
+		width: 100%;
+		padding: 8px 11px 8px 11px !important;
+
+		img {
+			border-radius: 40px;
+			width: 55px;
+			height: 55px;
+		}
+
+		&.card {
+			padding: 0;
+		}
+
+		&__header {
+			margin: 13px 0 14px 10px;
+			text-align: center;
+		}
+
+		&__footer {
+			margin: 11px auto auto auto;
+
+			&--action {
+				position: relative;
+				z-index: 5;
+				right: 0;
+				color: Variables.$color-blue;
+				width: 175px;
+				height: 23px;
+				background: transparent;
+				border: none;
+				margin: auto;
+			}
 		}
 	}
 }

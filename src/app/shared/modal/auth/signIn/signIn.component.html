@@ -1,27 +1,15 @@
-<ng-container
-	[ngTemplateOutlet]="isShowResetPassword ? resetPassword : authorization"
-></ng-container>
-
-<ng-template #resetPassword>
-	<app-reset-password
-		(changePreviousContent)="setIsShowResetPassword()"
-	></app-reset-password>
-</ng-template>
-
-<ng-template #authorization>
-	<form class="sign" [formGroup]="sigInForm" (submit)="submitForm()">
-		<label for="email">Почта:</label>
-		<input class="auth__input" formControlName="email" type="text" />
-		<label for="password">Пароль:</label>
-		<input class="auth__input" formControlName="password" type="password" />
-		<button
-			class="sign__submit space-top"
-			type="submit"
-			[disabled]="!sigInForm.valid"
-		>
-			signIn
-		</button>
-		<a class="space-bottom" (click)="redirectToSignUp()">Создать аккаунт</a>
-		<a (click)="setIsShowResetPassword()">Забыли пароль</a>
-	</form>
-</ng-template>
+<form class="sign" [formGroup]="sigInForm" (submit)="submitForm()">
+	<label for="email">Почта:</label>
+	<input class="auth__input" formControlName="email" type="text" />
+	<label for="password">Пароль:</label>
+	<input class="auth__input" formControlName="password" type="password" />
+	<button
+		class="sign__submit space-top"
+		type="submit"
+		[disabled]="!sigInForm.valid"
+	>
+		Войти
+	</button>
+	<a class="space-bottom" (click)="redirectToSignUp()">Создать аккаунт</a>
+	<a (click)="redirectToChangePassword()">Забыли пароль</a>
+</form>

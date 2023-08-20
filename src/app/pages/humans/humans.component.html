@@ -1,22 +1,52 @@
 <app-header></app-header>
+<div class="content">
+	<div class="content__head">
+		<div class="content__left-side">
+			<div class="content__left-side--head">
+				<ng-template [ngTemplateOutlet]="actionsBtnUser"></ng-template>
+			</div>
+			<div class="card">
+				<h2>Мои друзья</h2>
+				<div class="people__list">
+					<div class="people-item card" (click)="redirectToProfile(people)" *ngIf="people">
+						<img
+							[src]="
+								people.image
+									? ''
+									: '../../../assets/images/empty-avatar.png'
+							"
+							alt="avatar"
+						/>
+						<div class="people-item__header">
+							<h3>{{ people.name }}</h3>
+						</div>
 
-<div class="card flex-space-between">
-	<div>
-		<input
-			placeholder="найти пользователя"
-			type="text"
-			[formControl]="valueForSearchUser"
-		/>
-	</div>
-	<div class="card__actions flex-space-between">
-		<button class="card__actions--friends">Друзья</button>
-		<button class="card__actions--request-friend">Запросы в друзья</button>
-		<div class="card__actions--setting">
-			<img src="../../../assets/icons/setting.svg" alt="setting" />
+						<div class="people-item__footer">
+							<button class="people-item__footer--action" >
+								Удалить из друзей
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content__right-side">
+			<div class="people__search">
+				<img src="../../../assets/icons/search.svg" alt="search" />
+				<input
+					placeholder="Поиск людей"
+					type="text"
+					[formControl]="valueForSearchUser"
+				/>
+			</div>
 		</div>
 	</div>
 </div>
 
-<div *ngIf="people">
-	{{ people | json }}
-</div>
+<ng-template #actionsBtnUser>
+	<ng-container *ngFor="let item of actionsButton">
+		<div>
+			<button class="content__left-side--filter">{{ item.value }}</button>
+		</div>
+	</ng-container>
+</ng-template>

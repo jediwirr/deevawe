@@ -2,6 +2,9 @@ import { SubscribeBodyEvent } from './subscribe-event';
 
 type DeleteEvent = Omit<SubscribeBodyEvent, 'subscribe'>;
 type OmitParamsAddEvent = Omit<ParamsAddEvent, 'timeZone'>;
+type PickRename<T, K extends keyof T, R extends PropertyKey> = Omit<T, K> & {
+	[P in R]: T[K];
+};
 
 interface Occasion extends OmitParamsAddEvent {
 	eventId: number;
@@ -27,6 +30,12 @@ interface ParamsAddEvent {
 	timeEnd: number;
 	timeZone: string;
 }
+
+type ParamsAddEventRes = PickRename<
+	ParamsAddEvent,
+	'userId' | 'timeStart' | 'timeEnd' | 'timeZone',
+	'time_start' | 'time_end' | 'time_zone' | 'user_id'
+>;
 
 interface SearchParams {
 	type: number;
@@ -57,4 +66,5 @@ export {
 	Occasions,
 	SearchParamsByUserId,
 	SearchParamsEventBySubscription,
+	ParamsAddEventRes,
 };

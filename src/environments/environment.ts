@@ -8,11 +8,14 @@
 
 export const ENV = {
 	production: false,
-	baseUrl: 'https://deewave.online/api/',
+	baseUrl: 'http://127.0.0.1:8080/api/',
+	baseUrlImage: 'http://213.139.209.66:8089/',
+	ws: "ws://127.0.0.1:8082/ws?type=user&token=b8cbb0fab814ba5e-32db8dabb16d4c8f3506a73b-032ab40bf8e38220d671fe9858c7c14825a0007834c837196a7722e34960beff05",
 	client: 'deewave',
 };
 
 /*
+
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *

@@ -2,10 +2,16 @@
 @use '../../../../mixins.scss' as Mixins;
 
 header {
-	@include Mixins.flex-space-between;
-	align-items: center;
-	padding: 5px 17px 6px 10px;
-	background: Variables.$background-light-blue;
+	@include Mixins.flex-align-center;
+	background: #fff;
+	min-height: 68px;
+
+	div {
+		@include Mixins.flex-space-between;
+		align-items: center;
+		padding: 5px 20px 6px 20px;
+		width: 100%;
+	}
 
 	nav {
 		margin-right: 18px;
@@ -27,27 +33,22 @@ header {
 	}
 
 	.create-event {
-		border: 1px solid Variables.$orange;
+		border: 1px solid #000;
+		background: #fff;
 		border-radius: 15px;
 		width: 165px;
 		height: 30px;
 		margin: auto;
 	}
 
-	.logo {
-		width: 141px;
-		height: 57px;
-	}
-
 	.btn-exit {
-		border: 1px solid #319aac;
-		border-radius: 15px;
 		width: 78px;
 		height: 25px;
+		border: none;
 		font-weight: 700;
 	}
 }
 
 .active-link {
-	color: Variables.$orange;
+	color: Variables.$gray-50;
 }

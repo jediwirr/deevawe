@@ -2,32 +2,28 @@ import { Observable, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Api } from './api.service';
 import { UpdateUser, User } from '../interfaces/users';
-import { ErrorApiResponse } from '../interfaces/api';
+import { ErrorApiResponse, SuccessReturn } from '../interfaces/api';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class UsersApiService extends Api {
-	public getUser(userId: number): Observable<User> {
-		const url = `user?user_id=${userId}`;
+	public getUserByName(
+		userId: number,
+		userName: string
+	): Observable<User & ErrorApiResponse> {
+		const url = `user?user_id=${userId}&field=name&val=${userName}`;
 		return this.sendGetRequest<null, User>(url).pipe(map((value) => value));
 	}
 
-	/**
-	 *@description будет переработка запроса на бэке
-	 * @param type 1 обозначает поиск по имени 2 по id
-	 * @param value значение для поиска
-	 * @param userId id пользователя который осуществляет поиск
-	 */
-	public searchUser(
-		type: 1 | 2,
-		value: string,
-		userId: string | number
-	): Observable<User & Partial<ErrorApiResponse>> {
-		const url = `users?type=${type}&value=${value}&user_id=${userId}`;
-		return this.sendGetRequest<null, User & Partial<ErrorApiResponse>>(
-			url
-		).pipe(map((user) => user));
+	public getUserById(
+		userId: number,
+		originUserId?: number
+	): Observable<User> {
+		const url = `user?user_id=${userId}&field=id&val=${
+			originUserId || userId
+		}`;
+		return this.sendGetRequest<null, User>(url).pipe(map((value) => value));
 	}
 
 	public updateUser(updateUserField: UpdateUser): Observable<User> {
@@ -35,5 +31,18 @@ export class UsersApiService extends Api {
 			'user',
 			updateUserField
 		).pipe((user) => user);
+	}
+
+	public suggestAFriend(
+		userId: number,
+		recipientId: number
+	): Observable<SuccessReturn & ErrorApiResponse> {
+		return this.sendPutRequest<
+			{ user_id: number; recipient: number },
+			SuccessReturn
+		>('connection/suggest', {
+			user_id: userId,
+			recipient: recipientId,
+		}).pipe((suggest) => suggest);
 	}
 }

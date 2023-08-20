@@ -1,12 +1,23 @@
+<div class="modal">
 <div class="auth">
 	<div>integration for authorization</div>
 	<div class="vertical-line-gray-thin"></div>
-	<app-sign-in
-		*ngIf="!isSignUp"
-		(redirectEvent)="setFlagSignUp()"
-	></app-sign-in>
-	<app-sign-up
-		*ngIf="isSignUp"
-		(redirectEvent)="setFlagSignUp()"
-	></app-sign-up>
+	<ng-container [ngSwitch]="type">
+		<app-sign-in
+			*ngSwitchCase="authType.SIGN_IN"
+			(redirectEventToSignUp)="setAuthType(authType.SIGN_UP)"
+			(redirectEventToChangePassword)="
+				setAuthType(authType.CHANGE_PASSWORD)
+			"
+		></app-sign-in>
+		<app-sign-up
+			*ngSwitchCase="authType.SIGN_UP"
+			(redirectEventToSignIn)="setAuthType(authType.SIGN_IN)"
+		></app-sign-up>
+		<app-change-password
+			*ngSwitchCase="authType.CHANGE_PASSWORD"
+			(redirectEventToSignIn)="setAuthType(authType.SIGN_IN)"
+		></app-change-password>
+	</ng-container>
+</div>
 </div>

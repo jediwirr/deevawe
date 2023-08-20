@@ -14,9 +14,9 @@ import { UserData } from '../../../../core/interfaces/localStorage';
 export class SignInComponent {
 	@Output() submitSignIn = new EventEmitter<AuthUserData>();
 
-	@Output() redirectEvent = new EventEmitter();
-
-	public isShowResetPassword = false;
+	@Output() redirectEventToSignUp = new EventEmitter();
+	
+	@Output() redirectEventToChangePassword = new EventEmitter();
 
 	public sigInForm = new FormGroup({
 		email: new FormControl<string>('', {
@@ -60,10 +60,10 @@ export class SignInComponent {
 	}
 
 	public redirectToSignUp(): void {
-		this.redirectEvent.emit();
+		this.redirectEventToSignUp.emit();
 	}
 
-	public setIsShowResetPassword(): void {
-		this.isShowResetPassword = !this.isShowResetPassword;
+	public redirectToChangePassword(): void {
+		this.redirectEventToChangePassword.emit();
 	}
 }

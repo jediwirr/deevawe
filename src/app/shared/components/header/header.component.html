@@ -1,25 +1,27 @@
 <header>
-	<img class="logo" src="../../../assets/images/logo.png" />
-	<button class="create-event" (click)="openFormEvent()">
-		Создать событие
-	</button>
-	<nav>
-		<ul>
-			<li *ngFor="let item of listNavigation">
-				<a
-					class="navigation-link"
-					[routerLink]="[item.routingName]"
-					[routerLinkActive]="['active-link']"
-					[routerLinkActiveOptions]="{ exact: true }"
-				>
-					{{ item.name }}
-				</a>
-			</li>
-		</ul>
-	</nav>
-	<button (click)="openAuthModal()" class="btn-exit">
-		{{ isAuth ? 'Выйти' : 'Войти' }}
-	</button>
+	<div>
+		<h1>Поребрик</h1>
+		<button class="create-event" (click)="openFormEvent()">
+			Создать событие
+		</button>
+		<nav>
+			<ul>
+				<li *ngFor="let item of listNavigation">
+					<a
+						class="navigation-link"
+						[routerLink]="[item.routingName]"
+						[routerLinkActive]="['active-link']"
+						[routerLinkActiveOptions]="{ exact: true }"
+					>
+						{{ item.name }}
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<button (click)="openAuthModal()" class="btn-exit">
+			{{ isAuth ? 'Выйти' : 'Войти' }}
+		</button>
+	</div>
 </header>
 
 <div>

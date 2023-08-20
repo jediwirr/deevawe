@@ -7,6 +7,7 @@ import { EventFormComponent } from '../../modal/event/event';
 @Component({
 	selector: 'app-card-event',
 	templateUrl: './card-events.component.html',
+	styleUrls: ['./card-events.style.scss'],
 })
 export class CardEventComponent {
 	@Input() event!: Occasion;
@@ -27,12 +28,7 @@ export class CardEventComponent {
 			})
 			.subscribe((result) => {
 				if (result.success) {
-					this.eventsService.searchById({
-						limit: 1,
-						sort: 'id',
-						userId: this.event.userId,
-						val: this.event.userId,
-					});
+					this.eventsService.searchById(this.event.userId);
 				}
 			});
 	}

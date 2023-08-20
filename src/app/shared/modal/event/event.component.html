@@ -1,5 +1,5 @@
-<div class="wrapper">
-	<div class="modal" app-out-side-click (outSideClick)="destroyModal()">
+<div class="modal">
+	<div class="wrapper" app-out-side-click (outSideClick)="destroyModal()">
 		<form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
 			<div>
 				<label for="title">Название</label>

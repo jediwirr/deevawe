@@ -1,20 +1,26 @@
 import { Router } from '@angular/router';
-import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalComponent } from '../modal-base';
+import { AuthType } from '../../../core/interfaces/auth';
 
 @Component({
-	selector: 'app-auth',
 	templateUrl: './auth-modal.component.html',
 	styleUrls: ['./auth-modal.style.scss'],
 })
 export class AuthModalComponent extends ModalComponent {
-	public isSignUp = false;
+	public authType = AuthType;
+
+	public type: AuthType = AuthType.SIGN_IN;
 
 	constructor(protected router: Router) {
 		super();
 	}
 
-	public setFlagSignUp(): void {
-		this.isSignUp = !this.isSignUp;
+	public setAuthType(type: AuthType): void {
+		this.type = type;
+	}
+
+	public destroyModal(): void {
+		this.closeModal.emit();
 	}
 }

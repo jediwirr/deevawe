@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
 
 	public listNavigation = [
 		{ name: 'Главная', routingName: '/home', visible: true },
-		{ name: 'Подписки', routingName: '/subscribes', visible: true },
 		{ name: 'Люди', routingName: '/humans', visible: true },
 		{ name: 'Профиль', routingName: '/profile', visible: true },
 	];

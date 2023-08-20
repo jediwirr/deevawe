@@ -1,0 +1,73 @@
+@use '../../../../mixins.scss' as Mixins;
+@use '../../../../variables.scss' as Variables;
+
+.event {
+	@include Mixins.flex-direction-column;
+	flex-wrap: wrap;
+	width: 290px;
+	height: 226px;
+	padding: 13px 0;
+	margin-right: 16px;
+
+	&__header {
+		align-items: center;
+		margin-bottom: 9px;
+		padding: 0 13px;
+
+		img {
+			width: 38.55px;
+			height: 38.55px;
+		}
+	}
+
+	&__description {
+		@include Mixins.flex-direction-column;
+		flex: 1;
+		background: url(../../../../assets/images/bar.png);
+		background-size: cover;
+		color: #fff;
+		padding: 12px 13px;
+
+		&-content {
+			flex: 1;
+			font-size: 12px;
+		}
+
+		&-date {
+			margin-left: 3px;
+			font-size: 14px;
+		}
+	}
+
+	&__actions {
+		align-items: center;
+		margin-top: 11px;
+		padding: 0 13px;
+
+		&--marker {
+			margin-right: 26px;
+		}
+
+		&--members {
+			margin-right: 18px;
+			background: Variables.$background-light-blue-btn;
+			border: none;
+			border-radius: 15px;
+			width: 143px;
+			height: 24px;
+			font-weight: 700;
+			font-size: 12px;
+			line-height: 15px;
+		}
+
+		&--changes {
+			img {
+				margin-right: 8px;
+
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}

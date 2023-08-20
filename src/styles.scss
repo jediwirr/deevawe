@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @use './mixins.scss' as Mixins;
 @use './variables.scss' as Variables;
+
 @use './app/styles/toast.style.scss';
 @use './app/styles/card.style.scss';
+@use './app/styles/modal.style.scss';
 
 @include Mixins.font-face('Inter', 'Regular');
 
@@ -29,7 +31,6 @@ app-root {
 	min-height: 100vh;
 	font-family: 'Inter';
 	background: Variables.$light-gray;
-	padding: 0 63px;
 }
 
 input:focus {
@@ -38,18 +39,18 @@ input:focus {
 
 button {
 	cursor: pointer;
+	background: none;
 }
 
-app-auth {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 100vw;
-	min-height: 100vh;
+.content {
+	margin-top: 29px;
+	padding: 0 63px;
 }
 
 .auth {
 	&__input {
+		padding: 3px;
+		font-size: 14px;
 		border-radius: 2px;
 		border: 2px solid Variables.$light-gray;
 		&.ng-invalid:not(.ng-untouched):not(.ng-pristine) {
@@ -61,7 +62,7 @@ app-auth {
 .vertical-line-gray-thin {
 	@include Mixins.vertical-line(
 		Variables.$light-gray,
-		2px,
+		1px,
 		Variables.$light-gray
 	);
 }
