@@ -16,8 +16,10 @@ export class AuthModalComponent extends ModalComponent {
 		super();
 	}
 
+	// раскомменитровать, если понадобится авторизация
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	public setAuthType(type: AuthType): void {
-		this.type = type;
+		// this.type = type;
 	}
 
 	public destroyModal(): void {
