@@ -1,6 +1,30 @@
 .wrapper {
 	background: #fff;
 	border-radius: 10px;
-	min-width: 343px;
+	min-width: 344px;
 	min-height: 388px;
+}
+.modal_text {
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 19px;
+  margin-left: 27px;
+  line-height: 14.52px;
+}
+button {
+  background-color: #F2F2F2;
+  border-radius: 15px;
+  width: 284px;
+  height: 25px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14.52px;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+.checkbox_end_time {
+  font-weight: 500px;
+  font-size: 8px;
+  line-height: 9.68px;
+  margin-left: 38px;
 }

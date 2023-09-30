@@ -1,16 +1,16 @@
 <div class="modal">
 	<div class="wrapper" app-out-side-click (outSideClick)="destroyModal()">
 		<form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
-			<div>
-				<label for="title">Название</label>
+			<div class="modal_text">
+				<label for="title">Название:</label>
 				<input formControlName="title" />
 				<p>До 30 символов</p>
 			</div>
-			<div>
+			<div class="modal_text">
 				<label> Описание </label>
 				<textarea formControlName="description"></textarea>
 			</div>
-			<div>
+			<div class="modal_text">
 				<label>Место</label>
 				<p (click)="showOrHideMap()">Мое местоположение</p>
 				<app-map
@@ -18,15 +18,15 @@
 					(closeMap)="getCoordinates($event)"
 				></app-map>
 			</div>
-			<div>
+			<div class="modal_text">
 				<label>Начало:</label>
 				<app-date-picker></app-date-picker>
 			</div>
-			<div *ngIf="isShowEndDate">
+			<div class="modal_text" *ngIf="isShowEndDate">
 				<label>Конец:</label>
 				<app-date-picker></app-date-picker>
 			</div>
-			<div>
+			<div class="checkbox_end_time">
 				<input
 					[checked]="isShowEndDate"
 					(click)="showOrHideEndDate()"
@@ -34,7 +34,7 @@
 				/>
 				<label>Добавить время окончания события</label>
 			</div>
-			<div>
+			<div class="modal_text">
 				<label>Тип:</label>
 				<app-select
 					[listType]="listTypeEvent"
