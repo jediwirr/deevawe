@@ -3,12 +3,12 @@
 		<form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
 			<div class="modal_text">
 				<label for="title">Название:</label>
-				<input formControlName="title" />
+				<input formControlName="title" type="text"/>
 				<p>До 30 символов</p>
 			</div>
 			<div class="modal_text">
-				<label> Описание </label>
-				<textarea formControlName="description"></textarea>
+				<label> Описание:</label>
+				<textarea id="desc_area" formControlName="description"></textarea>
 			</div>
 			<div class="modal_text">
 				<label>Место</label>
