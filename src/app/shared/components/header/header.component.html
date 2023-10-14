@@ -13,7 +13,7 @@
 			</label>
 			<ul class="menu">
 				<li *ngFor="let item of listNavigation">
-					<a
+					<a *ngIf="item.visible"
 						[routerLink]="[item.routingName]"
 						[routerLinkActive]="['active-link']"
 						[routerLinkActiveOptions]="{ exact: true }"
@@ -22,7 +22,7 @@
 					</a>
 				</li>
 
-				<li class="hidden">
+				<li *ngIf="!isAuth">
 					<button (click)="openAuthModal()">Войти</button>
 				</li>
 			</ul>

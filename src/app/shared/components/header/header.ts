@@ -20,17 +20,17 @@ export class HeaderComponent implements OnInit {
 	@ViewChild('modalForm', { read: ViewContainerRef })
 	modalForm!: ViewContainerRef;
 
-	public listNavigation = [
-		{ name: 'Главная', routingName: '/', visible: true },
-		{ name: 'Люди', routingName: '/humans', visible: true },
-		{ name: 'Профиль', routingName: '/profile', visible: true },
-	];
-
 	public nameActivePage!: string;
 
 	public isHideItemNavigation = false;
 
 	public isAuth = false;
+
+	public listNavigation = [
+		{ name: 'Главная', routingName: '/', visible: true },
+		{ name: 'Люди', routingName: '/humans', visible: true },
+		{ name: 'Профиль', routingName: '/profile', visible: this.isAuth },
+	];
 
 	constructor(
 		protected router: Router,
@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
 
 	public setVisibleParams(): void {
 		this.listNavigation.forEach((item, index) => {
-			if (item.routingName !== '/home') {
+			if (item.routingName !== '/') {
 				this.listNavigation[index].visible = false;
 			}
 		});

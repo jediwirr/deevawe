@@ -20,7 +20,7 @@ export class UsersApiService extends Api {
 		userId: number,
 		originUserId?: number
 	): Observable<User> {
-		const url = `user?user_id=${userId}&field=id&val=${
+		const url = `user?field=id&val=${
 			originUserId || userId
 		}`;
 		return this.sendGetRequest<null, User>(url).pipe(map((value) => value));
