@@ -1,14 +1,19 @@
 <header>
-	<div>
-		<h1>Поребрик</h1>
-		<button class="create-event" (click)="openFormEvent()">
-			Создать событие
-		</button>
-		<nav>
-			<ul>
+	<div class="nav">
+		<h1 class="nav-elem">Поребрик</h1>
+		<div class="nav-elem">
+			<button (click)="openFormEvent()">
+				Создать событие
+			</button>
+		</div>
+		<nav class="nav-elem">
+			<input class="menu-btn" type="checkbox" id="menu_btn" />
+			<label class="menu-icon" for="menu_btn">
+				<span class="navicon"></span>
+			</label>
+			<ul class="menu">
 				<li *ngFor="let item of listNavigation">
 					<a
-						class="navigation-link"
 						[routerLink]="[item.routingName]"
 						[routerLinkActive]="['active-link']"
 						[routerLinkActiveOptions]="{ exact: true }"
@@ -16,11 +21,12 @@
 						{{ item.name }}
 					</a>
 				</li>
+
+				<li class="hidden">
+					<button (click)="openAuthModal()">Войти</button>
+				</li>
 			</ul>
 		</nav>
-		<button (click)="openAuthModal()" class="btn-exit">
-			{{ isAuth ? 'Выйти' : 'Войти' }}
-		</button>
 	</div>
 </header>
 
