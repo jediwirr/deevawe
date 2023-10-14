@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 	modalForm!: ViewContainerRef;
 
 	public listNavigation = [
-		{ name: 'Главная', routingName: '/home', visible: true },
+		{ name: 'Главная', routingName: '/', visible: true },
 		{ name: 'Люди', routingName: '/humans', visible: true },
 		{ name: 'Профиль', routingName: '/profile', visible: true },
 	];
