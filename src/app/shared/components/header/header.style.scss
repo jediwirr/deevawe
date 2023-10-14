@@ -2,50 +2,135 @@
 @use '../../../../mixins.scss' as Mixins;
 
 header {
-	@include Mixins.flex-align-center;
 	background: #fff;
-	min-height: 68px;
+	min-height: 3rem;
+	text-decoration: none;
 
-	div {
-		@include Mixins.flex-space-between;
-		align-items: center;
-		padding: 5px 20px 6px 20px;
+	.nav {
 		width: 100%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+	}
+	.nav_elem {
+		order: 0;
 	}
 
-	nav {
-		margin-right: 18px;
-		ul {
-			@include Mixins.flex-space-between;
-			.navigation-link {
-				display: flex;
-				min-width: 100px;
-				font-weight: 700;
-				font-size: 0.875rem;
-				line-height: 1.0625rem;
-				li {
-					@include Mixins.flex-center-vertical-horizontal;
-					width: 100%;
-					height: 100%;
-				}
-			}
+	.nav-elem h1 {
+		font-size: 2rem;
+	}
+	/* "Hide" checkbox -- moves it off screen*/
+	.menu-btn {
+		position: absolute;
+		top: -100%;
+		left: -100%;
+	}
+
+	/* Hide hamburger for bigger screens */
+	.menu-icon {
+		visibility: hidden;
+	}
+
+	.menu {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.menu li {
+		text-decoration: none;
+		padding: 1rem;
+	}
+
+	@media screen and (max-width: 600px) {
+
+		.menu li a {
+			float: right;
+			padding-right: 0.5rem;
 		}
-	}
 
-	.create-event {
-		border: 1px solid #000;
-		background: #fff;
-		border-radius: 15px;
-		width: 165px;
-		height: 30px;
-		margin: auto;
-	}
+		.menu-btn {
+			display: none;
+		}
 
-	.btn-exit {
-		width: 78px;
-		height: 25px;
-		border: none;
-		font-weight: 700;
+		.menu-icon {
+			grid-area: hamburger;
+			cursor: pointer;
+			display: flex;
+			justify-content: flex-end;
+			align-items: baseline;
+			padding: 1.5rem 0.5rem 1.5rem 1.5rem;
+			position: relative;
+			user-select: none;
+			visibility: visible;
+		}
+
+		.navicon {
+			background: #333;
+			display: block;
+			height: 2px;
+			width: 18px;
+			position: relative;
+		}
+
+		.navicon:before {
+			top: 5px;
+		}
+
+		.navicon:after {
+			top: -5px;
+		}
+
+		.navicon:before, .navicon:after {
+			background: #333;
+			display: block;
+			width: 100%;
+			height: 100%;
+			content: '';
+			position: absolute;
+			transition: all .2s ease-out;
+		}
+
+		.menu {
+			grid-area: nav;
+			max-width: unset;
+			max-height: 0;
+			transition: max-height .2s ease-out;
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			background-color: #fff;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.menu li {
+			padding: 0.5rem;
+			width: 100%;
+			text-align: center;
+		}
+
+		.menu-btn:checked ~ .menu {
+			max-height: 240px;
+		}
+
+		.menu-btn:checked ~ .menu-icon .navicon {
+			background: transparent;
+		}
+
+		.menu-btn:checked ~ .menu-icon .navicon:before {
+			transform: rotate(-45deg);
+		}
+
+		.menu-btn:checked ~ .menu-icon .navicon:after {
+			transform: rotate(45deg);
+		}
+
+		.menu-btn:checked ~ .menu-icon .navicon:before,
+		.menu-btn:checked ~ .menu-icon .navicon:after {
+			top: 0;
+		}
 	}
 }
 
