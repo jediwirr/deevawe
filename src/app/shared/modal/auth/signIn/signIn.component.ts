@@ -15,13 +15,13 @@ export class SignInComponent {
 	@Output() submitSignIn = new EventEmitter<AuthUserData>();
 
 	@Output() redirectEventToSignUp = new EventEmitter();
-	
+
 	@Output() redirectEventToChangePassword = new EventEmitter();
 
 	public sigInForm = new FormGroup({
 		email: new FormControl<string>('', {
 			nonNullable: true,
-			validators: [Validators.required, Validators.email],
+			validators: [Validators.required],
 		}),
 		password: new FormControl<string>('', {
 			nonNullable: true,
@@ -36,13 +36,15 @@ export class SignInComponent {
 	) {}
 
 	public submitForm(): void {
-		if (this.sigInForm.valid) {
-			const { email, password } = this.sigInForm.controls;
-			this.requestSignIn({
-				email: email.value,
-				password: password.value,
-			});
+		if (!this.sigInForm.valid) {
+			console.log('not valid');
+			return;
 		}
+		const { email, password } = this.sigInForm.controls;
+		this.requestSignIn({
+			email: email.value,
+			password: password.value,
+		});
 	}
 
 	public requestSignIn(userData: AuthUserData): void {

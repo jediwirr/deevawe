@@ -10,10 +10,10 @@
 				setAuthType(authType.CHANGE_PASSWORD)
 			"
 		></app-sign-in>
-		<app-sign-up
-			*ngSwitchCase="authType.SIGN_UP"
-			(redirectEventToSignIn)="setAuthType(authType.SIGN_IN)"
-		></app-sign-up>
+<!--		<app-sign-up-->
+<!--			*ngSwitchCase="authType.SIGN_UP"-->
+<!--			(redirectEventToSignIn)="setAuthType(authType.SIGN_IN)"-->
+<!--		></app-sign-up>-->
 		<app-change-password
 			*ngSwitchCase="authType.CHANGE_PASSWORD"
 			(redirectEventToSignIn)="setAuthType(authType.SIGN_IN)"

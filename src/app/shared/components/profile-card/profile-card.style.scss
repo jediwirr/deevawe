@@ -1,5 +1,13 @@
 @use '../../../../mixins.scss' as Mixins;
 
+.sign-out-btn {
+	display: inline-block;
+	align-self: flex-start;
+	width: 120px;
+	padding: 6px;
+	border-radius: 16px;
+}
+
 .card {
 	padding: 30px 25px;
 	margin-bottom: 20px;
@@ -30,6 +38,9 @@
 			&--value {
 				margin-left: 22px;
 			}
+		}
+
+		&-profile {
 		}
 	}
 
