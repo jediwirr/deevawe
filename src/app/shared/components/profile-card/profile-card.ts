@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/core/interfaces/users';
 import { ImageParser } from '../../../utils/image-parser';
+import {LocalStorageService} from "../../../core/services/localStorage.service";
 
 @Component({
 	selector: 'app-profile-card',
@@ -46,5 +47,9 @@ export class ProfileCardComponent implements OnInit {
 		ImageParser.parse(fileInput).subscribe((result) => {
 			this.emitSaveImage.emit(result);
 		});
+	}
+
+	public exit(): void {
+
 	}
 }

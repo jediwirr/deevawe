@@ -14,10 +14,6 @@ import { UserData } from '../../../../core/interfaces/localStorage';
 export class SignInComponent {
 	@Output() submitSignIn = new EventEmitter<AuthUserData>();
 
-	@Output() redirectEventToSignUp = new EventEmitter();
-
-	@Output() redirectEventToChangePassword = new EventEmitter();
-
 	public sigInForm = new FormGroup({
 		email: new FormControl<string>('', {
 			nonNullable: true,
@@ -59,13 +55,5 @@ export class SignInComponent {
 			});
 			this.router.navigateByUrl('profile');
 		});
-	}
-
-	public redirectToSignUp(): void {
-		this.redirectEventToSignUp.emit();
-	}
-
-	public redirectToChangePassword(): void {
-		this.redirectEventToChangePassword.emit();
 	}
 }

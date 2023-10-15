@@ -13,7 +13,6 @@ import { ClockComponent } from './components/clock/clock';
 import { PipeModule } from '../core/pipes/pipes.module';
 import { DirectiveModule } from '../core/directives/directive.module';
 import { CardEventComponent } from './components/card-events/card-event';
-import { VerifyCodeComponent } from './components/verify/verify-code';
 import { ProfileCardComponent } from './components/profile-card/profile-card';
 
 @NgModule({
@@ -34,7 +33,6 @@ import { ProfileCardComponent } from './components/profile-card/profile-card';
 		CalendarComponent,
 		ClockComponent,
 		CardEventComponent,
-		VerifyCodeComponent,
 		ProfileCardComponent
 	],
 	exports: [
@@ -48,7 +46,6 @@ import { ProfileCardComponent } from './components/profile-card/profile-card';
 		DirectiveModule,
 		CardEventComponent,
 		CommonModule,
-		VerifyCodeComponent,
 		ProfileCardComponent
 	],
 })

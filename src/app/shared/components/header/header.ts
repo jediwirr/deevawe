@@ -18,7 +18,7 @@ import { ModalService } from '../../../core/services/modal.service';
 })
 export class HeaderComponent implements OnInit {
 	@ViewChild('modalForm', { read: ViewContainerRef })
-	modalForm!: ViewContainerRef;
+		modalForm!: ViewContainerRef;
 
 	public nameActivePage!: string;
 
@@ -28,9 +28,9 @@ export class HeaderComponent implements OnInit {
 
 	public setVisibleParams(): void {
 		this.listNavigation.forEach((item, index) => {
-			if (item.name === 'Профиль') {
-				this.listNavigation[index].visible = this.isAuth;
-			}
+		//	if (item.name === 'Профиль') {
+			this.listNavigation[index].visible = this.isAuth;
+		//	}
 		});
 	}
 
