@@ -54,7 +54,7 @@ export class ProfileCardComponent implements OnInit {
 			this.emitSaveImage.emit(result);
 		});
 	}
-
+  
 	public requestSignOut(): void {
 		this.localStorageService.clear();
 		this.router.navigateByUrl('/');

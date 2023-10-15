@@ -5,6 +5,51 @@ header {
 	background: #fff;
 	min-height: 3rem;
 	text-decoration: none;
+	width: 100%;
+
+	.create-btn {
+		appearance: none;
+		background-color: transparent;
+		border: 2px solid #1A1A1A;
+		border-radius: 15px;
+		box-sizing: border-box;
+		color: #3B3B3B;
+		cursor: pointer;
+		display: inline-block;
+		font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+		font-size: 16px;
+		font-weight: 600;
+		line-height: normal;
+		margin: 0;
+		height: 1.8rem;
+		min-width: 0;
+		outline: none;
+		padding: 0 0.5rem;
+		text-align: center;
+		text-decoration: none;
+		transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+		user-select: none;
+		-webkit-user-select: none;
+		touch-action: manipulation;
+		width: 100%;
+		will-change: transform;
+	}
+
+	.create-btn:disabled {
+		pointer-events: none;
+	}
+
+	.create-btn:hover {
+		color: #fff;
+		background-color: #1A1A1A;
+		box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+		transform: translateY(-2px);
+	}
+
+	.create-btn:active {
+		box-shadow: none;
+		transform: translateY(0);
+	}
 
 	.nav {
 		width: 100%;
@@ -13,21 +58,31 @@ header {
 		flex-wrap: nowrap;
 		justify-content: space-between;
 	}
-	.nav_elem {
+
+	.nav-elem {
 		order: 0;
+		&-btn {
+			display: flex;
+			justify-content: center;
+			padding: 1rem 0 1rem 1rem;
+		}
+		&-menu {
+			margin-top: auto;
+			margin-bottom: auto;
+		}
 	}
 
 	.nav-elem h1 {
 		font-size: 2rem;
+		align-content: center;
 	}
-	/* "Hide" checkbox -- moves it off screen*/
+
 	.menu-btn {
 		position: absolute;
 		top: -100%;
 		left: -100%;
 	}
 
-	/* Hide hamburger for bigger screens */
 	.menu-icon {
 		visibility: hidden;
 	}
@@ -43,7 +98,25 @@ header {
 		padding: 1rem;
 	}
 
-	@media screen and (max-width: 600px) {
+	h1.nav-elem {
+		padding: 0.5rem;
+	}
+
+	@media screen and (max-width: 680px) {
+		h1.nav-elem {
+			display: flex;
+			align-items: center;
+			font-size: 28px;
+		}
+
+		.nav-elem {
+			&-btn {
+				display: flex;
+				align-items: center;
+				padding: 0.5rem;
+			}
+
+		}
 
 		.menu li a {
 			float: right;
@@ -60,7 +133,7 @@ header {
 			display: flex;
 			justify-content: flex-end;
 			align-items: baseline;
-			padding: 1.5rem 0.5rem 1.5rem 1.5rem;
+			padding: 1.5rem 0.5rem 1.5rem 0.5rem;
 			position: relative;
 			user-select: none;
 			visibility: visible;
@@ -130,6 +203,20 @@ header {
 		.menu-btn:checked ~ .menu-icon .navicon:before,
 		.menu-btn:checked ~ .menu-icon .navicon:after {
 			top: 0;
+		}
+	}
+
+	@media screen and (max-width: 450px) {
+		.create-btn {
+			padding-right: 2rem;
+			padding-left: 2rem;
+			& span {
+				display: none;
+			}
+		}
+
+		h1.nav-elem {
+			font-size: 20px;
 		}
 	}
 }

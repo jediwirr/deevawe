@@ -89,7 +89,9 @@ export class ProfilePageComponent implements OnInit {
 			// 	console.log(res, 'RES');
 			// })
 			// "token":"26384898369f75dd004ac96b9879b28400", "message":"user"
+			// eslint-disable-next-line max-len
 			// this.wsService.send(`ws?type=user&token=${this.userId}`, {token: this.localStorage.token, message: "user"});
+			// eslint-disable-next-line max-len
 			this.wsService.on(`ws?type=user&token=${"b8cbb0fab814ba5e-32db8dabb16d4c8f3506a73b-032ab40bf8e38220d671fe9858c7c14825a0007834c837196a7722e34960beff05"}`).subscribe((res) => console.log(res)
 			)
 		} catch (error) {

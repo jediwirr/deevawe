@@ -50,12 +50,6 @@ export class EventFormComponent extends ModalComponent implements OnInit {
 	public ngOnInit(): void {
 		if (this.inputData) {
 			console.log(this.inputData);
-			// const { title, description, time_end} = this.infoEvent;
-			// this.eventForm.setValue({
-			//   title,
-			//   description,
-			//   endDate:
-			// })
 		}
 	}
 
