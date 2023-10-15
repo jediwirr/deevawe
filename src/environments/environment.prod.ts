@@ -8,7 +8,7 @@
 
 export const ENV = {
 	production: true,
-	baseUrl: 'https://deewave.online/api/',
+	baseUrl: 'http://194.67.104.75:8080/api/',
 	client: 'deewave',
-  ws: ''
+	ws: ''
 };
