@@ -27,7 +27,7 @@
 			</div>
 		</div>
 	</div>
-	<button class="sign-out-btn">Выйти</button>
+	<button class="sign-out-btn" (click)="requestSignOut()">Выйти</button>
 	<div class="card__action-profile">
 		<div class="card__action-profile--top">
 			<button *ngIf="isRemoteProfile" (click)="changeEmitSuggest()">{{ pendingSuggest ? 'Запрос в друзья отправлен' : 'Добавить в друзья' }}</button>

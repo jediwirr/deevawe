@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/core/interfaces/users';
+import {Router} from "@angular/router";
 import { ImageParser } from '../../../utils/image-parser';
+import {LocalStorageService} from "../../../core/services/localStorage.service";
 
 @Component({
 	selector: 'app-profile-card',
@@ -27,6 +29,11 @@ export class ProfileCardComponent implements OnInit {
 	 */
 	public rating = 0;
 
+	constructor(
+		protected localStorageService: LocalStorageService,
+		protected router: Router
+	) {}
+
 	public ngOnInit(): void {
 		this.init();
 	}
@@ -46,5 +53,10 @@ export class ProfileCardComponent implements OnInit {
 		ImageParser.parse(fileInput).subscribe((result) => {
 			this.emitSaveImage.emit(result);
 		});
+	}
+
+	public requestSignOut(): void {
+		this.localStorageService.clear();
+		this.router.navigateByUrl('/');
 	}
 }
