@@ -105,15 +105,14 @@ header {
 	@media screen and (max-width: 680px) {
 		h1.nav-elem {
 			display: flex;
-			align-items: center;
 			font-size: 28px;
 		}
 
 		.nav-elem {
 			&-btn {
 				display: flex;
-				align-items: center;
 				padding: 0.5rem;
+				margin-top: 0.2rem;
 			}
 
 		}
