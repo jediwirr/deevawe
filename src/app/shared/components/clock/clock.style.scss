@@ -1,5 +1,7 @@
 .clock {
-	&__time {
-		display: flex;
+	&__time {}
+	&__input {
+		background: url('../../../../assets/icons/clock.svg') right no-repeat;
+		background-position-x: calc(100% - 4px);
 	}
 }

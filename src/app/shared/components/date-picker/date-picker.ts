@@ -4,6 +4,7 @@ import * as moment from 'moment';
 @Component({
 	selector: 'app-date-picker',
 	templateUrl: './date-picker.component.html',
+	styleUrls: ['./date-picker.style.scss'],
 })
 export class DatePickerComponent implements OnInit {
 	@Output() eventDate = new EventEmitter();

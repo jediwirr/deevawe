@@ -1,31 +1,45 @@
 <div class="modal">
 	<div class="wrapper" app-out-side-click (outSideClick)="destroyModal()">
-		<form (ngSubmit)="submitEvent()" [formGroup]="eventForm">
-			<div class="modal_text">
-				<label for="title">Название:</label>
-				<input formControlName="title" type="text"/>
-				<p>До 30 символов</p>
+		<form class="event-form-container" (ngSubmit)="submitEvent()" [formGroup]="eventForm">
+			<div class="modal-block">
+				<label class="modal-block__label">Название:</label>
+				<div class="modal-block__actions">
+					<input class="modal-block__input" formControlName="title" type="text"/>
+					<p class="modal-block__tip">До 30 символов</p>
+				</div>
 			</div>
-			<div class="modal_text">
-				<label> Описание:</label>
-				<textarea id="desc_area" formControlName="description"></textarea>
+
+			<div class="modal-block">
+				<label class="modal-block__label"> Описание:</label>
+				<div class="modal-block__actions">
+					<textarea class="modal-block__input" id="desc_area" formControlName="description" maxlength="300"></textarea>
+					<p class="modal-block__tip">Кол-во символов 0 / 300</p>
+				</div>
 			</div>
-			<div class="modal_text">
-				<label>Место</label>
-				<p (click)="showOrHideMap()">Мое местоположение</p>
-				<app-map
-					*ngIf="isShowMap"
-					(closeMap)="getCoordinates($event)"
-				></app-map>
+
+<!--			<div class="modal-block">-->
+<!--				<label>Место</label>-->
+<!--				<p (click)="showOrHideMap()">Мое местоположение</p>-->
+<!--				<app-map-->
+<!--					*ngIf="isShowMap"-->
+<!--					(closeMap)="getCoordinates($event)"-->
+<!--				></app-map>-->
+<!--			</div>-->
+
+			<div class="modal-block">
+				<label class="modal-block__label">Начало:</label>
+				<div class="modal-block__actions">
+					<app-date-picker></app-date-picker>
+				</div>
 			</div>
-			<div class="modal_text">
-				<label>Начало:</label>
-				<app-date-picker></app-date-picker>
+
+			<div class="modal-block" *ngIf="isShowEndDate">
+				<label class="modal-block__label">Конец:</label>
+				<div class="modal-block__actions">
+					<app-date-picker></app-date-picker>
+				</div>
 			</div>
-			<div class="modal_text" *ngIf="isShowEndDate">
-				<label>Конец:</label>
-				<app-date-picker></app-date-picker>
-			</div>
+
 			<div class="checkbox_end_time">
 				<input
 					[checked]="isShowEndDate"
@@ -34,7 +48,8 @@
 				/>
 				<label>Добавить время окончания события</label>
 			</div>
-			<div class="modal_text">
+
+			<div class="modal-block">
 				<label>Тип:</label>
 				<app-select
 					[listType]="listTypeEvent"
@@ -42,6 +57,7 @@
 					(emitOptionSelect)="setOptionSelect($event)"
 				></app-select>
 			</div>
+
 			<button type="submit">Создать событие</button>
 		</form>
 	</div>
