@@ -1,5 +1,6 @@
 <div class="clock" app-out-side-click (outSideClick)="isShowPickTime = false">
 	<input
+		class="clock__input"
 		type="text"
 		(click)="setShowPickTime()"
 		#refTime
@@ -9,7 +10,7 @@
 		<div class="clock__time--hour">
 			<span>
 				<p>up</p>
-				{{ currentHour }}
+					{{ currentHour }}
 				<p>down</p>
 			</span>
 			<!-- <div *ngFor="let hour of hours; let i = index">

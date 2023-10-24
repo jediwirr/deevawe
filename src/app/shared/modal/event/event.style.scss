@@ -1,15 +1,42 @@
+@import '../../../../variables.scss';
 .wrapper {
 	background: #fff;
 	border-radius: 10px;
-	min-width: 344px;
-	min-height: 388px;
+	width: 420px;
 }
-.modal_text {
-  font-weight: 700;
-  font-size: 12px;
-  margin-top: 19px;
-  margin-left: 27px;
-  line-height: 14.52px;
+.modal-block {
+	display: flex;
+	gap: 10px;
+	justify-content: space-between;
+	&__actions {
+		display: flex;
+		flex-direction: column;
+		flex: 4;
+	}
+	&__tip {
+		margin-top: 4px;
+		font-size: 10px;
+		color: $gray;
+	}
+	&__input {
+		height: 35px;
+	}
+	&__label {
+		flex: 1;
+		font-weight: bold;
+		font-size: 14px;
+	}
+}
+textarea.modal-block__input {
+	resize: vertical;
+	width: 100%;
+	min-height: 80px;
+}
+.event-form-container {
+	display: flex;
+	flex-direction: column;
+	gap: 26px;
+	padding: 26px;
 }
 button {
   background-color: #F2F2F2;
@@ -23,17 +50,17 @@ button {
   margin-left: 30px;
 }
 .checkbox_end_time {
-  font-weight: 500px;
+  font-weight: 500;
   font-size: 8px;
   line-height: 9.68px;
   margin-left: 38px;
-}
-input[type=text] {
-  width: 212px;
-  height: 26px;
 }
 [id="desc_area"] {
 width: 212px;
 height: 58px;
 }
+.event-title {
+	font-weight: 700;
+}
+
 

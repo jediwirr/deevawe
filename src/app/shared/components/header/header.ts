@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
 		)) as Object;
 		this.isAuth = !!Object.keys(result).length;
 		this.setVisibleParams();
+		this.openModal(EventFormComponent);
 	}
 
 	public listNavigation = [

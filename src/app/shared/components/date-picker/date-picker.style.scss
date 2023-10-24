@@ -1,0 +1,11 @@
+.date-picker {
+	&-container {}
+	&-block {
+		display: flex;
+		gap: 10px;
+		&__input {
+			background: url('../../../../assets/icons/calendar.svg') right no-repeat;
+			background-position-x: calc(100% - 4px);
+		}
+	}
+}
