@@ -9,8 +9,9 @@
 export const ENV = {
 	production: false,
 	baseUrl: 'http://194.67.104.75:8080/api/',
+	tokenUrl: 'http://194.67.104.75:8082/',
 	baseUrlImage: 'http://213.139.209.66:8089/',
-	ws: "ws://194.67.104.75:8082/ws?type=user&token=b8cbb0fab814ba5e-32db8dabb16d4c8f3506a73b-032ab40bf8e38220d671fe9858c7c14825a0007834c837196a7722e34960beff05",
+	ws: "ws://194.67.104.75:8082/ws",
 	client: 'browser',
 };
 

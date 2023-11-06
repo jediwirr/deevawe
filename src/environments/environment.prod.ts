@@ -9,6 +9,7 @@
 export const ENV = {
 	production: true,
 	baseUrl: 'http://194.67.104.75:8080/api/',
+	tokenUrl: '127.0.0.1',
 	client: 'browser',
-  	ws: ''
+  	ws: '"ws://194.67.104.75:8082/ws"'
 };
