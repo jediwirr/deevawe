@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'event-search-filters',
+	selector: 'app-event-search-filters',
 	templateUrl: './event-search-filters.html',
 	styleUrls: ['./event-search-filters.scss'],
 })

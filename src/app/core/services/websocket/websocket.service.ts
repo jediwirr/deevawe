@@ -1,19 +1,18 @@
-import { Inject, Injectable, OnDestroy } from "@angular/core";
-import { distinctUntilChanged, filter, interval, map, Observable, Observer, share, Subject, SubscriptionLike, takeWhile} from "rxjs";
-import { WebSocketSubject, WebSocketSubjectConfig } from "rxjs/webSocket";
-import { config } from './websocket.config';
-import { IWebsocketService, IWsMessage, WebSocketConfig } from "../../interfaces/websocket/websocket.interfaces";
+import { Injectable, OnDestroy } from "@angular/core";
+import { distinctUntilChanged, interval, Observable, Observer, share, Subject, SubscriptionLike, takeWhile} from "rxjs";
+import { WebSocketSubject, WebSocketSubjectConfig, webSocket } from "rxjs/webSocket";
+import { IWebsocketService } from "../../interfaces/websocket/websocket.interfaces";
 
 @Injectable({
 	providedIn: 'root'
 })
 
 export class WebsocketService implements IWebsocketService, OnDestroy {
-	private wsMessages!: Subject<IWsMessage<any>>;
+	private wsMessages$!: Subject<any>;
 
-	private webSocket!: WebSocketSubject<any>;
+	private webSocket$!: WebSocketSubject<any>;
 
-	private config!: WebSocketSubjectConfig<IWsMessage<any>>;
+	private config!: WebSocketSubjectConfig<any>;
 
 	private connection!: Observer<boolean>;
 
@@ -31,15 +30,15 @@ export class WebsocketService implements IWebsocketService, OnDestroy {
 
 	public status!: Observable<boolean>;
 
-	constructor(@Inject(config) private wsConfig: WebSocketConfig) {
-		this.wsMessages = new Subject<IWsMessage<any>>();
 
+	public connect(url: string): void {
+		this.wsMessages$ = new Subject<any>();
 		this.config = {
-			url: wsConfig.url,
+			url,
 			closeObserver: {
 				next: (event: CloseEvent) => {
 					console.log('WS Disconnected');
-					this.webSocket.next(null);
+					this.webSocket$.next(null);
 					this.connection.next(false);
 				}
 			},
@@ -50,25 +49,32 @@ export class WebsocketService implements IWebsocketService, OnDestroy {
 				}
 			}
 		};
+		this.webSocket$ = webSocket(this.config);
 
-		this.connect();
+
+		this.webSocket$.subscribe({
+			next: (message) => {
+				// this.wsMessages$ = new Subject<IWsMessage<Record<string, string>>>();
+				this.wsMessages$.next(message);
+			},
+			error: () => {
+				if (!this.webSocket$) {
+					// for reconnect
+					throw new Error('failed connect websocket');
+				}
+			}
+		  });
 
 		this.setConnectionStatus();
 		this.setReconnectStatus();
 	}
 
-	public on<T>(event: string): Observable<T> {
-		return this.wsMessages.pipe(
-			filter((message: IWsMessage<T>) => message.event === event),
-			map((message: IWsMessage<T>) => message.data)
-		);
+	public on(): Observable<any> {
+		return this.wsMessages$;
 	}
 
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public send(event: string, data?: any): void {
-		// console.log(event, this.isConnected);
-
-		this.webSocket.next(<any>JSON.stringify({ event, data }));
+	public send(body: unknown): void {
+		this.webSocket$.next(body);
 
 		// if (event && !this.isConnected) {
 		// 	console.log(this.webSocket);
@@ -98,37 +104,22 @@ export class WebsocketService implements IWebsocketService, OnDestroy {
 
 	private reconnect(): void {
 		this.reconnection = interval(this.reconnectInterval)
-			.pipe(takeWhile((v, index) => index < this.reconnectAttempts && !this.webSocket));
+			.pipe(takeWhile((v, index) => index < this.reconnectAttempts && !this.webSocket$));
 
 
 		this.reconnection.subscribe(
 			{
-				next: () => this.connect(),
+				next: () => this.connect(this.config.url),
 				error: () => null,
 				complete: () => {
 					// Subject complete if reconnect attemts ending
 					this.reconnection = null;
-					if (!this.webSocket) {
-						this.wsMessages.complete();
+					if (!this.webSocket$) {
+						this.wsMessages$.complete();
 						this.connection.complete();
 					}
 				}
 			});
-	}
-
-	private connect(): void {
-		this.webSocket = new WebSocketSubject(this.wsConfig);
-
-		this.webSocket.subscribe({
-			next: (message) => {
-				this.wsMessages.next(message);
-			},
-			error: () => {
-				if (!this.webSocket) {
-					this.reconnect();
-				}
-			}
-		  });
 	}
 
 
