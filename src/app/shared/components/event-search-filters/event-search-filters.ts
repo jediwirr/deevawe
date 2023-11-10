@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { WebsocketService } from 'src/app/core/services/websocket/websocket.service';
 
 @Component({
 	selector: 'app-event-search-filters',
@@ -6,5 +7,34 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./event-search-filters.scss'],
 })
 export class EventSearchFiltersComponent implements OnInit {
-  public ngOnInit(): void {}
+
+	public events: any;
+
+	@Output() eventsArr = new EventEmitter();
+
+	constructor(private wsService: WebsocketService) { }
+
+
+	public ngOnInit(): void { }
+
+	public getEvents() {
+		this.wsService.send({
+			method: "new",
+			body: {
+				min: 600,
+				time_start: 1694244600,
+				lat: 59.80228462,
+				lon: 30.37665965,
+				radius: 1000
+			}
+		})
+		this.wsService.on().subscribe({
+			next: val => {
+				const response = JSON.parse(val)
+				this.eventsArr.emit(response)
+			}
+		})
+
+	}
+
 }

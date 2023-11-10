@@ -1,2 +1,10 @@
 <app-header></app-header>
-<app-event-search-filters></app-event-search-filters>
+<app-event-search-filters (eventsArr)="getEvents($event)"></app-event-search-filters>
+
+<div *ngFor="let item of events">
+    <ul>
+        <li>{{item.id}}</li>
+        <li>{{item.title}}</li>
+        <li>{{item.description}}</li>
+    </ul>
+</div>
