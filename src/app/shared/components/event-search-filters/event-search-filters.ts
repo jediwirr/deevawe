@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { WebsocketService } from 'src/app/core/services/websocket/websocket.service';
 
 @Component({
@@ -6,13 +7,16 @@ import { WebsocketService } from 'src/app/core/services/websocket/websocket.serv
 	templateUrl: './event-search-filters.html',
 	styleUrls: ['./event-search-filters.scss'],
 })
-export class EventSearchFiltersComponent implements OnInit {
+export class EventSearchFiltersComponent implements OnInit, OnDestroy {
 
+
+	private destroy$ = new Subject<void>();
 	public events: any;
 
 	@Output() eventsArr = new EventEmitter();
 
 	constructor(private wsService: WebsocketService) { }
+
 
 
 	public ngOnInit(): void { }
@@ -28,13 +32,20 @@ export class EventSearchFiltersComponent implements OnInit {
 				radius: 1000
 			}
 		})
-		this.wsService.on().subscribe({
-			next: val => {
-				const response = JSON.parse(val)
-				this.eventsArr.emit(response)
-			}
-		})
+		this.wsService.on()
+			.pipe(takeUntil(this.destroy$))
+			.subscribe({
+				next: val => {
+					const response = JSON.parse(val)
+					this.eventsArr.emit(response)
+				}
+			})
 
+	}
+
+	ngOnDestroy(): void {
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 
 }
