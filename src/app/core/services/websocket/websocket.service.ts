@@ -46,7 +46,7 @@ export class WebsocketService implements IWebsocketService, OnDestroy {
 							console.log('WS Disconnected');
 							this.webSocket$.next(null);
 							this.connection.next(false);
-							this.isConnected.next(false)
+							this.isConnected.next(false);
 						}
 					},
 					openObserver: {
@@ -80,7 +80,7 @@ export class WebsocketService implements IWebsocketService, OnDestroy {
 
 
 	public on(): Observable<any> {
-		return this.wsMessages$.pipe(map((mes: any) => mes.data))
+		return this.wsMessages$.pipe(map((mes: any) => mes.data));
 	}
 
 
