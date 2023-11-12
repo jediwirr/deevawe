@@ -6,14 +6,6 @@
         "pathRewrite": {
             "^/image/*": ""
           }
-    },
-
-	"/tokened/*": {
-        "target": "http://194.67.104.75:8082/",
-        "secure": false,
-        "logLevel": "debug",
-        "pathRewrite": {
-            "^/tokened/*": ""
-          }
     }
+	
 }

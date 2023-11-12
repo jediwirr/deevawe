@@ -11,11 +11,11 @@ import { LocalStorageService } from './localStorage.service';
 export class TokenService extends Api {
 	constructor(public httpClient: HttpClient) {
 		super(httpClient, new LocalStorageService());
-		super.setBaseUrl('tokened');
 	}
 
-	public receive(): Observable<string> {
+	public receive(): Observable<string> {	
 		// @ts-ignore
-		return this.sendGetRequest('/token').pipe(map((token) => token.token ));
+	
+		return this.sendGetRequest('guest/token').pipe(map((token) => token.token ));
 	}
 }
