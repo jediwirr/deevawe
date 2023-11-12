@@ -62,5 +62,48 @@ height: 58px;
 .event-title {
 	font-weight: 700;
 }
-
-
+.modal-block-link {
+  cursor: pointer;
+  color: $light-blue;
+  text-decoration: underline;
+}
+.modal-block-inline {
+  display: flex;
+  position: relative;
+}
+.modal-block-inline-checkbox {
+  cursor: pointer;
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  opacity: 0;
+  z-index: 9;
+}
+.modal-block-inline-checkmark {
+  height: 12px;
+  width: 12px;
+  background-color: $light-gray;
+}
+.modal-block-inline-checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 3px;
+  width: 3px;
+  height: 6px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+}
+.modal-block-inline input:checked ~ .modal-block-inline-checkmark::after {
+  display: block;
+}
+.modal-block-inline input:checked ~ .modal-block-inline-checkmark {
+  background-color: #2196F3;
+}
+.modal-block-inline label {
+  font-size: 12px;
+  margin-left: 8px;
+}
