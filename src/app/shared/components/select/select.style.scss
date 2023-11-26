@@ -1,6 +1,17 @@
+@import '../../../../variables.scss';
 .list {
 	overflow-y: auto;
 	max-height: 200px;
 	min-height: 200px;
-	background: #fff;
+	background: $light-gray;
+}
+.select {
+  display: flex;
+
+  &-button {
+    border: none;
+  }
+  &-img {
+    background-color: red;
+  }
 }

@@ -20,11 +20,11 @@
 			<div class="modal-block">
 				<label>Место:</label>
 				<p class="modal-block-link" (click)="showOrHideMap()">Мое местоположение</p>
-				<app-map
-					*ngIf="isShowMap"
-					(closeMap)="getCoordinates($event)"
-				></app-map>
       </div>
+      <app-map
+        *ngIf="isShowMap"
+        (closeMap)="getCoordinates($event)"
+      ></app-map>
 
 			<div class="modal-block">
 				<label class="modal-block__label">Начало:</label>
@@ -52,12 +52,14 @@
 			</div>
 
 			<div class="modal-block">
-				<label>Тип:</label>
-				<app-select
-					[listType]="listTypeEvent"
-					[isShowImage]="true"
-					(emitOptionSelect)="setOptionSelect($event)"
-				></app-select>
+				<label class="modal-block__label">Тип:</label>
+				<div class="modal-block__actions">
+          <app-select
+            [listType]="listTypeEvent"
+            [isShowImage]="true"
+            (emitOptionSelect)="setOptionSelect($event)"
+          ></app-select>
+        </div>
 			</div>
 
 			<button type="submit">Создать событие</button>
