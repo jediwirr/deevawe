@@ -9,7 +9,7 @@
 export const ENV = {
 	production: false,
 	baseUrl: 'http://194.67.104.75:8080/api/',
-	tokenUrl: 'http://194.67.104.75:8082/',
+	tokenUrl: 'http://194.67.104.75:8080/',
 	baseUrlImage: 'http://213.139.209.66:8089/',
 	ws: "ws://194.67.104.75:8082/ws",
 	client: 'browser',

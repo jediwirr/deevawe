@@ -1,5 +1,6 @@
 @import '../../../../variables.scss';
 .wrapper {
+  position: relative;
 	background: #fff;
 	border-radius: 10px;
 	width: 420px;
@@ -107,3 +108,11 @@ height: 58px;
   font-size: 12px;
   margin-left: 8px;
 }
+.close {
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	top: -30px;
+	right: -30px;
+}
+

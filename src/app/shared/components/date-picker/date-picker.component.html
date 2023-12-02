@@ -1,14 +1,19 @@
-<div class="date-picker-container" app-out-side-click (outSideClick)="isShowCalendar = false">
+<div
+	class="date-picker-container"
+	app-out-side-click
+	(outSideClick)="isShowCalendar = false"
+>
 	<div class="date-picker-block">
-		<input class="date-picker-block__input" (click)="showOrHideCalendar()" [value]="date" />
-		<app-clock
-			(emitTime)="setTime($event)"
-			[time]="defaultTime"
-		></app-clock>
+		<input
+			readonly
+			class="date-picker-block__input"
+			(click)="showOrHideCalendar()"
+			[value]="date | timer"
+		/>
 	</div>
-<!--	<app-calendar-->
-<!--		*ngIf="isShowCalendar"-->
-<!--		(emitSelectedDate)="setDate($event)"-->
-<!--		[currentStartDate]="momentDate"-->
-<!--	></app-calendar>-->
+	<app-calendar
+		*ngIf="isShowCalendar"
+		(emitSelectedDate)="setDate($event)"
+		[currentStartDate]="momentDate"
+	></app-calendar>
 </div>

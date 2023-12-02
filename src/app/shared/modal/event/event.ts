@@ -1,5 +1,5 @@
 import { Occasion } from 'src/app/core/interfaces/events';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { EventsService } from '../../../core/services/events/events.service';
 import { LocalStorageService } from '../../../core/services/localStorage.service';
@@ -11,6 +11,7 @@ import { ModalComponent } from '../modal-base';
 })
 export class EventFormComponent extends ModalComponent implements OnInit {
 	@Input() inputData?: Occasion;
+	@ViewChild('close') closeBtn!: ElementRef;
 
 	public readonly listTypeEvent = [
 		{
@@ -105,6 +106,10 @@ export class EventFormComponent extends ModalComponent implements OnInit {
 			});
 		this.destroyModal();
 	}
+
+	removeModal() {
+        this.closeBtn.nativeElement.style.display = 'none';
+    }
 
 	public destroyModal(): void {
 		this.closeModal.emit();

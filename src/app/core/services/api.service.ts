@@ -29,7 +29,6 @@ export class Api {
 	private async getHttpHeader(): Promise<HttpHeaders> {
 		let headers = new HttpHeaders({
 			Client: ENV.client,
-			Accept: '*/*',
 		});
 
 		const token = await this.getToken();

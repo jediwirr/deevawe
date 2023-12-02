@@ -18,7 +18,7 @@ import { ModalService } from '../../../core/services/modal.service';
 })
 export class HeaderComponent implements OnInit {
 	@ViewChild('modalForm', { read: ViewContainerRef })
-		modalForm!: ViewContainerRef;
+	modalForm!: ViewContainerRef;
 
 	public nameActivePage!: string;
 
@@ -28,9 +28,9 @@ export class HeaderComponent implements OnInit {
 
 	public setVisibleParams(): void {
 		this.listNavigation.forEach((item, index) => {
-		//	if (item.name === 'Профиль') {
+			//	if (item.name === 'Профиль') {
 			this.listNavigation[index].visible = this.isAuth;
-		//	}
+			//	}
 		});
 	}
 
@@ -52,20 +52,14 @@ export class HeaderComponent implements OnInit {
 		protected router: Router,
 		private modalService: ModalService,
 		protected localStorageService: LocalStorageService
-	) {}
+	) { }
 
 	public openFormEvent(): void {
 		this.openModal(EventFormComponent);
 	}
 
 	private openModal<C>(component: Type<C>): void {
-		if (this.modalForm.length) {
-			return;
-		}
-		this.modalService.injectComponent(this.modalForm, component);
-		this.modalService.closedModal.subscribe(() => {
-			this.modalService.destroyModal();
-		});
+		this.modalService.openModal(this.modalForm, undefined, component);
 	}
 
 	public openAuthModal(): void {

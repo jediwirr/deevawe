@@ -74,6 +74,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 			}
 		);
 
+		
 		tiles.addTo(this.map);
 		this.addMarker(coordinates, 'You');
 		this.eventListenerClickMap();

@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import * as moment from 'moment';
 
 @Pipe({
 	name: 'timer',
@@ -6,10 +7,18 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class Timer implements PipeTransform {
 	public transform(
-		hours: string[],
-		minutes: string[],
-		indexes: number[]
+		value: any,
+		format?: any
 	): string {
-		return `${hours[indexes[0]]}:${minutes[indexes[1]]}`;
+
+		return moment(value).calendar( {
+			sameDay: '[Сегодня]',
+			nextDay: '[Завтра]',
+			nextWeek: 'DD.MM.YYYY',
+			lastDay: '[Вчера]',
+			lastWeek: 'DD.MM.YYYY',
+			sameElse: 'DD.MM.YYYY'
+		});
+
 	}
 }

@@ -1,7 +1,50 @@
-.clock {
+/* .clock {
 	&__time {}
 	&__input {
 		background: url('../../../../assets/icons/clock.svg') right no-repeat;
 		background-position-x: calc(100% - 4px);
 	}
+} */
+.time {
+	width: 50px;
 }
+
+.time_now {
+	background: url('../../../../assets/icons/clock.svg') right no-repeat;
+	background-position-x: calc(100% - 4px);
+}
+.add_hour_up {
+	border: none;
+	width: 32px;
+	height: 32px;
+	background: url('../../../../assets/icons/modal/arrow.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	transform: rotate(180deg);
+}
+.add_hour_down {
+	border: none;
+	width: 32px;
+	height: 32px;
+	background: url('../../../../assets/icons/modal/arrow.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.flex {
+	display: flex;
+	align-items: center;
+}
+.clock_block {
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items:center;
+	position: relative;
+	align-items: center;
+	& input {
+		text-align: center;
+	}
+}
+

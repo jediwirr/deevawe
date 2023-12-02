@@ -1,120 +1,99 @@
 import {
 	Component,
-	Input,
 	OnInit,
 	Output,
 	EventEmitter,
-	ViewChild,
-	AfterViewInit,
-	ElementRef,
 } from '@angular/core';
 import * as moment from 'moment';
+import { ModalComponent } from '../../modal/modal-base';
+
 
 @Component({
 	selector: 'app-clock',
 	templateUrl: './clock.component.html',
 	styleUrls: ['./clock.style.scss'],
 })
-export class ClockComponent implements OnInit, AfterViewInit {
-	@Input() time!: number[];
-
-	@ViewChild('refTime') valueTime!: ElementRef<HTMLInputElement>;
+export class ClockComponent extends ModalComponent implements OnInit {
 
 	@Output() emitTime = new EventEmitter();
 
-	public hours: string[] = [];
+	public isOpen = false;
+	public inputSelectTime!:string;
+	public timeNow: string = moment().format('LT');
+	public hourNow: number = moment().hour();
+	public hour!: any;
+	public show = '12dwd';
+	public minute!: any;
+	public minutesNow = moment().minute();
 
-	public minutes: string[] = [];
+	public correctMinutes(): any {
+		if (this.minutesNow <= 9) {
+			const time = '0' + this.minutesNow;
+			return time
+		}
+	}
 
-	public currentHour = moment().hour();
-
-	public currentMinutes = '00';
-
-	public isShowPickTime = false;
-
-	public decrementOrIncrementTime(
+	public incrementOrdecrementHourTime(
 		typeTime: 'HOUR' | 'MINUTE',
-		type: 'INCREMENT' | 'DECREMENT'
-	): void {
-		if (typeTime === 'HOUR') {
-			if (type === 'DECREMENT') {
-				this.currentHour = moment(this.currentHour)
-					.subtract('hour')
-					.hour();
-			} else {
-				this.currentHour = moment(this.currentHour).add('hour').hour();
-			}
-		}
+		type: 'INCREMENT' | 'DECREMENT'): void {
 
-		if (typeTime === 'MINUTE') {
+		if (typeTime === 'HOUR') {
+			if (type === 'INCREMENT') {
+
+				this.hourNow = moment(this.hourNow)
+					.add(this.hourNow - 2, 'hour').hour();
+				this.hour = this.hourNow;
+
+			}
 			if (type === 'DECREMENT') {
-				this.currentMinutes = (
-					parseInt(this.currentMinutes, 10) - 15
-				).toString();
-				if (this.currentMinutes === '0') {
-					this.currentMinutes = '00';
+
+				this.hourNow = this.hourNow - 1;
+				this.hour = this.hourNow;
+				if (this.hourNow < 0) {
+					this.hourNow = 23;
+					this.hour = this.hourNow;
 				}
-			} else {
-				this.currentMinutes = (
-					parseInt(this.currentMinutes, 10) + 15
-				).toString();
+			}
+			this.hourNow;
+		}
+		if (typeTime === 'MINUTE') {
+			if (type === 'INCREMENT') {
+				this.minutesNow = moment(this.minutesNow)
+					.add(this.minutesNow + 1, 'minute').minute();
+				this.minute = this.minutesNow
+			}
+			if (type === 'DECREMENT') {
+				this.minutesNow = this.minutesNow - 1;
+				this.minute = this.minutesNow
+				if (this.minutesNow < 0) {
+					this.minutesNow = 60;
+					this.minute = this.minutesNow;
+				}
 			}
 		}
+	};
+
+	public selectTime() {
+		console.log('hour', this.hour);
+		console.log('minute', this.minute);
+		this.inputSelectTime=  `${this.hour}:${this.minute}`;
+
+		this.emitTime.emit({
+			time: this.hour
+		})
+		this.isOpen = false;
 	}
 
 	public ngOnInit(): void {
-		this.createHoursTime();
-		this.createMinutesTime();
+		this.hour = this.hourNow;
+		this.minute = this.minutesNow;
+
 	}
 
-	public ngAfterViewInit(): void {
-		this.emitTime.emit([
-			this.valueTime.nativeElement.value.substring(0, 2),
-			this.valueTime.nativeElement.value.substring(3, 5),
-		]);
-	}
 
-	public setTime(index: number, indexTime: number): void {
-		this.time[index] = indexTime;
 
-		this.emitTime.emit([
-			this.valueTime.nativeElement.value.substring(0, 2),
-			this.valueTime.nativeElement.value.substring(3, 5),
-		]);
-	}
 
-	public setShowPickTime(): void {
-		this.isShowPickTime = !this.isShowPickTime;
-	}
 
-	private createHoursTime() {
-		console.log(moment().hour());
 
-		moment().hour();
-		let index = 0;
-		while (index < 24) {
-			if (index <= 9) {
-				this.hours.push(`0${index}`);
-				index += 1;
-				// eslint-disable-next-line no-continue
-				continue;
-			}
-			this.hours.push(`${index}`);
-			index += 1;
-		}
-	}
 
-	private createMinutesTime() {
-		let index = 0;
-		while (index <= 3) {
-			if (index === 0) {
-				this.minutes.push('00');
-				index += 1;
-				// eslint-disable-next-line no-continue
-				continue;
-			}
-			this.minutes.push((15 * index).toString());
-			index += 1;
-		}
-	}
 }

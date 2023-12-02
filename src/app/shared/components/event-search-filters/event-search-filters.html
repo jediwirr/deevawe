@@ -1,26 +1,33 @@
-  <div class="search-filters">
-      <div class="filters">
-          <div class="filters-elem">
-              <span>Дата:</span>
-              &nbsp;
-              <a href="#">ссылка</a>
-          </div>
-          <div class="filters-elem">
-              <span>Время:</span>
-              &nbsp;
-              <a href="#">ссылка</a>
-          </div>
-          <div class="filters-elem">
-              <span>Место:</span>
-              &nbsp;
-              <a href="#">ссылка</a>
-          </div>
-      </div>    
-      <div class="search-button">
-          <button class="button" (click)="getEvents()">Найти</button>
-          <img
-        src="../../../assets/icons/general/additional-settings.svg"
-        alt="additional-settings"
-      />
-      </div>
-  </div>
+<div class="search-filters">
+	<div class="filters">
+		<div class="filters-elem">
+			<span>Дата:</span>
+			&nbsp;
+			<button (click)="openModal('time')">
+				{{(date ? date : today) | timer }}
+			</button>
+		</div>
+		<div class="filters-elem">
+			<span>Время:</span>
+			&nbsp;
+			<button (click)="openModal('clock')">
+				{{(timeSelectNow ? timeSelectNow : timeNow ) | timeOfday}}
+			</button>
+		</div>
+		<div class="filters-elem">
+			<span>Место:</span>
+			&nbsp;
+			<button (click)="openModal('location')">Мое местоположение</button>
+		</div>
+	</div>
+	<div class="search-button">
+		<button class="button" (click)="getEvents()">Найти</button>
+		<img
+			src="../../../assets/icons/general/additional-settings.svg"
+			alt="additional-settings"
+		/>
+	</div>
+</div>
+<div>
+	<ng-container #modalForm></ng-container>
+</div>

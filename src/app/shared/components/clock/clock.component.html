@@ -1,44 +1,51 @@
-<div class="clock" app-out-side-click (outSideClick)="isShowPickTime = false">
-	<input
-		class="clock__input"
-		type="text"
-		(click)="setShowPickTime()"
-		#refTime
-		[value]="hours | timer : minutes : time"
-	/>
-<!--	<div *ngIf="isShowPickTime" class="clock__time">-->
-<!--		<div class="clock__time&#45;&#45;hour">-->
-<!--			<span>-->
-<!--				<p>up</p>-->
-<!--					{{ currentHour }}-->
-<!--				<p>down</p>-->
-<!--			</span>-->
-<!--			&lt;!&ndash; <div *ngFor="let hour of hours; let i = index">-->
-<!--        <span (click)="setTime(0, i)"> {{ hour }} </span>-->
-<!--      </div> &ndash;&gt;-->
-<!--		</div>-->
-<!--		<span> : </span>-->
-<!--		<div class="clock__time&#45;&#45;minutes">-->
-<!--			<span>-->
-<!--				<button-->
-<!--					type="button"-->
-<!--					[disabled]="currentMinutes === '00'"-->
-<!--					(click)="decrementOrIncrementTime('MINUTE', 'DECREMENT')"-->
-<!--				>-->
-<!--					up-->
-<!--				</button>-->
-<!--				{{ currentMinutes }}-->
-<!--				<button-->
-<!--					type="button"-->
-<!--					[disabled]="currentMinutes === '60'"-->
-<!--					(click)="decrementOrIncrementTime('MINUTE', 'INCREMENT')"-->
-<!--				>-->
-<!--					down-->
-<!--				</button>-->
-<!--			</span>-->
-<!--			&lt;!&ndash; <div *ngFor="let minute of minutes; let i = index">-->
-<!--        <span (click)="setTime(1, i)"> {{ minute }} </span>-->
-<!--      </div> &ndash;&gt;-->
-<!--		</div>-->
-<!--	</div>-->
+<div>
+	<div class="input_time">
+		<input
+			(click)="isOpen = !isOpen"
+			class="time_now"
+			[value]="inputSelectTime ? inputSelectTime : timeNow"
+			readonly
+		/>
+	</div>
+	<div *ngIf="isOpen">
+		<div class="flex">
+			<div class="clock_block">
+				<button
+					class="add_hour_up"
+					(click)="incrementOrdecrementHourTime('HOUR', 'INCREMENT')"
+				></button>
+				<input class="time" [value]="hourNow" readonly />
+
+				<button
+					class="add_hour_down"
+					(click)="incrementOrdecrementHourTime('HOUR', 'DECREMENT')"
+				></button>
+			</div>
+
+			:
+			<div class="clock_block">
+				<button
+					class="add_hour_up"
+					(click)="
+						incrementOrdecrementHourTime('MINUTE', 'INCREMENT')
+					"
+				></button>
+				<input
+					class="time"
+					type="text"
+					[value]="correctMinutes() || minutesNow"
+					readonly
+				/>
+				<button
+					class="add_hour_down"
+					(click)="
+						incrementOrdecrementHourTime('MINUTE', 'DECREMENT')
+					"
+				></button>
+			</div>
+
+		
+		</div>
+		<button (click)="selectTime()">Выбрать дату</button>
+	</div>
 </div>
