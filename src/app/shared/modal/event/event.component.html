@@ -70,12 +70,14 @@
 			</div>
 
 			<div class="modal-block">
-				<label>Тип:</label>
-				<app-select
-					[listType]="listTypeEvent"
-					[isShowImage]="true"
-					(emitOptionSelect)="setOptionSelect($event)"
-				></app-select>
+				<label class="modal-block__label">Тип:</label>
+				<div class="modal-block__actions">
+          <app-select
+            [listType]="listTypeEvent"
+            [isShowImage]="true"
+            (emitOptionSelect)="setOptionSelect($event)"
+          ></app-select>
+        </div>
 			</div>
 
 			<button type="submit">Создать событие</button>
