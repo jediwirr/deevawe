@@ -16,8 +16,21 @@ export class HomePageComponent implements OnDestroy {
 
 		tokenService.receive().subscribe({
 			next: ((token: string) => {
-				const url = `${ws}?token=${token}`;
-				wsService.connect(url);
+
+				const authToken = localStorage.getItem('dataUser');
+
+				if (authToken) {
+					console.log('AuthToken')
+					const url = `${ws}?token=${authToken}`;
+					wsService.connect(url);
+				}
+
+				else {
+					console.log('GuestToken')
+					const url = `${ws}?token=${token}`;
+					wsService.connect(url);
+				}
+
 			})
 		});
 	}

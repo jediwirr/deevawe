@@ -14,6 +14,6 @@ export class AuthApiService extends Api {
 		return this.sendPostRequest<AuthUserData, SingInUserResponse>(
 			'signin',
 			userData
-		).pipe(map((user) => user));
+		).pipe(map((user) =>  user));
 	}
 }

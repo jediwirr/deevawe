@@ -18,7 +18,7 @@ export class CardEventComponent {
 	constructor(
 		private eventsService: EventsService,
 		private modalService: ModalService
-	) {}
+	) { }
 
 	public deleteEvent(): void {
 		this.eventsService
@@ -34,14 +34,14 @@ export class CardEventComponent {
 	}
 
 	public updateEvent(): void {
-		this.modalService.injectComponent(
+		this.modalService.openModal(
 			this.modalFormEvent,
-			EventFormComponent,
 			{
 				...this.event,
-			}
-		);
-		this.modalService.closedModal.subscribe(() => {
+			},
+			EventFormComponent,
+
+		).subscribe(() => {
 			this.modalService.destroyModal();
 		});
 	}

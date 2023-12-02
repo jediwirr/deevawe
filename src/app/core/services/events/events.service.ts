@@ -57,4 +57,6 @@ export class EventsService extends Api {
 			map((occasion) => occasion)
 		);
 	}
+	
+	
 }

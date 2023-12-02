@@ -1,10 +1,21 @@
-<div class="modal">
-	<div class="wrapper" app-out-side-click (outSideClick)="destroyModal()">
-		<form class="event-form-container" (ngSubmit)="submitEvent()" [formGroup]="eventForm">
+<div class="modal" #close>
+	<div class="wrapper">
+		<div class="close"  (click)="removeModal()">
+			<img src="../../../../assets/icons/modal/closeIconModal.svg" alt="" />
+		</div>
+		<form
+			class="event-form-container"
+			(ngSubmit)="submitEvent()"
+			[formGroup]="eventForm"
+		>
 			<div class="modal-block">
 				<label class="modal-block__label">Название:</label>
 				<div class="modal-block__actions">
-					<input class="modal-block__input" formControlName="title" type="text"/>
+					<input
+						class="modal-block__input"
+						formControlName="title"
+						type="text"
+					/>
 					<p class="modal-block__tip">До 30 символов</p>
 				</div>
 			</div>
@@ -12,19 +23,26 @@
 			<div class="modal-block">
 				<label class="modal-block__label"> Описание:</label>
 				<div class="modal-block__actions">
-					<textarea class="modal-block__input" id="desc_area" formControlName="description" maxlength="300"></textarea>
+					<textarea
+						class="modal-block__input"
+						id="desc_area"
+						formControlName="description"
+						maxlength="300"
+					></textarea>
 					<p class="modal-block__tip">Кол-во символов 0 / 300</p>
 				</div>
 			</div>
 
 			<div class="modal-block">
 				<label>Место:</label>
-				<p class="modal-block-link" (click)="showOrHideMap()">Мое местоположение</p>
-      </div>
-      <app-map
-        *ngIf="isShowMap"
-        (closeMap)="getCoordinates($event)"
-      ></app-map>
+				<p class="modal-block-link" (click)="showOrHideMap()">
+					Мое местоположение
+				</p>
+				<app-map
+					*ngIf="isShowMap"
+					(closeMap)="getCoordinates($event)"
+				></app-map>
+			</div>
 
 			<div class="modal-block">
 				<label class="modal-block__label">Начало:</label>
@@ -42,12 +60,12 @@
 
 			<div class="modal-block-inline">
 				<input
-          class="modal-block-inline-checkbox"
-          [checked]="isShowEndDate"
+					class="modal-block-inline-checkbox"
+					[checked]="isShowEndDate"
 					(click)="showOrHideEndDate()"
 					type="checkbox"
 				/>
-        <div class="modal-block-inline-checkmark"></div>
+				<div class="modal-block-inline-checkmark"></div>
 				<label>Добавить время окончания события</label>
 			</div>
 

@@ -15,7 +15,6 @@ export class TokenService extends Api {
 
 	public receive(): Observable<string> {	
 		// @ts-ignore
-	
 		return this.sendGetRequest('guest/token').pipe(map((token) => token.token ));
 	}
 }

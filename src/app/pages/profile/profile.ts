@@ -15,6 +15,7 @@ import { Occasions } from '../../core/interfaces/events';
 	styleUrls: ['./profile.style.scss'],
 })
 export class ProfilePageComponent implements OnInit {
+
 	public user!: User;
 
 	public userId!: number;
@@ -58,6 +59,8 @@ export class ProfilePageComponent implements OnInit {
 			this.isRemoteProfile = this.checkIsRemoteProfile();
 		});
 	}
+
+
 
 	public checkIsRemoteProfile(): boolean {
 		return !!this.originUserId && this.userId !== this.originUserId;

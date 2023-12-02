@@ -14,7 +14,7 @@ import { PipeModule } from '../core/pipes/pipes.module';
 import { DirectiveModule } from '../core/directives/directive.module';
 import { CardEventComponent } from './components/card-events/card-event';
 import { ProfileCardComponent } from './components/profile-card/profile-card';
-import {EventSearchFiltersComponent} from "./components/event-search-filters/event-search-filters";
+import { EventSearchFiltersComponent } from "./components/event-search-filters/event-search-filters";
 
 @NgModule({
 	imports: [
@@ -35,7 +35,7 @@ import {EventSearchFiltersComponent} from "./components/event-search-filters/eve
 		ClockComponent,
 		CardEventComponent,
 		ProfileCardComponent,
-		EventSearchFiltersComponent
+		EventSearchFiltersComponent,
 	],
 	exports: [
 		ToastComponent,
@@ -49,7 +49,7 @@ import {EventSearchFiltersComponent} from "./components/event-search-filters/eve
 		CardEventComponent,
 		CommonModule,
 		ProfileCardComponent,
-		EventSearchFiltersComponent
+		EventSearchFiltersComponent,
 	],
 })
-export class SharedModule {}
+export class SharedModule { }

@@ -16,6 +16,6 @@ import { EventFormComponent } from './event/event';
 		AuthModule,
 	],
 	declarations: [EventFormComponent],
-	exports: [],
+	exports: []
 })
 export class ModalModule {}
